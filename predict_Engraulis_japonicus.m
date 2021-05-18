@@ -1,9 +1,17 @@
 function [prdData, info] = predict_Engraulis_japonicus(par, data, auxData)
-  
-  % unpack par, data, auxData
+
+ % unpack par, data, auxData
   cPar = parscomp_st(par); vars_pull(par); 
   vars_pull(cPar);  vars_pull(data);  vars_pull(auxData);
-      
+
+filterChecks = f_tL >1 || ... % f contrained to not be larger than 1 or negative
+               f_tL <0 ; %   
+if filterChecks
+   info = 0;
+   prdData = {};
+   return;
+end
+  
 %% compute temperature correction factors
   TC_29 = tempcorr(temp.ab29, T_ref, T_A);
   TC_24 = tempcorr(temp.ab24, T_ref, T_A);
@@ -18,15 +26,21 @@ function [prdData, info] = predict_Engraulis_japonicus(par, data, auxData)
 
   % birth
   L_b = L_m * l_b;                  % cm, structural length at birth 
+  Lw_b = L_b/ del_M;             % cm, standard length at birth
   Ww_b = L_b^3 * (1 + f * w);       % g, wet weight at birth
   a29_b = t_b/ k_M/ TC_29;          % d, age at birth of foetus at f and T
   a24_b = t_b/ k_M/ TC_24;          % d, age at birth of foetus at f and T
+  
+  % metam
+  L_j = L_m * l_j;                  % cm, structural length at metam
+  Lw_j = L_j/ del_M;                % cm, standard length at metam
 
   % puberty 
   L_p = L_m * l_p;                  % cm, structural length at puberty at f
   Lw_p = L_p/ del_M;                % cm, total length at puberty at f
   Ww_p = L_p^3 * (1 + f * w);       % g, wet weight at puberty 
-  aT_p = t_p/ k_M/ TC;              % d, time since birth at puberty at f and T
+  tT_p20 = (t_p - t_b)/ k_M/ TC_20; % d, time since birth at puberty
+  tT_p26 = (t_p - t_b)/ k_M/ TC_26; % d, time since birth at puberty
 
   % ultimate
   L_i = L_m * l_i;                  % cm, ultimate structural length at f
@@ -46,6 +60,8 @@ function [prdData, info] = predict_Engraulis_japonicus(par, data, auxData)
   prdData.ab24 = a24_b;
   prdData.ab29 = a29_b;
   prdData.am = aT_m;
+  prdData.Lb = Lw_b;
+  prdData.Lj = Lw_j;
   prdData.Lp = Lw_p;
   prdData.Li = Lw_i;
   prdData.Wwb = Ww_b;
@@ -68,15 +84,14 @@ function [prdData, info] = predict_Engraulis_japonicus(par, data, auxData)
 
   % length-weight
   EWw = (LW(:,1) * del_M).^3 * (1 + ome * f_tL); % g, wet weight
-  EWw_L = (LW_w(:,1) * del_M).^3 * (1 + ome * f_LW_w); % g, wet weight
-  
-  % Age at puberty
-  t20_p = (t_p - t_b)/ k_M/ TC_20;  % d, age at puberty at f and T
-  t26_p = (t_p - t_b)/ k_M/ TC_26;  % d, age at puberty at f and T
-  
+  EWw_L = (LWw(:,1) * del_M).^3 * (1 + ome * f_LWw); % g, wet weight
+
   % pack to output
+  prdData.tp_20 = tT_p20;
+  prdData.tp_26 = tT_p26;
   prdData.tL = ELw;
   prdData.tLj = ELw_j;
   prdData.LW = EWw;
+  prdData.LWw = EWw_L
 
   

@@ -28,7 +28,7 @@ par.s_G = 0.0001;     free.s_G   = 0;   units.s_G = '-';          label.s_G = 'G
 par.del_M = 0.44003;  free.del_M = 1;   units.del_M = '-';        label.del_M = 'shape coefficient for standard length'; 
 par.f = 1;            free.f     = 0;   units.f = '-';            label.f = 'scaled functional response for 0-var data'; 
 par.f_tL = 0.40935;   free.f_tL  = 1;   units.f_tL = '-';         label.f_tL = 'scaled functional response for tL data'; 
-par.f_LW_w = 0.6      free.f_LW_w  = 1; units.f_LW_w = '-';       label.f_LW_w = 'scaled functional response for length-weight data in Wakasa Bay'
+par.f_LWw = 0.6;      free.f_LWw  = 1; units.f_LWw = '-';       label.f_LWw = 'scaled functional response for length-weight data in Wakasa Bay';
 
 %% set chemical parameters from Kooy2010 
 [par, units, label, free] = addchem(par, units, label, free, metaData.phylum, metaData.class); 

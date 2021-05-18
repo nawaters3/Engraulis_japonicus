@@ -18,7 +18,7 @@ metaData.ecoCode.gender  = {'D'};
 metaData.ecoCode.reprod  = {'O'};
 
 metaData.T_typical  = C2K(18.4); % K, body temp
-metaData.data_0     = {'ab'; 'am'; 'Lp'; 'Li'; 'Wwb'; 'Wwi'; 'Ri'}; 
+metaData.data_0     = {'ab'; 'am'; 'Lb'; 'Lp'; 'Li'; 'Wwb'; 'Wwi'; 'Ri'}; 
 metaData.data_1     = {'t-L'; 'L-Ww'}; 
 
 metaData.COMPLETE = 2.5; % using criteria of LikaKear2011
@@ -36,21 +36,30 @@ metaData.date_acc    = [2019 02 26];
 % zero-variate data
 data.ab29 = 20.5/24;      units.ab29 = 'd';    label.ab29 = 'age at birth';           bibkey.ab29 = 'Fuku1983'; 
   temp.ab29 = C2K(29.6); units.temp.ab29 = 'K'; label.temp.ab29 = 'temperature';
+data.tp_20 = 120;  units.tp_20 = 'd'; label.tp_20 = 'time since birth at puberty'; bibkey.tp_20 = 'YoneYama2015';
+  temp.tp_20 = C2K(20.8);  units.temp.tp_20 = 'K'; label.temp.tp_20 = 'temperature';
+  comment.tp_20 = 'Both sexes; temp range 20-22; ad libitum food; 100% individuals mature at 120 days. 27/61 individuals mature at 60 days'; 
+data.tp_26 = 90;   units.tp_26 = 'd'; label.tp_26 = 'time since birth at puberty'; bibkey.tp_26 = 'YoneYama2015';
+  temp.tp_26 = C2K(26.8);  units.temp.tp_26 = 'K'; label.temp.tp_26 = 'temperature';
+  comment.tp_26 = 'Both sexes; temps range 26-28; ad libitum food; 100% individuals mature at 90 days. 29/67 individuals mature at 90 days';
 data.ab24 = 31/24;      units.ab24 = 'd';    label.ab24 = 'age at birth';           bibkey.ab24 = 'Fuku1983'; 
   temp.ab24 = C2K(24); units.temp.ab24 = 'K'; label.temp.ab24 = 'temperature';
-data.am = 10*365;  units.am = 'd';    label.am = 'life span';              bibkey.am = 'guess';   
+data.am = 4*365;  units.am = 'd';    label.am = 'life span';              bibkey.am = 'Fishbase';   
   temp.am = C2K(18.4); units.temp.am = 'K'; label.temp.am = 'temperature';
   comment.am = 'based on Engraulis encrasicolus';
 
-data.Lp = 10.5;      units.Lp = 'cm';   label.Lp = 'standard length at puberty';bibkey.Lp = 'fishbase';
-%data.Lp_w = 8.53;   units.Lp_w = 'cm'; label.Lp_w = 'standard length at puberty';bibkey.Lp_w = 'FunaAoki2004';
-%comment.Lp_w = '50% of females sexually mature at 8.53 cm SL in Wakasa Bay. Food availability for large anchovy (copepods) was considered "low" in this study, compared to Osaka Bay, where Lp = 7.38cm, or Sagami Bay, where Lp = 6cm' 
+data.Lb = 0.33475;   units.Lb = 'cm'; label.Lb = 'standard length at birth';bibkey.Lb = 'Fuku1983';
+  comment.Lb = 'Guessed SL of larvae at day 2 (functional mouth / onset feeding) given SL at day 1 and day 5';
+data.Lj = 3.44;   units.Lj = 'cm';   label.Lj = 'standard length at metamorphosis';bibkey.Lj = 'TakaWata2004';
+  comment.Lj = 'Range 2.64-4.70 cm, mean 3.44. Metam defined as: "fish with guanine deposition on the peritoneal surface but not on the trunk surface correspond to the end of the metamorphosing stage" for anchovy in Pacific around 35N 150E';
+data.Lp = 6.5;   units.Lp = 'cm'; label.Lp = 'standard length at puberty';bibkey.Lp = 'FunaAoki2004';
+  comment.Lp = 'Guessed value, given 50% of females mature in Sagami Bay at 6 cm SL, 8.53cm In Wakasa Bay where food availability for large anchovy (copepods) was considered "low", and 7.38cm in Osaka Bay where food density was considered higher.';
 data.Li = 18;     units.Li = 'cm';   label.Li = 'ultimate total length';  bibkey.Li = 'fishbase';
 
 data.Wwb = 2.5e-4; units.Wwb = 'g';    label.Wwb = 'wet weight at birth';    bibkey.Wwb = 'FukuTaka1988';
   comment.Wwb = 'based on egg length of 1.21 mm, width 0.63 mm: pi/6*0.121*0.063^2';
-data.Wwi = 620; units.Wwi = 'g';    label.Wwi = 'ultimate wet weight';    bibkey.Wwi = 'fishbase';
-  comment.Wwi = 'based on Li and LW data: 63*(18/8.4)^3; fishbase gives 45 g as max published weight';
+data.Wwi = 45; units.Wwi = 'g';    label.Wwi = 'ultimate wet weight';    bibkey.Wwi = 'fishbase';
+  comment.Wwi = ';From Fishbase. Changed from 620g, which was calculated based on Li and LW data: 63*(18/8.4)^3';
   
 data.Ri = 600;   units.Ri = '#/d';  label.Ri = 'maximum reprod rate';    bibkey.Ri = 'guess';   
   temp.Ri = C2K(18.4); units.temp.Ri = 'K'; label.temp.Ri = 'temperature';
@@ -171,216 +180,209 @@ bibkey.tLj = 'Fuku1983';
 
 %
 data.LW = [ ... 
-0.795	0.222
-0.856	0.220
-0.932	0.340
-1.039	0.337
-1.100	0.336
-1.131	0.213
-1.207	0.211
-1.299	0.208
-1.345	0.329
-1.375	0.328
-1.498	0.325
-1.559	0.323
-1.742	0.318
-1.834	0.316
-1.941	0.435
-2.017	0.677
-2.078	0.431
-2.078	0.919
-2.185	0.672
-2.216	0.671
-2.292	0.547
-2.338	1.278
-2.399	0.910
-2.399	1.520
-2.460	0.909
-2.537	2.614
-2.552	0.662
-2.552	1.760
-2.567	1.150
-2.628	0.660
-2.644	2.001
-2.735	1.145
-2.751	2.120
-2.812	1.875
-2.843	2.484
-2.919	1.872
-2.995	2.235
-3.026	2.722
-3.057	2.478
-3.148	3.085
-3.164	2.597
-3.194	3.206
-3.332	4.665
-3.378	3.810
-3.454	3.686
-3.485	3.564
-3.561	4.659
-3.592	3.805
-3.730	5.386
-3.730	6.240
-3.790	4.409
-3.791	5.263
-3.791	6.116
-3.821	4.652
-3.836	2.701
-3.929	8.918
-3.974	5.868
-4.035	6.963
-4.097	7.084
-4.142	5.009
-4.143	8.180
-4.219	9.641
-4.495	9.878
-4.525	11.462
-4.586	7.924
-4.648	11.459
-4.663	13.654
-4.709	12.311
-4.723	5.359
-4.724	12.798
-4.849	23.161
-4.877	11.331
-4.877	12.063
-4.924	17.671
-4.924	19.012
-5.062	17.423
-5.076	15.960
-5.107	14.251
-5.183	15.957
-5.249	38.272
-5.263	29.491
-5.276	18.393
-5.306	15.466
-5.398	17.292
-5.413	15.463
-5.461	29.486
-5.475	19.973
-5.520	19.606
-5.536	20.825
-5.551	17.532
-5.566	19.605
-5.566	20.215
-5.690	24.723
-5.692	35.577
-5.719	19.113
-5.765	18.624
-5.781	22.770
-5.796	20.574
-5.812	23.988
-5.815	38.257
-5.827	23.500
-5.827	23.988
-5.857	23.012
-5.888	24.352
-5.892	41.059
-5.933	20.571
-5.950	27.399
-5.964	22.887
-5.995	24.227
-5.995	24.715
-6.025	23.007
-6.026	26.056
-6.061	47.152
-6.071	21.786
-6.118	25.809
-6.133	25.931
-6.133	27.638
-6.146	17.638
-6.168	45.564
-6.194	26.905
-6.214	47.514
-6.227	35.684
-6.230	50.075
-6.240	26.050
-6.301	27.756
-6.316	23.975
-6.377	25.437
-6.378	26.046
-6.440	33.240
-6.454	27.873
-6.454	28.483
-6.473	43.117
-6.516	29.823
-6.531	27.871
-6.562	29.822
-6.562	33.480
-6.576	26.163
-6.577	31.773
-6.607	28.479
-6.609	35.186
-6.670	34.209
-6.674	54.209
-6.684	32.257
-6.700	34.452
-6.716	36.037
-6.730	29.939
-6.747	37.134
-6.747	38.841
-6.762	36.036
-6.791	30.181
-6.797	56.889
-6.809	41.157
-6.822	34.449
-6.853	34.570
-6.885	39.081
-6.916	41.154
-6.916	43.105
-6.917	48.349
-6.931	40.056
-6.958	27.372
-6.960	32.250
-6.980	55.786
-6.992	41.152
-7.039	45.175
-7.041	54.565
-7.052	37.857
-7.114	37.856
-7.115	43.953
-7.129	38.587
-7.129	39.075
-7.144	39.074
-7.181	67.854
-7.236	39.925
-7.266	36.632
-7.282	41.022
-7.303	66.875
-7.343	40.532
-7.406	45.775
-7.406	46.506
-7.406	48.823
-7.464	35.529
-7.527	41.015
-7.527	41.503
-7.528	46.381
-7.559	50.648
-7.574	46.258
-7.680	42.474
-7.680	43.938
-7.835	53.446
-7.957	53.442
-8.357	63.554
-8.372	62.821];
-units.LW = {'cm', 'g'}; label.LW = {'total length', 'weight'};  
+0.795	0.0222
+0.856	0.022
+0.932	0.034
+1.039	0.0337
+1.1	    0.0336
+1.131	0.0213
+1.207	0.0211
+1.299	0.0208
+1.345	0.0329
+1.375	0.0328
+1.498	0.0325
+1.559	0.0323
+1.742	0.0318
+1.834	0.0316
+1.941	0.0435
+2.017	0.0677
+2.078	0.0431
+2.078	0.0919
+2.185	0.0672
+2.216	0.0671
+2.292	0.0547
+2.338	0.1278
+2.399	0.091
+2.399	0.152
+2.46	0.0909
+2.537	0.2614
+2.552	0.0662
+2.552	0.176
+2.567	0.115
+2.628	0.066
+2.644	0.2001
+2.735	0.1145
+2.751	0.212
+2.812	0.1875
+2.843	0.2484
+2.919	0.1872
+2.995	0.2235
+3.026	0.2722
+3.057	0.2478
+3.148	0.3085
+3.164	0.2597
+3.194	0.3206
+3.332	0.4665
+3.378	0.381
+3.454	0.3686
+3.485	0.3564
+3.561	0.4659
+3.592	0.3805
+3.73	0.5386
+3.73	0.624
+3.79	0.4409
+3.791	0.5263
+3.791	0.6116
+3.821	0.4652
+3.836	0.2701
+3.929	0.8918
+3.974	0.5868
+4.035	0.6963
+4.097	0.7084
+4.142	0.5009
+4.143	0.818
+4.219	0.9641
+4.495	0.9878
+4.525	1.1462
+4.586	0.7924
+4.648	1.1459
+4.663	1.3654
+4.709	1.2311
+4.723	0.5359
+4.724	1.2798
+4.849	2.3161
+4.877	1.1331
+4.877	1.2063
+4.924	1.7671
+4.924	1.9012
+5.062	1.7423
+5.076	1.596
+5.107	1.4251
+5.183	1.5957
+5.249	3.8272
+5.263	2.9491
+5.276	1.8393
+5.306	1.5466
+5.398	1.7292
+5.413	1.5463
+5.461	2.9486
+5.475	1.9973
+5.52	1.9606
+5.536	2.0825
+5.551	1.7532
+5.566	1.9605
+5.566	2.0215
+5.69	2.4723
+5.692	3.5577
+5.719	1.9113
+5.765	1.8624
+5.781	2.277
+5.796	2.0574
+5.812	2.3988
+5.815	3.8257
+5.827	2.35
+5.827	2.3988
+5.857	2.3012
+5.888	2.4352
+5.892	4.1059
+5.933	2.0571
+5.95	2.7399
+5.964	2.2887
+5.995	2.4227
+5.995	2.4715
+6.025	2.3007
+6.026	2.6056
+6.061	4.7152
+6.071	2.1786
+6.118	2.5809
+6.133	2.5931
+6.133	2.7638
+6.146	1.7638
+6.168	4.5564
+6.194	2.6905
+6.214	4.7514
+6.227	3.5684
+6.23	5.0075
+6.24	2.605
+6.301	2.7756
+6.316	2.3975
+6.377	2.5437
+6.378	2.6046
+6.44	3.324
+6.454	2.7873
+6.454	2.8483
+6.473	4.3117
+6.516	2.9823
+6.531	2.7871
+6.562	2.9822
+6.562	3.348
+6.576	2.6163
+6.577	3.1773
+6.607	2.8479
+6.609	3.5186
+6.67	3.4209
+6.674	5.4209
+6.684	3.2257
+6.7	    3.4452
+6.716	3.6037
+6.73	2.9939
+6.747	3.7134
+6.747	3.8841
+6.762	3.6036
+6.791	3.0181
+6.797	5.6889
+6.809	4.1157
+6.822	3.4449
+6.853	3.457
+6.885	3.9081
+6.916	4.1154
+6.916	4.3105
+6.917	4.8349
+6.931	4.0056
+6.958	2.7372
+6.96	3.225
+6.98	5.5786
+6.992	4.1152
+7.039	4.5175
+7.041	5.4565
+7.052	3.7857
+7.114	3.7856
+7.115	4.3953
+7.129	3.8587
+7.129	3.9075
+7.144	3.9074
+7.181	6.7854
+7.236	3.9925
+7.266	3.6632
+7.282	4.1022
+7.303	6.6875
+7.343	4.0532
+7.406	4.5775
+7.406	4.6506
+7.406	4.8823
+7.464	3.5529
+7.527	4.1015
+7.527	4.1503
+7.528	4.6381
+7.559	5.0648
+7.574	4.6258
+7.68	4.2474
+7.68	4.3938
+7.835	5.3446
+7.957	5.3442
+8.357	6.3554
+8.372	6.2821];
+units.LW = {'cm', 'g'}; label.LW = {'standard length', 'weight'};  
 bibkey.LW = 'FukuTaka1988';
 
 %L-Ww Wakasa Bay
-data.LW_w = [ ... % Standard length (cm), (total) wet weight (g)
+data.LWw = [ ... % Standard length (cm), (total) wet weight (g)
     6.330054446	6.608553456	6.850764692	7.110987523	7.375158089	7.610028576	7.652229658	7.900159657	8.162842716	8.118978691	8.359281145	8.408204235	8.621610575	8.672168136	8.87424445	8.953674266	9.124463709	9.139324585	9.166427718	9.389780858	9.378958469	9.419665739	9.555705333	9.65642753	9.649705011	9.66878242	9.847382998	9.896355816	9.921577053	9.893309657	10.06395758	10.16083118	10.24486215	10.3392132	10.43337202	10.42117464	10.60317286	10.59948481	10.69949489	10.83987153	10.84567659	10.91948098	10.94787089	11.00021965	11.08040337	11.09596667	11.18438396	11.19921627	11.2276084	11.25669511	11.42415332	11.40010755	11.47504878	11.45019075	11.54413953	11.70842311	11.67608218	11.6297869	11.76926955	11.94777425	11.97822302	12.03701818	12.06015531	12.07574464	12.11215711	12.21769006	12.30685921	12.34175415	12.3760853	12.39459411	12.47920382	12.58135411	12.56594261	12.50565568	12.63047959	12.67806343	12.66149222	12.78008594	12.88103217	12.90946841	12.92888317	13.09066702	13.1516525	13.1611397	13.17689	13.18076634	13.41017854	13.32744968	13.43356401	13.59547994	13.56068641	13.69288273	13.88929801	13.93017928	13.83694684	14.09587402	14.35219798	14.46525522	14.46972862;
 	2.301296183	2.534298923	2.798773597	3.14606915	3.494929098	4.485441046	3.796075017	4.473653334	5.19504918	4.327812668	6.400085826	4.998394437	6.596732062	5.34634384	7.19653322	5.416189448	8.049238725	6.506388287	5.686841179	8.546326473	7.102061533	6.382488252	9.88101275	10.89853612	8.237344661	6.76451336	9.882752494	11.42578287	8.214568919	7.074263448	10.15275321	8.604945133	7.797013653	10.45162625	11.99853974	8.862366229	10.59623667	9.420333559	12.20578991	13.63329326	10.41200623	15.751568	12.46702887	11.02070901	14.45220462	18.15920572	15.84904094	12.59692451	11.30751465	17.59286019	14.33596653	15.21380743	12.80257255	11.74202519	17.20751633	14.42403527	13.2424202	11.83236897	18.17971513	15.45273162	14.14115434	18.89208972	17.10371317	12.11057043	20.29479277	16.07914101	18.34626409	16.97467112	20.40384223	21.74828277	15.60481911	18.95375293	17.68394146	16.69274118	22.57115421	20.22573593	21.5364377	18.31007914	23.25665693	20.08879379	21.63648874	15.19086298	22.7239434	19.85973097	21.57776378	18.68989175	24.33535156	20.38982973	22.21482863	27.53184881	25.9885216	24.41273768	27.12735508	25.36140644	24.19655998	27.58626519	28.76107169	32.81220132	29.47951981
     ]';
-units.LW_w = {'cm','g'};      label.LW_w = {'standard length', 'wet weight'};
-bibkey.LW_w = 'FunaAoki2004';
-comment.LW_w = 'Data from Wakasaka Bay. Both sexes. Temperatures during year of sampling in paper.';
-
-%
-data.ap_t = [ ... % temp (K), age at puberty (d)
-C2K(20.8)  120
-C2K(26.8)  90];
-units.ap_t = {'K', 'd'}; label.ap_t = {'temperature', 'age at puberty'};  bibkey.ap_t = {'Yone2015'};
-comment.ap_t = 'Both sexes; temps are means with between 20-22 and 26-28; ad libitum food; 100% individuals mature at 120 days. For 20.8, 27/61 at 60 days; for 26.8, 29/67 individuals mature at 90 days';
+units.LWw = {'cm','g'};      label.LWw = {'standard length', 'wet weight'};
+bibkey.LWw = 'FunaAoki2004';
+comment.LWw = 'Data from Wakasaka Bay. Both sexes. Temperatures during year of sampling in paper.';
 
 %% set weights for all real data
 weights = setweights(data, []);
@@ -399,10 +401,12 @@ txtData.bibkey = bibkey;
 txtData.comment = comment;
 
 %% Discussion points
-D1 = 'Added data.Tap, data.LW_w as part of DEB School 2021';
-D2 = 'Not sure if the literature in this entry, mainly from Japanese waters, is enough to justify a seperate species entry, as other populations, e.g. Yellow Sea, may differ in parameter values';
-D3 = 'The original value for Lp seems larger than what studies have observed around Japan (8.53, 7.57 and 6 cm respectively). The 8.53 cm Lp was observed at "low" food levels, where temperature and daylight were similar. Should it be assumed that Lp = 6cm equates to f = 1? Does it imply the Japanese anchovy in Japanese waters are distinct in parameter values?';
-metaData.discussion = struct('D1',D1, 'D2',D2, 'D3',D3);  
+D1 = 'Added data.Lb, data.Tp_20, data.Tp_26, data.LWw and changed Lp to 6 cm as part of DEB School 2021';
+D2 = 'The data in this entry may be biased towards the Japanese populations of E. japonicus. Uncertain if parameters are the same for other areas e.g. Yellow Sea';
+D3 = 'The original value for Lp (>10cm) seemed larger than what studies have observed around Japan (8.53, 7.57 and 6 cm respectively). The 8.53 cm Lp was observed at "low" food levels, where differences in temperature and daylight were accounted for. I therefore assumed that for Sagami Bay (where Lp = 6cm) f = 1 ';
+D4 = 'Changed the max wet weight Wwi to 45g, the value in Fishbase and more realistic than the previous >600g value that was calculated';
+D5 = 'The original LW data from FukuTaka1988 was in units of mg. LW data in mydata file was over-converted by a factor of 10. New range is 0-6 g (instead of 0-60 g)';
+metaData.discussion = struct('D1',D1, 'D2',D2, 'D3',D3, 'D4',D4, 'D5',D5);  
                                  
 %% Links
 metaData.links.id_CoL = 'c8c10a1c14ab21459eb2f38d4bf851ad'; % Cat of Life
@@ -452,6 +456,15 @@ bibkey = 'FunaAoki2004'; type = 'Article'; bib = [ ...
 'journal = {Fisheries Research}, ' ...
 'volume = {70}, '...
 'pages = {71-81}'];
+metaData.biblist.(bibkey) = ['''@', type, '{', bibkey, ', ' bib, '}'';'];
+%
+bibkey = 'YoneYama2015'; type = 'Article'; bib = [ ...
+'author = {Yoneda, M. and Yamamoto, T. and Yamada, T. and Takahashi, M.}, ' ...
+'year = {2015}, ' ...
+'title  = {Temperature-induced variation in sexual maturation of Japanese anchovy Engraulis japonicus}, ' ...
+'journal = {Journal of the Marine Biological Association of the United Kingdom}, ' ...
+'volume = {95}, '...
+'pages = {1271-1276}'];
 metaData.biblist.(bibkey) = ['''@', type, '{', bibkey, ', ' bib, '}'';'];
 %
 bibkey = 'fishbase'; type = 'Misc'; bib = ...
