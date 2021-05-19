@@ -13,23 +13,35 @@ if filterChecks
 end
   
 %% compute temperature correction factors
-  TC_29 = tempcorr(temp.ab29, T_ref, T_A);
-  TC_24 = tempcorr(temp.ab24, T_ref, T_A);
+%  TC_ah29 = tempcorr(temp.ah29, T_ref, T_A);
+%  TC_ah24 = tempcorr(temp.ah24, T_ref, T_A);
+%  TC_ah17 = tempcorr(temp.ah17, T_ref, T_A);
+  TC_Tah = tempcorr(C2K(Tah(:,1)), T_ref, T_A);
+  TC_ab = tempcorr(temp.ab, T_ref, T_A);
   TC    = tempcorr(temp.am, T_ref, T_A);
   TC_tL = tempcorr(temp.tL, T_ref, T_A);
-  TC_20 = tempcorr(C2K(20.8), T_ref, T_A);
-  TC_26 = tempcorr(C2K(26.8), T_ref, T_A);
+  TC_20 = tempcorr(temp.tp_20, T_ref, T_A);
+  TC_26 = tempcorr(temp.tp_26, T_ref, T_A);
 
   % life cycle
   pars_tj = [g k l_T v_Hb v_Hj v_Hp];
   [t_j t_p t_b l_j l_p l_b l_i rho_j rho_B info] = get_tj(pars_tj, f);
+  
+  %hatching
+%  [U_H aUL] = ode45(@dget_aul, [0; U_Hh; U_Hb], [0 U_E0 1e-10], [], kap, v, k_J, g, L_m);
+%  aT_h29 = aUL(2,1)/ TC_ah29; % d, age at hatch at f and T
+%  aT_h24 = aUL(2,1)/ TC_ah24; % d, age at hatch at f and T
+%  aT_h17 = aUL(2,1)/ TC_ah17; % d, age at hatch at f and T
+%  L_h = aUL(2,3); % cm, strucural length at hatch
+%  E_h = aUL(2,2) * p_Am; % J, energy in reserves at hatch
+%  E_0 = aUL(2,2) * p_Am; % J, energy in reserves at initial state
+%  Wdh = (d_V * L_h^3 + w_E/ mu_E * E_h); % g, dry weight at hatch
 
   % birth
-  L_b = L_m * l_b;                  % cm, structural length at birth 
-  Lw_b = L_b/ del_M;             % cm, standard length at birth
-  Ww_b = L_b^3 * (1 + f * w);       % g, wet weight at birth
-  a29_b = t_b/ k_M/ TC_29;          % d, age at birth of foetus at f and T
-  a24_b = t_b/ k_M/ TC_24;          % d, age at birth of foetus at f and T
+  L_b = L_m * l_b;                 % cm, structural length at birth 
+  Lw_b = L_b/ del_M;               % cm, standard length at birth
+  Ww_b = L_b^3 * (1 + f * w);      % g, wet weight at birth
+  aT_b = t_b/ k_M/ TC_ab;          % d, age at birth of foetus at f and T
   
   % metam
   L_j = L_m * l_j;                  % cm, structural length at metam
@@ -57,8 +69,10 @@ end
   aT_m = t_m/ k_M/ TC;                  % d, mean life span at T
 
   % pack to output
-  prdData.ab24 = a24_b;
-  prdData.ab29 = a29_b;
+%  prdData.ah29 = aT_h29;
+%  prdData.ah24 = aT_h24;
+%  prdData.ah17 = aT_h17;
+  prdData.ab = aT_b;
   prdData.am = aT_m;
   prdData.Lb = Lw_b;
   prdData.Lj = Lw_j;
@@ -85,8 +99,14 @@ end
   % length-weight
   EWw = (LW(:,1) * del_M).^3 * (1 + ome * f_tL); % g, wet weight
   EWw_L = (LWw(:,1) * del_M).^3 * (1 + ome * f_LWw); % g, wet weight
+  
+  %hatching
+  pars_lh = [g k l_T v_Hh v_Hj v_Hp];
+  [t_j t_p t_h] = get_tj(pars_lh, f);
+  Eah = (t_0 + t_h/ k_M) ./ TC_Tah; % d, time at hatch
 
   % pack to output
+  prdData.Tah = Eah;
   prdData.tp_20 = tT_p20;
   prdData.tp_26 = tT_p26;
   prdData.tL = ELw;

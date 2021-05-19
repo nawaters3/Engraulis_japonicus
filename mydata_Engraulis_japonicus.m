@@ -34,19 +34,25 @@ metaData.date_acc    = [2019 02 26];
 
 %% set data
 % zero-variate data
-data.ab29 = 20.5/24;      units.ab29 = 'd';    label.ab29 = 'age at birth';           bibkey.ab29 = 'Fuku1983'; 
-  temp.ab29 = C2K(29.6); units.temp.ab29 = 'K'; label.temp.ab29 = 'temperature';
+
+
+%data.ah29 = 20.5/24;      units.ah29 = 'd';    label.ah29 = 'age at hatching';     bibkey.ab29 = 'Fuku1983'; 
+%  temp.ah29 = C2K(29.6); units.temp.ab29 = 'K'; label.temp.ab29 = 'temperature';
+%data.ah24 = 31/24;        units.ah24 = 'd';  label.ah24 = 'age at hatching';       bibkey.ah24 = 'Fuku1983'; 
+%  temp.ah24 = C2K(24); units.temp.ah24 = 'K'; label.temp.ah24 = 'temperature';
+%data.ah17 = 52/24;        units.ah17 = 'd';  label.ah17 = 'age at hatching';       bibkey.ah17 = 'Fuku1983'; 
+%  temp.ah17 = C2K(17.5); units.temp.ah17 = 'K'; label.temp.ah17 = 'temperature';
+data.ab = 2;      units.ab = 'd';    label.ab = 'age at birth';      bibkey.ab = 'Fuku1983'; 
+  temp.ab = C2K(24); units.temp.ab = 'K'; label.temp.ab = 'temperature';
+  comment.ab = 'Temp range 23-25, mouth open and functional from day 2';
 data.tp_20 = 120;  units.tp_20 = 'd'; label.tp_20 = 'time since birth at puberty'; bibkey.tp_20 = 'YoneYama2015';
   temp.tp_20 = C2K(20.8);  units.temp.tp_20 = 'K'; label.temp.tp_20 = 'temperature';
   comment.tp_20 = 'Both sexes; temp range 20-22; ad libitum food; 100% individuals mature at 120 days. 27/61 individuals mature at 60 days'; 
 data.tp_26 = 90;   units.tp_26 = 'd'; label.tp_26 = 'time since birth at puberty'; bibkey.tp_26 = 'YoneYama2015';
   temp.tp_26 = C2K(26.8);  units.temp.tp_26 = 'K'; label.temp.tp_26 = 'temperature';
   comment.tp_26 = 'Both sexes; temps range 26-28; ad libitum food; 100% individuals mature at 90 days. 29/67 individuals mature at 90 days';
-data.ab24 = 31/24;      units.ab24 = 'd';    label.ab24 = 'age at birth';           bibkey.ab24 = 'Fuku1983'; 
-  temp.ab24 = C2K(24); units.temp.ab24 = 'K'; label.temp.ab24 = 'temperature';
 data.am = 4*365;  units.am = 'd';    label.am = 'life span';              bibkey.am = 'Fishbase';   
   temp.am = C2K(18.4); units.temp.am = 'K'; label.temp.am = 'temperature';
-  comment.am = 'based on Engraulis encrasicolus';
 
 data.Lb = 0.33475;   units.Lb = 'cm'; label.Lb = 'standard length at birth';bibkey.Lb = 'Fuku1983';
   comment.Lb = 'Guessed SL of larvae at day 2 (functional mouth / onset feeding) given SL at day 1 and day 5';
@@ -66,6 +72,15 @@ data.Ri = 600;   units.Ri = '#/d';  label.Ri = 'maximum reprod rate';    bibkey.
   comment.Ri = 'based on Engraulis encrasicolus'; 
   
 % uni-variate data
+
+% embryo   
+data.Tah = [ ... % temperature (°C), development time (days) until hatching
+29 20.5/24;
+24 31/24;
+17 52/24];
+units.Tah = {'C', 'd'};  label.Tah = {'temperature', 'age at hatching'};  
+bibkey.Tah = {'Fuku1983'};
+
 % time-length
 data.tL = [ ... % time since birth (d), standard length (cm)
  0.487	0.295
@@ -386,9 +401,9 @@ comment.LWw = 'Data from Wakasaka Bay. Both sexes. Temperatures during year of s
 
 %% set weights for all real data
 weights = setweights(data, []);
-weights.tL = 5 * weights.tL;
-weights.tLj = 5 * weights.tLj;
-weights.Li = 5 * weights.Li;
+%weights.tL = 5 * weights.tL;
+%weights.tLj = 5 * weights.tLj;
+%weights.Li = 5 * weights.Li;
 
 %% set pseudodata and respective weights
 [data, units, label, weights] = addpseudodata(data, units, label, weights);
