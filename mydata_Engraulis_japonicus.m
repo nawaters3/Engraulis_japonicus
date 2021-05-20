@@ -50,7 +50,7 @@ data.tp_20 = 120;  units.tp_20 = 'd'; label.tp_20 = 'time since birth at puberty
 data.tp_26 = 90;   units.tp_26 = 'd'; label.tp_26 = 'time since birth at puberty'; bibkey.tp_26 = 'YoneYama2015';
   temp.tp_26 = C2K(26.8);  units.temp.tp_26 = 'K'; label.temp.tp_26 = 'temperature';
   comment.tp_26 = 'Both sexes; temps range 26-28; ad libitum food; 100% individuals mature at 90 days. 29/67 individuals mature at 90 days';
-data.am = 4*365.5;  units.am = 'd';    label.am = 'life span';              bibkey.am = 'Fishbase';   
+data.am = 4*365.5;  units.am = 'd';    label.am = 'life span';              bibkey.am = 'fishbase';   
   temp.am = C2K(18.4); units.temp.am = 'K'; label.temp.am = 'temperature';
 
 data.Lb = 0.33475;   units.Lb = 'cm'; label.Lb = 'standard length at birth';bibkey.Lb = 'Fuku1983';
@@ -64,7 +64,7 @@ data.Li = 18;     units.Li = 'cm';   label.Li = 'ultimate total length';  bibkey
 data.Wwb = 2.5e-4; units.Wwb = 'g';    label.Wwb = 'wet weight at birth';    bibkey.Wwb = 'FukuTaka1988';
   comment.Wwb = 'based on egg length of 1.21 mm, width 0.63 mm: pi/6*0.121*0.063^2';
 data.Wwi = 45; units.Wwi = 'g';    label.Wwi = 'ultimate wet weight';    bibkey.Wwi = 'fishbase';
-  comment.Wwi = ';From Fishbase. Changed from 620g, which was calculated based on Li and LW data: 63*(18/8.4)^3';
+  comment.Wwi = 'From Fishbase. Changed from 620g, which was calculated based on Li and LW data: 63*(18/8.4)^3';
   
 data.Ri = 600;   units.Ri = '#/d';  label.Ri = 'maximum reprod rate';    bibkey.Ri = 'guess';   
   temp.Ri = C2K(18.4); units.temp.Ri = 'K'; label.temp.Ri = 'temperature';
@@ -401,8 +401,8 @@ comment.LWw = 'Data from Wakasaka Bay. Both sexes. Temperatures during year of s
 
 %% set weights for all real data
 weights = setweights(data, []);
-%weights.tL = 5 * weights.tL;
-%weights.tLj = 5 * weights.tLj;
+weights.tL = 10 * weights.tL;
+weights.Ri = 5 * weights.Ri;
 % weights.Li = 5 * weights.Li;
 
 %% set pseudodata and respective weights
