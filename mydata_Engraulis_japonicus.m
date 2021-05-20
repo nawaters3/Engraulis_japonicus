@@ -35,7 +35,6 @@ metaData.date_acc    = [2019 02 26];
 %% set data
 % zero-variate data
 
-
 %data.ah29 = 20.5/24;      units.ah29 = 'd';    label.ah29 = 'age at hatching';     bibkey.ab29 = 'Fuku1983'; 
 %  temp.ah29 = C2K(29.6); units.temp.ab29 = 'K'; label.temp.ab29 = 'temperature';
 %data.ah24 = 31/24;        units.ah24 = 'd';  label.ah24 = 'age at hatching';       bibkey.ah24 = 'Fuku1983'; 
@@ -51,7 +50,7 @@ data.tp_20 = 120;  units.tp_20 = 'd'; label.tp_20 = 'time since birth at puberty
 data.tp_26 = 90;   units.tp_26 = 'd'; label.tp_26 = 'time since birth at puberty'; bibkey.tp_26 = 'YoneYama2015';
   temp.tp_26 = C2K(26.8);  units.temp.tp_26 = 'K'; label.temp.tp_26 = 'temperature';
   comment.tp_26 = 'Both sexes; temps range 26-28; ad libitum food; 100% individuals mature at 90 days. 29/67 individuals mature at 90 days';
-data.am = 4*365;  units.am = 'd';    label.am = 'life span';              bibkey.am = 'Fishbase';   
+data.am = 4*365.5;  units.am = 'd';    label.am = 'life span';              bibkey.am = 'Fishbase';   
   temp.am = C2K(18.4); units.temp.am = 'K'; label.temp.am = 'temperature';
 
 data.Lb = 0.33475;   units.Lb = 'cm'; label.Lb = 'standard length at birth';bibkey.Lb = 'Fuku1983';
@@ -78,12 +77,13 @@ data.Tah = [ ... % temperature (°C), development time (days) until hatching
 29 20.5/24;
 24 31/24;
 17 52/24];
-units.Tah = {'C', 'd'};  label.Tah = {'temperature', 'age at hatching'};  
+data.Tah(:,1) = C2K(data.Tah(:,1)); % convert C to K
+units.Tah = {'K', 'd'};  label.Tah = {'temperature', 'age at hatching'};  
 bibkey.Tah = {'Fuku1983'};
 
 % time-length
 data.tL = [ ... % time since birth (d), standard length (cm)
- 0.487	0.295
+0.487	0.295
 13.791	1.236
 31.661	2.318
 43.127	3.105
@@ -403,7 +403,7 @@ comment.LWw = 'Data from Wakasaka Bay. Both sexes. Temperatures during year of s
 weights = setweights(data, []);
 %weights.tL = 5 * weights.tL;
 %weights.tLj = 5 * weights.tLj;
-%weights.Li = 5 * weights.Li;
+% weights.Li = 5 * weights.Li;
 
 %% set pseudodata and respective weights
 [data, units, label, weights] = addpseudodata(data, units, label, weights);

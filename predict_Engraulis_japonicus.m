@@ -11,12 +11,16 @@ if filterChecks
    prdData = {};
    return;
 end
-  
+
+if E_Hb < E_Hh || E_Hh < 0
+    prdData = []; info = 0; return
+end
+
 %% compute temperature correction factors
 %  TC_ah29 = tempcorr(temp.ah29, T_ref, T_A);
 %  TC_ah24 = tempcorr(temp.ah24, T_ref, T_A);
 %  TC_ah17 = tempcorr(temp.ah17, T_ref, T_A);
-  TC_Tah = tempcorr(C2K(Tah(:,1)), T_ref, T_A);
+  TC_Tah = tempcorr(Tah(:,1), T_ref, T_A); 
   TC_ab = tempcorr(temp.ab, T_ref, T_A);
   TC    = tempcorr(temp.am, T_ref, T_A);
   TC_tL = tempcorr(temp.tL, T_ref, T_A);
@@ -84,6 +88,11 @@ end
 
   %% uni-variate data
   
+ % initial
+  pars_UE0 = [V_Hb; g; k_J; k_M; v]; % compose parameter vector
+  U_E0  = initial_scaled_reserve(f, pars_UE0); % d.cm^2, initial scaled reserve
+%  E0    = U_E0 * p_Am;               % J, initial energy in egg
+  
   % time-length
   [t_j t_p t_b l_j l_p l_b l_i rho_j rho_B] = get_tj(pars_tj, f_tL);
   kT_M = TC_tL * k_M; rT_B = rho_B * kT_M; rT_j = rho_j * kT_M;     % 1/d, von Bert, exponential growth rate
@@ -100,13 +109,22 @@ end
   EWw = (LW(:,1) * del_M).^3 * (1 + ome * f_tL); % g, wet weight
   EWw_L = (LWw(:,1) * del_M).^3 * (1 + ome * f_LWw); % g, wet weight
   
-  %hatching
-  pars_lh = [g k l_T v_Hh v_Hj v_Hp];
-  [t_j t_p t_h] = get_tj(pars_lh, f);
-  Eah = (t_0 + t_h/ k_M) ./ TC_Tah; % d, time at hatch
+% T-ah data   
+  U_E0 = initial_scaled_reserve(f_Tah, pars_UE0); % d.cm^2, initial scaled reserve
+  [U_H aUL] = ode45(@dget_aul, [0; U_Hh; U_Hb], [0 U_E0 1e-10], [], kap, v, k_J, g, L_m);
+  a_h = aUL(2,1);                 % d, age at hatch at f and T_ref
+  Eah = a_h ./ TC_Tah; 
+  
+ % [U_H aUL] = ode45(@dget_aul, [0; U_Hh; U_Hb], [0 U_E0 1e-10], [], kap, v, k_J, g, L_m);
+ % aT_h = aUL(2,1)/ TC_ah;          % d, age at hatch at f and T
+ % M_Eh = J_E_Am * aUL(2,2);        % mol, reserve at hatch at f
+ % L_h = aUL(2,3);                  % cm, structural length at f
+ % Lw_h = L_h/ del_M;               % cm, S-V length at hatch at f
+ % Ww_h = L_h^3  + M_Eh * w_E/ d_E; % g, wet weight at hatch at f
 
   % pack to output
   prdData.Tah = Eah;
+% prdData.ah = aT_h;
   prdData.tp_20 = tT_p20;
   prdData.tp_26 = tT_p26;
   prdData.tL = ELw;
