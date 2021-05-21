@@ -130,6 +130,6 @@ end
   prdData.tL = ELw;
   prdData.tLj = ELw_j;
   prdData.LW = EWw;
-  prdData.LWw = EWw_L;
+  prdData.LWw = EWw_L
 
   
