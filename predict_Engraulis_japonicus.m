@@ -71,12 +71,22 @@ end
   pars_tm = [g; l_T; h_a/ k_M^2; s_G];  % compose parameter vector at T_ref
   t_m = get_tm_s(pars_tm, f, l_b);      % -, scaled mean life span at T_ref
   aT_m = t_m/ k_M/ TC;                  % d, mean life span at T
+  
+  %Males
+  pars_tjm = [g k l_T v_Hb v_Hj v_Hp];
+  [t_jm, t_pm, t_bm, l_jm, l_pm, l_bm, l_im, rho_jm, rho_Bm] = get_tj(pars_tjm, f);
+  tT_pm20 = (t_pm - t_bm)/ k_M/ TC_20; % d, time since birth at puberty
+  tT_pm26 = (t_pm - t_bm)/ k_M/ TC_26; % d, time since birth at puberty
 
   % pack to output
 %  prdData.ah29 = aT_h29;
 %  prdData.ah24 = aT_h24;
 %  prdData.ah17 = aT_h17;
   prdData.ab = aT_b;
+  prdData.tp_26 = tT_p26;
+  prdData.tp_20 = tT_p20;
+  prdData.tp_m26 = tT_pm26;
+  prdData.tp_m20 = tT_pm20;
   prdData.am = aT_m;
   prdData.Lb = Lw_b;
   prdData.Lj = Lw_j;

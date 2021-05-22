@@ -44,12 +44,18 @@ metaData.date_acc    = [2019 02 26];
 data.ab = 2;      units.ab = 'd';    label.ab = 'age at birth';      bibkey.ab = 'Fuku1983'; 
   temp.ab = C2K(24); units.temp.ab = 'K'; label.temp.ab = 'temperature';
   comment.ab = 'Temp range 23-25, mouth open and functional from day 2';
-data.tp_20 = 120;  units.tp_20 = 'd'; label.tp_20 = 'time since birth at puberty'; bibkey.tp_20 = 'YoneYama2015';
+data.tp_20 = 96;  units.tp_20 = 'd'; label.tp_20 = 'time since birth at puberty'; bibkey.tp_20 = 'YoneYama2015';
   temp.tp_20 = C2K(20.8);  units.temp.tp_20 = 'K'; label.temp.tp_20 = 'temperature';
-  comment.tp_20 = 'Both sexes; temp range 20-22; ad libitum food; 100% individuals mature at 120 days. 27/61 individuals mature at 60 days'; 
-data.tp_26 = 90;   units.tp_26 = 'd'; label.tp_26 = 'time since birth at puberty'; bibkey.tp_26 = 'YoneYama2015';
+  comment.tp_20 = 'Females; temp range 20-22; ad libitum food; guess 50% individuals mature at 96 days given data in paper'; 
+data.tp_m20 = 88;  units.tp_m20 = 'd'; label.tp_m20 = 'time since birth at puberty'; bibkey.tp_m20 = 'YoneYama2015';
+  temp.tp_m20 = C2K(20.8);  units.temp.tp_m20 = 'K'; label.temp.tp_m20 = 'temperature';
+  comment.tp_m20 = 'Males; temp range 20-22; ad libitum food; guess 50% mature at 88 days given 14/25 individuals mature at 90d';
+data.tp_26 = 65;   units.tp_26 = 'd'; label.tp_26 = 'time since birth at puberty'; bibkey.tp_26 = 'YoneYama2015';
   temp.tp_26 = C2K(26.8);  units.temp.tp_26 = 'K'; label.temp.tp_26 = 'temperature';
-  comment.tp_26 = 'Both sexes; temps range 26-28; ad libitum food; 100% individuals mature at 90 days. 29/67 individuals mature at 90 days';
+  comment.tp_26 = 'Females; temp range 26-28; ad libitum food; guess 50% individuals mature at 65 days';
+data.tp_m26 = 60;   units.tp_m26 = 'd'; label.tp_m26 = 'time since birth at puberty'; bibkey.tp_m26 = 'YoneYama2015';
+  temp.tp_m26 = C2K(26.8);  units.temp.tp_m26 = 'K'; label.temp.tp_m26 = 'temperature';
+  comment.tp_m26 = 'Males; temp range 26-28; ad libitum food; 50% individuals mature at 60 days';
 data.am = 4*365.5;  units.am = 'd';    label.am = 'life span';              bibkey.am = 'Fishbase';   
   temp.am = C2K(18.4); units.temp.am = 'K'; label.temp.am = 'temperature';
 
@@ -60,7 +66,7 @@ data.Lj = 3.44;   units.Lj = 'cm';   label.Lj = 'standard length at metamorphosi
 data.Lp = 6.5;   units.Lp = 'cm'; label.Lp = 'standard length at puberty';bibkey.Lp = 'FunaAoki2004';
   comment.Lp = 'Guessed value, given 50% of females mature in Sagami Bay at 6 cm SL, 8.53cm In Wakasa Bay where food availability for large anchovy (copepods) was considered "low", and 7.38cm in Osaka Bay where food density was considered higher.';
 data.Li = 18;     units.Li = 'cm';   label.Li = 'ultimate total length';  bibkey.Li = 'fishbase';
-
+  comment.Li = 'total length * 1.162 = 20.91 SL, seems a bit high...';
 data.Wwb = 2.5e-4; units.Wwb = 'g';    label.Wwb = 'wet weight at birth';    bibkey.Wwb = 'FukuTaka1988';
   comment.Wwb = 'based on egg length of 1.21 mm, width 0.63 mm: pi/6*0.121*0.063^2';
 data.Wwi = 45; units.Wwi = 'g';    label.Wwi = 'ultimate wet weight';    bibkey.Wwi = 'fishbase';
@@ -401,15 +407,19 @@ comment.LWw = 'Data from Wakasaka Bay. Both sexes. Temperatures during year of s
 
 %% set weights for all real data
 weights = setweights(data, []);
-%weights.Lj = 0 * weights.Lj;
+weights.Lj = 0 * weights.Lj;
 %weights.ab = 0 * weights.ab;
 %weights.am = 0 * weights.am;
 %weights.Lb = 0 * weights.Lb;
+%weights.tp_20 = 0 * weights.tp_20;
+%weights.tp_m20 = 0 * weights.tp_m20;
+%weights.tp_26 = 0 * weights.tp_26;
+%weights.tp_m26 = 0 * weights.tp_m26;
 %weights.Tah = 0 * weights.Tah;
 %weights.Wwi = 0 * weights.Wwi;
 %weights.LWw = 0 * weights.LWw;
 %weights.Wwb = 0 * weights.Wwb;
-%weights.Li = 0 * weights.Li;
+%weights.Li = 1 * weights.Li;
 %weights.tL = 0 * weights.tL;
 %weights.tLj = 0 * weights.tLj;
 
