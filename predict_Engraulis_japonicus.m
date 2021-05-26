@@ -17,29 +17,23 @@ if E_Hb < E_Hh || E_Hh < 0
 end
 
 %% compute temperature correction factors
-%  TC_ah29 = tempcorr(temp.ah29, T_ref, T_A);
-%  TC_ah24 = tempcorr(temp.ah24, T_ref, T_A);
-%  TC_ah17 = tempcorr(temp.ah17, T_ref, T_A);
   TC_Tah = tempcorr(Tah(:,1), T_ref, T_A); 
   TC_ab = tempcorr(temp.ab, T_ref, T_A);
   TC    = tempcorr(temp.am, T_ref, T_A);
   TC_tL = tempcorr(temp.tL, T_ref, T_A);
   TC_20 = tempcorr(temp.tp_20, T_ref, T_A);
   TC_26 = tempcorr(temp.tp_26, T_ref, T_A);
-
+  TC_19 = tempcorr(temp.NT19_f1, T_ref, T_A);
+  TC_23 = tempcorr(temp.NT23_f1, T_ref, T_A);
+  
   % life cycle
   pars_tj = [g k l_T v_Hb v_Hj v_Hp];
   [t_j t_p t_b l_j l_p l_b l_i rho_j rho_B info] = get_tj(pars_tj, f);
   
-  %hatching
-%  [U_H aUL] = ode45(@dget_aul, [0; U_Hh; U_Hb], [0 U_E0 1e-10], [], kap, v, k_J, g, L_m);
-%  aT_h29 = aUL(2,1)/ TC_ah29; % d, age at hatch at f and T
-%  aT_h24 = aUL(2,1)/ TC_ah24; % d, age at hatch at f and T
-%  aT_h17 = aUL(2,1)/ TC_ah17; % d, age at hatch at f and T
-%  L_h = aUL(2,3); % cm, strucural length at hatch
-%  E_h = aUL(2,2) * p_Am; % J, energy in reserves at hatch
-%  E_0 = aUL(2,2) * p_Am; % J, energy in reserves at initial state
-%  Wdh = (d_V * L_h^3 + w_E/ mu_E * E_h); % g, dry weight at hatch
+% initial
+   pars_UE0 = [V_Hb; g; k_J ;k_M; v];
+   U_E0 = initial_scaled_reserve(f, pars_UE0); %d.cm2, initial scaled reserve. Fraction des réserves restantes at birth
+   Ww_0 = U_E0 * p_Am * w_E / mu_E /d_V; % g, initial dry weight
 
   % birth
   L_b = L_m * l_b;                 % cm, structural length at birth 
@@ -66,22 +60,25 @@ end
   % reproduction
   pars_R = [kap; kap_R; g; k_J; k_M; L_T; v; U_Hb; U_Hj; U_Hp]; % compose parameter vector
   RT_i = TC * reprod_rate_j(L_i, f, pars_R);                    % ultimate reproduction rate
-
-  % life span
+  ER19f1 = (TC_19 * reprod_rate_j(9.55 * del_M, f, pars_R)); % #, daily fecundity
+  ER23f1 = (TC_23 * reprod_rate_j(9.55 * del_M, f, pars_R)); % #, daily fecundity
+  ER19f35 = (TC_19 * reprod_rate_j(9.55 * del_M, f_35, pars_R)); % #, daily fecundity
+  ER23f35 = (TC_23 * reprod_rate_j(9.55 * del_M, f_35, pars_R)); % #, daily fecundity
+  ER19f0 = (TC_19 * reprod_rate_j(9.55 * del_M, f_0, pars_R)); % #, daily fecundity
+  ER23f0 = (TC_23 * reprod_rate_j(9.55 * del_M, f_0, pars_R)); % #, daily fecundity
+  
+% life span
   pars_tm = [g; l_T; h_a/ k_M^2; s_G];  % compose parameter vector at T_ref
   t_m = get_tm_s(pars_tm, f, l_b);      % -, scaled mean life span at T_ref
   aT_m = t_m/ k_M/ TC;                  % d, mean life span at T
   
   %Males
-  pars_tjm = [g k l_T v_Hb v_Hj v_Hp];
+  pars_tjm = [g k l_T v_Hb v_Hj v_Hpm];
   [t_jm, t_pm, t_bm, l_jm, l_pm, l_bm, l_im, rho_jm, rho_Bm] = get_tj(pars_tjm, f);
   tT_pm20 = (t_pm - t_bm)/ k_M/ TC_20; % d, time since birth at puberty
   tT_pm26 = (t_pm - t_bm)/ k_M/ TC_26; % d, time since birth at puberty
 
   % pack to output
-%  prdData.ah29 = aT_h29;
-%  prdData.ah24 = aT_h24;
-%  prdData.ah17 = aT_h17;
   prdData.ab = aT_b;
   prdData.tp_26 = tT_p26;
   prdData.tp_20 = tT_p20;
@@ -95,6 +92,12 @@ end
   prdData.Wwb = Ww_b;
   prdData.Wwi = Ww_i;
   prdData.Ri = RT_i;
+  prdData.NT19_f1 = ER19f1
+  prdData.NT19_f35 = ER19f35
+  prdData.NT19_f0 = ER19f0
+  prdData.NT23_f1 = ER23f1
+  prdData.NT23_f35 = ER23f35
+  prdData.NT23_f0 = ER23f0
 
   %% uni-variate data
   
@@ -124,17 +127,9 @@ end
   [U_H aUL] = ode45(@dget_aul, [0; U_Hh; U_Hb], [0 U_E0 1e-10], [], kap, v, k_J, g, L_m);
   a_h = aUL(2,1);                 % d, age at hatch at f and T_ref
   Eah = a_h ./ TC_Tah; 
-  
- % [U_H aUL] = ode45(@dget_aul, [0; U_Hh; U_Hb], [0 U_E0 1e-10], [], kap, v, k_J, g, L_m);
- % aT_h = aUL(2,1)/ TC_ah;          % d, age at hatch at f and T
- % M_Eh = J_E_Am * aUL(2,2);        % mol, reserve at hatch at f
- % L_h = aUL(2,3);                  % cm, structural length at f
- % Lw_h = L_h/ del_M;               % cm, S-V length at hatch at f
- % Ww_h = L_h^3  + M_Eh * w_E/ d_E; % g, wet weight at hatch at f
-
-  % pack to output
+ 
+% pack to output
   prdData.Tah = Eah;
-% prdData.ah = aT_h;
   prdData.tp_20 = tT_p20;
   prdData.tp_26 = tT_p26;
   prdData.tL = ELw;

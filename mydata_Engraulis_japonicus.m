@@ -35,12 +35,6 @@ metaData.date_acc    = [2019 02 26];
 %% set data
 % zero-variate data
 
-%data.ah29 = 20.5/24;      units.ah29 = 'd';    label.ah29 = 'age at hatching';     bibkey.ab29 = 'Fuku1983'; 
-%  temp.ah29 = C2K(29.6); units.temp.ab29 = 'K'; label.temp.ab29 = 'temperature';
-%data.ah24 = 31/24;        units.ah24 = 'd';  label.ah24 = 'age at hatching';       bibkey.ah24 = 'Fuku1983'; 
-%  temp.ah24 = C2K(24); units.temp.ah24 = 'K'; label.temp.ah24 = 'temperature';
-%data.ah17 = 52/24;        units.ah17 = 'd';  label.ah17 = 'age at hatching';       bibkey.ah17 = 'Fuku1983'; 
-%  temp.ah17 = C2K(17.5); units.temp.ah17 = 'K'; label.temp.ah17 = 'temperature';
 data.ab = 2;      units.ab = 'd';    label.ab = 'age at birth';      bibkey.ab = 'Fuku1983'; 
   temp.ab = C2K(24); units.temp.ab = 'K'; label.temp.ab = 'temperature';
   comment.ab = 'Temp range 23-25, mouth open and functional from day 2';
@@ -61,10 +55,12 @@ data.am = 4*365.5;  units.am = 'd';    label.am = 'life span';              bibk
 
 data.Lb = 0.33475;   units.Lb = 'cm'; label.Lb = 'standard length at birth';bibkey.Lb = 'Fuku1983';
   comment.Lb = 'Guessed SL of larvae at day 2 (functional mouth / onset feeding) given SL at day 1 and day 5';
-data.Lj = 3.44;   units.Lj = 'cm';   label.Lj = 'standard length at metamorphosis';bibkey.Lj = 'TakaWata2004';
-  comment.Lj = 'Range 2.64-4.70 cm, mean 3.44. Metam defined as: "fish with guanine deposition on the peritoneal surface but not on the trunk surface correspond to the end of the metamorphosing stage" for anchovy in Pacific around 35N 150E';
+data.Lj = 2.1;   units.Lj = 'cm';   label.Lj = 'standard length at metamorphosis' ;bibkey.Lj = 'Fuku1983';
+  comment.Lj = ' "Transformation from the larval to the juv. stage", signified by completed fin development';
+%data.Lj = 3.44;   units.Lj = 'cm';   label.Lj = 'standard length at metamorphosis';bibkey.Lj = 'TakaWata2004';
+%  comment.Lj = 'Range 2.64-4.70 cm, mean 3.44. Metam defined as: "fish with guanine deposition on the peritoneal surface but not on the trunk surface correspond to the end of the metamorphosing stage" for anchovy in Pacific around 35N 150E';
 data.Lp = 6.5;   units.Lp = 'cm'; label.Lp = 'standard length at puberty';bibkey.Lp = 'FunaAoki2004';
-  comment.Lp = 'Guessed value, given 50% of females mature in Sagami Bay at 6 cm SL, 8.53cm In Wakasa Bay where food availability for large anchovy (copepods) was considered "low", and 7.38cm in Osaka Bay where food density was considered higher.';
+  comment.Lp = 'Guessed. 7.38 in Osaka Bay where food was considered "high". 50% of females mature in Sagami Bay at 6 cm SL (no food info), 8.53cm In Wakasa Bay where food availability for large anchovy (copepods) was considered "low"';
 data.Li = 18;     units.Li = 'cm';   label.Li = 'ultimate total length';  bibkey.Li = 'fishbase';
   comment.Li = 'total length * 1.162 = 20.91 SL, seems a bit high...';
 data.Wwb = 2.5e-4; units.Wwb = 'g';    label.Wwb = 'wet weight at birth';    bibkey.Wwb = 'FukuTaka1988';
@@ -75,6 +71,25 @@ data.Wwi = 45; units.Wwi = 'g';    label.Wwi = 'ultimate wet weight';    bibkey.
 data.Ri = 600;   units.Ri = '#/d';  label.Ri = 'maximum reprod rate';    bibkey.Ri = 'guess';   
   temp.Ri = C2K(18.4); units.temp.Ri = 'K'; label.temp.Ri = 'temperature';
   comment.Ri = 'based on Engraulis encrasicolus'; 
+  
+data.NT19_f0 = 1478/50; units.NT19_f0 = '# / d';  label.NT19_f0 = 'Mean # of eggs laid per day';    bibkey.NT19_f0 = 'YoneKita2014';   
+  temp.NT19_f0 = C2K(19.5); units.temp.NT19_f0 = 'K'; label.temp.NT19_f0 = 'temperature';
+  comment.NT19_f0 = 'Adults of unknown weight, length and age. Food treatment after 1 week ad libitum acclimation period.'; 
+data.NT23_f0 = 2245/50; units.NT23_f0 = '# / d';  label.NT23_f0 = 'Mean # of eggs laid per day';    bibkey.NT23_f0 = 'YoneKita2014';   
+  temp.NT23_f0 = C2K(23.7); units.temp.NT23_f0 = 'K'; label.temp.NT23_f0 = 'temperature';
+  comment.NT23_f0 = 'Adults of unknown weight, length and age. Food treatment after 1 week ad libitum acclimation period. n=30'; 
+data.NT19_f35 = 5252/50; units.NT19_f35 = '# / d';  label.NT19_f35 = 'Mean # of eggs laid per day';    bibkey.NT19_f35 = 'YoneKita2014';   
+  temp.NT19_f35 = C2K(19.5); units.temp.NT19_f35 = 'K'; label.temp.NT19_f35 = 'temperature';
+  comment.NT19_f35 = 'Adults of unknown weight, length and age. Food treatment after 1 week ad libitum acclimation period. n=30. Ad libitum considered 5% BW d−1, low food considered 1.75% BW d−1'; 
+data.NT23_f35 = 7371/50; units.NT23_f35 = '# / d';  label.NT23_f35 = 'Mean # of eggs laid per day';    bibkey.NT23_f35 = 'YoneKita2014';   
+  temp.NT23_f35 = C2K(23.7); units.temp.NT23_f35 = 'K'; label.temp.NT23_f35 = 'temperature';
+  comment.NT23_f35 = 'Adults of unknown weight, length and age. Food treatment after 1 week ad libitum acclimation period. n=30. Ad libitum considered 5% BW d−1, low food considered 1.75% BW d−1'; 
+data.NT19_f1 = 12519/50; units.NT19_f1 = '# / d';  label.NT19_f1 = 'Mean # of eggs laid per day';    bibkey.NT19_f1 = 'YoneKita2014';   
+  temp.NT19_f1 = C2K(19.5); units.temp.NT19_f1 = 'K'; label.temp.NT19_f1 = 'temperature';
+  comment.NT19_f1 = 'Total eggs laid / # of adults in tank of unknown weight or age. Avg length recorded as 9.1 cm "body length", which seems to be the same as standard length. Food treatment after 1 week ad libitum acclimation period. n=30. Ad libitum considered 5% BW d−1, low food considered 1.75% BW d−1'; 
+data.NT23_f1 = 14737/50; units.NT23_f1 = '# / d';  label.NT23_f1 = 'Mean # of eggs laid per day';    bibkey.NT23_f1 = 'YoneKita2014';   
+  temp.NT23_f1 = C2K(23.7); units.temp.NT23_f1 = 'K'; label.temp.NT23_f1 = 'temperature';
+  comment.NT23_f1 = 'Adults of unknown weight, length and age. Food treatment after 1 week ad libitum acclimation period. n=30. Ad libitum considered 5% BW d−1, low food considered 1.75% BW d−1'; 
   
 % uni-variate data
 
@@ -408,20 +423,23 @@ comment.LWw = 'Data from Wakasaka Bay. Both sexes. Temperatures during year of s
 %% set weights for all real data
 weights = setweights(data, []);
 weights.Lj = 0 * weights.Lj;
+weights.NT19_f0 * weights.NT19_f0
+weights.NT23_f0 = 0 * weights.NT23_f0
 %weights.ab = 0 * weights.ab;
 %weights.am = 0 * weights.am;
 %weights.Lb = 0 * weights.Lb;
-%weights.tp_20 = 0 * weights.tp_20;
-%weights.tp_m20 = 0 * weights.tp_m20;
-%weights.tp_26 = 0 * weights.tp_26;
-%weights.tp_m26 = 0 * weights.tp_m26;
+%weights.tp_20 = 0.5 * weights.tp_20;
+%weights.tp_m20 = 0.5 * weights.tp_m20;
+%weights.tp_26 = 0.5 * weights.tp_26;
+%weights.tp_m26 = 0.5 * weights.tp_m26;
 %weights.Tah = 0 * weights.Tah;
 %weights.Wwi = 0 * weights.Wwi;
 %weights.LWw = 0 * weights.LWw;
 %weights.Wwb = 0 * weights.Wwb;
-%weights.Li = 1 * weights.Li;
-%weights.tL = 0 * weights.tL;
-%weights.tLj = 0 * weights.tLj;
+weights.Li = 0.3 * weights.Li;
+%weights.tL = 5 * weights.tL;
+%weights.Ri = 0 * weights.Ri;
+%weights.tLj = 5 * weights.tLj;
 
 
 %% set pseudodata and respective weights
@@ -490,6 +508,15 @@ bibkey = 'FunaAoki2004'; type = 'Article'; bib = [ ...
 'journal = {Fisheries Research}, ' ...
 'volume = {70}, '...
 'pages = {71-81}'];
+metaData.biblist.(bibkey) = ['''@', type, '{', bibkey, ', ' bib, '}'';'];
+%
+bibkey = 'YoneKita2014'; type = 'Article'; bib = [ ...
+'author = {Yoneda, M. and Kitano, H. and Tanaka, H. and Kawamura, K. and Selvaraj, S. and Ohshimo, S. and Matsuyama, M. and Shimmizu, A.}, ' ...
+'year = {2014}, ' ...
+'title  = {Temperature- and income resource availability- mediated variation in reproductive investment in a multiple-batch-spawning Japanese anchovy}, ' ...
+'journal = {MARINE ECOLOGY PROGRESS SERIES}, ' ...
+'volume = {516}, '...
+'pages = {251-262}'];
 metaData.biblist.(bibkey) = ['''@', type, '{', bibkey, ', ' bib, '}'';'];
 %
 bibkey = 'YoneYama2015'; type = 'Article'; bib = [ ...
