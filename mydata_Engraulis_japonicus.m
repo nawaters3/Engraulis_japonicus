@@ -102,6 +102,204 @@ data.Tah(:,1) = C2K(data.Tah(:,1)); % convert C to K
 units.Tah = {'K', 'd'};  label.Tah = {'temperature', 'age at hatching'};  
 bibkey.Tah = {'Fuku1983'};
 
+% temp-reprod data
+data.TR_f1 = [ ... T (deg C) - # eggs in tank / day (by 50 individuals)
+19.5	20091
+19.5	20157
+19.5	17613
+19.5	5358
+19.5	13750
+19.5	10238
+19.5	8808
+19.5	19133
+19.5	10282
+19.5	14671
+19.5	15243
+19.5	11082
+19.5	9581
+19.5	6638
+19.5	14671
+19.5	15141
+19.5	7434
+19.5	9159
+19.5	8460
+19.5	9822
+19.5	19623
+19.5	6166
+19.5	16042
+19.5	9107
+19.5	17605
+19.5	12403
+19.5	11820
+19.5	8107
+19.5	19324
+19.5	8069
+23.7	15285
+23.7	14726
+23.7	16990
+23.7	19272
+23.7	14079
+23.7	7868
+23.7	8913
+23.7	14210
+23.7	26312
+23.7	11378
+23.7	13617
+23.7	12026
+23.7	13484
+23.7	15222
+23.7	24045
+23.7	16983
+23.7	16363
+23.7	11547
+23.7	11731
+23.7	5937
+23.7	12240
+23.7	12479
+23.7	18652
+23.7	25962
+23.7	13275
+23.7	14490
+23.7	18924
+23.7	8630
+23.7	13592
+23.7	13872];
+units.TR   = {'C', '#/d'};  label.TR = {'temperature', 'egg production per day'};  
+bibkey.TR = 'YoneKita2014';
+comment.TR = '# of eggs in tank per day from 50 individuals. Adults of unknown weight and age, avg length one week before experiment = 9.4 cm body length. Food treatment after 1 week ad libitum acclimation period. n=30. Ad libitum considered 5% BW d−1, low food considered 1.75% BW d−1';
+
+% temp-reprod data
+data.TR_f35 = [ ... T (deg C) - # eggs in tank / day (by 50 individuals)
+19.5	4031
+19.5	12167
+19.5	13004
+19.5	6940
+19.5	10072
+19.5	3354
+19.5	1807
+19.5	7547
+19.5	3013
+19.5	6771
+19.5	2452
+19.5	2273
+19.5	1965
+19.5	756
+19.5	5266
+19.5	8659
+19.5	5864
+19.5	3612
+19.5	2313
+19.5	5755
+19.5	9478
+19.5	4516
+19.5	4226
+19.5	11599
+19.5	3761
+19.5	2299
+19.5	4394
+19.5	756
+19.5	4236
+19.5	4665
+23.7	15585
+23.7	19612
+23.7	4454
+23.7	5793
+23.7	7881
+23.7	14738
+23.7	7707
+23.7	5761
+23.7	2845
+23.7	9696
+23.7	7365
+23.7	5358
+23.7	4864
+23.7	6669
+23.7	5006
+23.7	12835
+23.7	11484
+23.7	3207
+23.7	10500
+23.7	10080
+23.7	6613
+23.7	5780
+23.7	4801
+23.7	8535
+23.7	932
+23.7	4721
+23.7	5740
+23.7	4669
+23.7	5492
+23.7	2403];
+units.TR   = {'C', '#/d'};  label.TR = {'temperature', 'egg production per day'};  
+bibkey.TR = 'YoneKita2014';
+comment.TR = '# of eggs in tank per day from 50 individuals. Adults of unknown weight and age, avg length one week before experiment = 9.4 cm body length. Food treatment after 1 week ad libitum acclimation period. n=30. Ad libitum considered 5% BW d−1, low food considered 1.75% BW d−1';
+
+% temp-reprod data
+data.TR_f0 = [ ... T (deg C) - # eggs in tank / day (by 50 individuals)
+19.5	5076
+19.5	3665
+19.5	3179
+19.5	2169
+19.5	14
+19.5	0
+19.5	0
+19.5	0
+19.5	904
+19.5	2708
+19.5	1533
+19.5	606
+19.5	0
+19.5	2
+19.5	451
+19.5	4972
+19.5	3981
+19.5	3457
+19.5	0
+19.5	0
+19.5	0
+19.5	321
+19.5	2517
+19.5	1903
+19.5	1721
+19.5	2242
+19.5	592
+19.5	0
+19.5	1577
+19.5	763
+23.7	11906
+23.7	7268
+23.7	1929
+23.7	2941
+23.7	2779
+23.7	2047
+23.7	3549
+23.7	416
+23.7	21
+23.7	40
+23.7	20
+23.7	1660
+23.7	633
+23.7	213
+23.7	435
+23.7	10944
+23.7	7246
+23.7	2342
+23.7	1372
+23.7	1188
+23.7	2663
+23.7	810
+23.7	745
+23.7	601
+23.7	847
+23.7	436
+23.7	449
+23.7	1210
+23.7	310
+23.7	356];
+units.TR   = {'C', '#/d'};  label.TR = {'temperature', 'egg production per day'};  
+bibkey.TR = 'YoneKita2014';
+comment.TR = '# of eggs in tank per day from 50 individuals. Adults of unknown weight and age, avg length one week before experiment = 9.4 cm body length. Food treatment after 1 week ad libitum acclimation period. n=30. Ad libitum considered 5% BW d−1, low food considered 1.75% BW d−1';
+
 % time-length
 data.tL = [ ... % time since birth (d), standard length (cm)
 0.487	0.295
