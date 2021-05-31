@@ -71,7 +71,8 @@ data.Wwi = 45; units.Wwi = 'g';    label.Wwi = 'ultimate wet weight';    bibkey.
 data.Ri = 600;   units.Ri = '#/d';  label.Ri = 'maximum reprod rate';    bibkey.Ri = 'guess';   
   temp.Ri = C2K(18.4); units.temp.Ri = 'K'; label.temp.Ri = 'temperature';
   comment.Ri = 'based on Engraulis encrasicolus'; 
-  
+
+%{  
 data.NT19_f0 = 1478/50; units.NT19_f0 = '# / d';  label.NT19_f0 = 'Mean # of eggs laid per day';    bibkey.NT19_f0 = 'YoneKita2014';   
   temp.NT19_f0 = C2K(19.5); units.temp.NT19_f0 = 'K'; label.temp.NT19_f0 = 'temperature';
   comment.NT19_f0 = 'Adults of unknown weight, length and age. Food treatment after 1 week ad libitum acclimation period.'; 
@@ -90,6 +91,7 @@ data.NT19_f1 = 12519/50; units.NT19_f1 = '# / d';  label.NT19_f1 = 'Mean # of eg
 data.NT23_f1 = 14737/50; units.NT23_f1 = '# / d';  label.NT23_f1 = 'Mean # of eggs laid per day';    bibkey.NT23_f1 = 'YoneKita2014';   
   temp.NT23_f1 = C2K(23.7); units.temp.NT23_f1 = 'K'; label.temp.NT23_f1 = 'temperature';
   comment.NT23_f1 = 'Adults of unknown weight, length and age. Food treatment after 1 week ad libitum acclimation period. n=30. Ad libitum considered 5% BW d−1, low food considered 1.75% BW d−1'; 
+%}
   
 % uni-variate data
 
@@ -102,6 +104,7 @@ data.Tah(:,1) = C2K(data.Tah(:,1)); % convert C to K
 units.Tah = {'K', 'd'};  label.Tah = {'temperature', 'age at hatching'};  
 bibkey.Tah = {'Fuku1983'};
 
+%{
 % temp-reprod data
 data.TR_f1 = [ ... T (deg C) - # eggs in tank / day (by 50 individuals)
 19.5	20091
@@ -164,9 +167,9 @@ data.TR_f1 = [ ... T (deg C) - # eggs in tank / day (by 50 individuals)
 23.7	8630
 23.7	13592
 23.7	13872];
-units.TR   = {'C', '#/d'};  label.TR = {'temperature', 'egg production per day'};  
-bibkey.TR = 'YoneKita2014';
-comment.TR = '# of eggs in tank per day from 50 individuals. Adults of unknown weight and age, avg length one week before experiment = 9.4 cm body length. Food treatment after 1 week ad libitum acclimation period. n=30. Ad libitum considered 5% BW d−1, low food considered 1.75% BW d−1';
+units.TR_f1   = {'C', '#/d'};  label.TR_f1 = {'temperature', 'egg production per day'};  
+bibkey.TR_f1 = 'YoneKita2014';
+comment.TR_f1 = '# of eggs in tank per day from 50 individuals. Adults of unknown weight and age, avg length one week before experiment = 9.4 cm body length. Food treatment after 1 week ad libitum acclimation period. n=30. Ad libitum considered 5% BW d−1, low food considered 1.75% BW d−1';
 
 % temp-reprod data
 data.TR_f35 = [ ... T (deg C) - # eggs in tank / day (by 50 individuals)
@@ -230,9 +233,9 @@ data.TR_f35 = [ ... T (deg C) - # eggs in tank / day (by 50 individuals)
 23.7	4669
 23.7	5492
 23.7	2403];
-units.TR   = {'C', '#/d'};  label.TR = {'temperature', 'egg production per day'};  
-bibkey.TR = 'YoneKita2014';
-comment.TR = '# of eggs in tank per day from 50 individuals. Adults of unknown weight and age, avg length one week before experiment = 9.4 cm body length. Food treatment after 1 week ad libitum acclimation period. n=30. Ad libitum considered 5% BW d−1, low food considered 1.75% BW d−1';
+units.TR_f35   = {'C', '#/d'};  label.TR_f35 = {'temperature', 'egg production per day'};  
+bibkey.TR_f35 = 'YoneKita2014';
+comment.TR_f35 = '# of eggs in tank per day from 50 individuals. Adults of unknown weight and age, avg length one week before experiment = 9.4 cm body length. Food treatment after 1 week ad libitum acclimation period. n=30. Ad libitum considered 5% BW d−1, low food considered 1.75% BW d−1';
 
 % temp-reprod data
 data.TR_f0 = [ ... T (deg C) - # eggs in tank / day (by 50 individuals)
@@ -296,320 +299,89 @@ data.TR_f0 = [ ... T (deg C) - # eggs in tank / day (by 50 individuals)
 23.7	1210
 23.7	310
 23.7	356];
-units.TR   = {'C', '#/d'};  label.TR = {'temperature', 'egg production per day'};  
-bibkey.TR = 'YoneKita2014';
-comment.TR = '# of eggs in tank per day from 50 individuals. Adults of unknown weight and age, avg length one week before experiment = 9.4 cm body length. Food treatment after 1 week ad libitum acclimation period. n=30. Ad libitum considered 5% BW d−1, low food considered 1.75% BW d−1';
+units.TR_f0   = {'C', '#/d'};  label.TR_f0 = {'temperature', 'egg production per day'};  
+bibkey.TR_f0 = 'YoneKita2014';
+comment.TR_f0 = '# of eggs in tank per day from 50 individuals. Adults of unknown weight and age, avg length one week before experiment = 9.4 cm body length. Food treatment after 1 week ad libitum acclimation period. n=30. Ad libitum considered 5% BW d−1, low food considered 1.75% BW d−1';
 
-% time-length
+% T-dL data, temperature - growth rate 
+data.TdL = [ ... % temperature (C), growth rate (cm^-3/day) of oocytes from mothers fed ad-libitum
+18.08902811	1.92265E-06
+18.09088712	1.80445E-06
+18.10575922	8.58833E-07
+18.10761823	7.40631E-07
+18.11170806	4.80586E-07
+18.84899242	2.68256E-07
+18.87260187	4.33754E-07
+18.87148647	5.04675E-07
+18.86739664	7.6472E-07
+18.86479402	9.30203E-07
+18.86330681	1.02477E-06
+18.83412032	1.21387E-06
+18.85494126	1.55668E-06
+18.84583209	2.13587E-06
+20.751134	2.65709E-06
+20.75875595	2.17246E-06
+20.76377528	1.85331E-06
+20.7663779	1.68783E-06
+20.77269854	1.28594E-06
+20.77455756	1.16774E-06
+20.7808782	7.65851E-07
+20.78552573	4.70346E-07
+24.28976428	9.92511E-07
+24.28139872	1.52442E-06
+24.27396267	1.99723E-06
+24.22042311	2.06812E-06
+24.26987284	2.25727E-06
+24.26912924	2.30456E-06
+24.26020598	2.87193E-06
+24.22655785	3.34472E-06
+24.19960217	3.39199E-06
+27.93194155	2.74407E-06
+27.93398647	2.61405E-06
+27.93473007	2.56677E-06
+27.93547368	2.51949E-06
+27.93807629	2.35401E-06
+27.94049301	2.20034E-06
+27.94142252	2.14124E-06
+27.94588415	1.85756E-06
+27.94774316	1.73935E-06
+27.95108938	1.52659E-06
+27.95480741	1.29019E-06
+27.93473007	2.56677E-06
+24.27061645	2.20999E-06];
+units.TdL = {'°C', 'cm/day'};
+label.TdL = {'temperature', 'growth rate'};
+L0.TdL = mean(data.tL1_T(:,2));  units.L0.TdL1 = 'cm'; label.L0.TdL1 = 'initial length';
+bibkey.TdL = 'YoneKita2014';
+comment.TdL = 'Growth rate of volume (cm^-3) taken from formula for volume of ellipsoid V = pi*a*b^2 / 6 . Mothers fed ad-libitum';
+%}
+
+% time-Length
 data.tL = [ ... % time since birth (d), standard length (cm)
-0.487	0.295
-13.791	1.236
-31.661	2.318
-43.127	3.105
-47.699	3.288
-55.057	3.962
-55.076	4.130
-55.491	3.779
-55.508	3.934
-55.893	3.316
-55.932	3.653
-58.258	4.102
-58.676	3.780
-58.691	3.906
-60.966	3.906
-61.038	4.538
-63.288	4.313
-69.668	4.398
-79.707	4.637
-86.092	4.764
-86.097	4.806
-86.108	4.904
-86.118	4.988
-86.126	5.059
-122.989	5.089
-164.057	6.075
-185.455	6.160
-199.471	5.361
-199.530	5.881
-199.538	5.951
-200.540	6.765
-202.718	5.909
-231.113	7.497
-236.491	6.767
-240.984	6.263
-240.992	6.333
-241.016	6.543
-242.106	4.129
-247.850	6.614
-249.236	6.796
-294.247	6.449
-294.260	6.561
-300.949	5.354
-301.163	7.235
-305.678	6.927
-305.688	7.011
-306.469	5.874
-306.481	5.986
-306.558	6.660
-310.639	6.534
-310.647	6.604
-311.479	5.917
-312.049	6.927
-314.756	6.717
-314.767	6.815
-315.249	7.054
-315.565	5.833
-317.965	6.928
-318.826	6.493
-319.254	6.254
-320.138	6.029
-320.304	7.489
-320.624	6.296
-321.107	6.549
-324.247	6.142
-325.195	6.479
-325.688	6.816
-325.757	7.419
-327.542	7.111
-328.341	6.128
-328.352	6.227
-328.363	6.325
-328.381	6.479
-331.515	6.030
-331.981	6.129
-332.069	6.900
-334.407	7.448
-334.854	7.378
-336.101	6.339
-341.266	7.743
-363.448	6.720
-390.800	7.143];
+0.487	13.791	31.661	43.127	47.699	55.057	55.076	55.491	55.508	55.893	55.932	58.258	58.676	58.691	60.966	61.038	63.288	69.668	79.707	86.092	86.097	86.108	86.118	86.126	122.989	164.057	185.455	199.471	199.53	199.538	200.54	202.718	231.113	236.491	240.984	240.992	241.016	242.106	247.85	249.236	294.247	294.26	300.949	301.163	305.678	305.688	306.469	306.481	306.558	310.639	310.647	311.479	312.049	314.756	314.767	315.249	315.565	317.965	318.826	319.254	320.138	320.304	320.624	321.107	324.247	325.195	325.688	325.757	327.542	328.341	328.352	328.363	328.381	331.515	331.981	332.069	334.407	334.854	336.101	341.266	363.448	390.8
+0.295	1.236	2.318	3.105	3.288	3.962	4.13	3.779	3.934	3.316	3.653	4.102	3.78	3.906	3.906	4.538	4.313	4.398	4.637	4.764	4.806	4.904	4.988	5.059	5.089	6.075	6.16	5.361	5.881	5.951	6.765	5.909	7.497	6.767	6.263	6.333	6.543	4.129	6.614	6.796	6.449	6.561	5.354	7.235	6.927	7.011	5.874	5.986	6.66	6.534	6.604	5.917	6.927	6.717	6.815	7.054	5.833	6.928	6.493	6.254	6.029	7.489	6.296	6.549	6.142	6.479	6.816	7.419	7.111	6.128	6.227	6.325	6.479	6.03	6.129	6.9	7.448	7.378	6.339	7.743	6.72	7.143
+]';
 units.tL = {'d', 'cm'}; label.tL = {'time since birth', 'standard length'};  
 temp.tL = C2K(22);  units.temp.tL = 'K'; label.temp.tL = 'temperature';
 bibkey.tL = 'FukuTaka1988';
+
 %
 data.tLj = [ ...  % time since birth (d), standard length (cm)
-0.000	0.247
-0.715	0.304
-3.688	0.376
-7.795	0.526
-10.771	0.697
-14.878	0.847
-17.783	0.990
-20.971	1.196
-24.724	1.296
-28.902	1.468
-30.886	1.568
-34.920	1.612
-39.880	1.925
-43.916	2.040
-48.022	2.154
-51.001	2.466
-55.036	2.553
-59.145	2.746
-62.192	2.930];
+0	0.715	3.688	7.795	10.771	14.878	17.783	20.971	24.724	28.902	30.886	34.92	39.88	43.916	48.022	51.001	55.036	59.145	62.192
+0.247	0.304	0.376	0.526	0.697	0.847	0.99	1.196	1.296	1.468	1.568	1.612	1.925	2.04	2.154	2.466	2.553	2.746	2.93
+]';
 units.tLj = {'d', 'cm'}; label.tLj = {'time since birth', 'standard length'};  
 temp.tLj = C2K(22);  units.temp.tLj = 'K'; label.temp.tLj = 'temperature';
 bibkey.tLj = 'Fuku1983';
 
-%
+% Length-Weight
 data.LW = [ ... 
-0.795	0.0222
-0.856	0.022
-0.932	0.034
-1.039	0.0337
-1.1	    0.0336
-1.131	0.0213
-1.207	0.0211
-1.299	0.0208
-1.345	0.0329
-1.375	0.0328
-1.498	0.0325
-1.559	0.0323
-1.742	0.0318
-1.834	0.0316
-1.941	0.0435
-2.017	0.0677
-2.078	0.0431
-2.078	0.0919
-2.185	0.0672
-2.216	0.0671
-2.292	0.0547
-2.338	0.1278
-2.399	0.091
-2.399	0.152
-2.46	0.0909
-2.537	0.2614
-2.552	0.0662
-2.552	0.176
-2.567	0.115
-2.628	0.066
-2.644	0.2001
-2.735	0.1145
-2.751	0.212
-2.812	0.1875
-2.843	0.2484
-2.919	0.1872
-2.995	0.2235
-3.026	0.2722
-3.057	0.2478
-3.148	0.3085
-3.164	0.2597
-3.194	0.3206
-3.332	0.4665
-3.378	0.381
-3.454	0.3686
-3.485	0.3564
-3.561	0.4659
-3.592	0.3805
-3.73	0.5386
-3.73	0.624
-3.79	0.4409
-3.791	0.5263
-3.791	0.6116
-3.821	0.4652
-3.836	0.2701
-3.929	0.8918
-3.974	0.5868
-4.035	0.6963
-4.097	0.7084
-4.142	0.5009
-4.143	0.818
-4.219	0.9641
-4.495	0.9878
-4.525	1.1462
-4.586	0.7924
-4.648	1.1459
-4.663	1.3654
-4.709	1.2311
-4.723	0.5359
-4.724	1.2798
-4.849	2.3161
-4.877	1.1331
-4.877	1.2063
-4.924	1.7671
-4.924	1.9012
-5.062	1.7423
-5.076	1.596
-5.107	1.4251
-5.183	1.5957
-5.249	3.8272
-5.263	2.9491
-5.276	1.8393
-5.306	1.5466
-5.398	1.7292
-5.413	1.5463
-5.461	2.9486
-5.475	1.9973
-5.52	1.9606
-5.536	2.0825
-5.551	1.7532
-5.566	1.9605
-5.566	2.0215
-5.69	2.4723
-5.692	3.5577
-5.719	1.9113
-5.765	1.8624
-5.781	2.277
-5.796	2.0574
-5.812	2.3988
-5.815	3.8257
-5.827	2.35
-5.827	2.3988
-5.857	2.3012
-5.888	2.4352
-5.892	4.1059
-5.933	2.0571
-5.95	2.7399
-5.964	2.2887
-5.995	2.4227
-5.995	2.4715
-6.025	2.3007
-6.026	2.6056
-6.061	4.7152
-6.071	2.1786
-6.118	2.5809
-6.133	2.5931
-6.133	2.7638
-6.146	1.7638
-6.168	4.5564
-6.194	2.6905
-6.214	4.7514
-6.227	3.5684
-6.23	5.0075
-6.24	2.605
-6.301	2.7756
-6.316	2.3975
-6.377	2.5437
-6.378	2.6046
-6.44	3.324
-6.454	2.7873
-6.454	2.8483
-6.473	4.3117
-6.516	2.9823
-6.531	2.7871
-6.562	2.9822
-6.562	3.348
-6.576	2.6163
-6.577	3.1773
-6.607	2.8479
-6.609	3.5186
-6.67	3.4209
-6.674	5.4209
-6.684	3.2257
-6.7	    3.4452
-6.716	3.6037
-6.73	2.9939
-6.747	3.7134
-6.747	3.8841
-6.762	3.6036
-6.791	3.0181
-6.797	5.6889
-6.809	4.1157
-6.822	3.4449
-6.853	3.457
-6.885	3.9081
-6.916	4.1154
-6.916	4.3105
-6.917	4.8349
-6.931	4.0056
-6.958	2.7372
-6.96	3.225
-6.98	5.5786
-6.992	4.1152
-7.039	4.5175
-7.041	5.4565
-7.052	3.7857
-7.114	3.7856
-7.115	4.3953
-7.129	3.8587
-7.129	3.9075
-7.144	3.9074
-7.181	6.7854
-7.236	3.9925
-7.266	3.6632
-7.282	4.1022
-7.303	6.6875
-7.343	4.0532
-7.406	4.5775
-7.406	4.6506
-7.406	4.8823
-7.464	3.5529
-7.527	4.1015
-7.527	4.1503
-7.528	4.6381
-7.559	5.0648
-7.574	4.6258
-7.68	4.2474
-7.68	4.3938
-7.835	5.3446
-7.957	5.3442
-8.357	6.3554
-8.372	6.2821];
-units.LW = {'cm', 'g'}; label.LW = {'standard length', 'weight'};  
+0.795	0.856	0.932	1.039	1.1	1.131	1.207	1.299	1.345	1.375	1.498	1.559	1.742	1.834	1.941	2.017	2.078	2.078	2.185	2.216	2.292	2.338	2.399	2.399	2.46	2.537	2.552	2.552	2.567	2.628	2.644	2.735	2.751	2.812	2.843	2.919	2.995	3.026	3.057	3.148	3.164	3.194	3.332	3.378	3.454	3.485	3.561	3.592	3.73	3.73	3.79	3.791	3.791	3.821	3.836	3.929	3.974	4.035	4.097	4.142	4.143	4.219	4.495	4.525	4.586	4.648	4.663	4.709	4.723	4.724	4.849	4.877	4.877	4.924	4.924	5.062	5.076	5.107	5.183	5.249	5.263	5.276	5.306	5.398	5.413	5.461	5.475	5.52	5.536	5.551	5.566	5.566	5.69	5.692	5.719	5.765	5.781	5.796	5.812	5.815	5.827	5.827	5.857	5.888	5.892	5.933	5.95	5.964	5.995	5.995	6.025	6.026	6.061	6.071	6.118	6.133	6.133	6.146	6.168	6.194	6.214	6.227	6.23	6.24	6.301	6.316	6.377	6.378	6.44	6.454	6.454	6.473	6.516	6.531	6.562	6.562	6.576	6.577	6.607	6.609	6.67	6.674	6.684	6.7	6.716	6.73	6.747	6.747	6.762	6.791	6.797	6.809	6.822	6.853	6.885	6.916	6.916	6.917	6.931	6.958	6.96	6.98	6.992	7.039	7.041	7.052	7.114	7.115	7.129	7.129	7.144	7.181	7.236	7.266	7.282	7.303	7.343	7.406	7.406	7.406	7.464	7.527	7.527	7.528	7.559	7.574	7.68	7.68	7.835	7.957	8.357	8.372
+0.0222	0.022	0.034	0.0337	0.0336	0.0213	0.0211	0.0208	0.0329	0.0328	0.0325	0.0323	0.0318	0.0316	0.0435	0.0677	0.0431	0.0919	0.0672	0.0671	0.0547	0.1278	0.091	0.152	0.0909	0.2614	0.0662	0.176	0.115	0.066	0.2001	0.1145	0.212	0.1875	0.2484	0.1872	0.2235	0.2722	0.2478	0.3085	0.2597	0.3206	0.4665	0.381	0.3686	0.3564	0.4659	0.3805	0.5386	0.624	0.4409	0.5263	0.6116	0.4652	0.2701	0.8918	0.5868	0.6963	0.7084	0.5009	0.818	0.9641	0.9878	1.1462	0.7924	1.1459	1.3654	1.2311	0.5359	1.2798	2.3161	1.1331	1.2063	1.7671	1.9012	1.7423	1.596	1.4251	1.5957	3.8272	2.9491	1.8393	1.5466	1.7292	1.5463	2.9486	1.9973	1.9606	2.0825	1.7532	1.9605	2.0215	2.4723	3.5577	1.9113	1.8624	2.277	2.0574	2.3988	3.8257	2.35	2.3988	2.3012	2.4352	4.1059	2.0571	2.7399	2.2887	2.4227	2.4715	2.3007	2.6056	4.7152	2.1786	2.5809	2.5931	2.7638	1.7638	4.5564	2.6905	4.7514	3.5684	5.0075	2.605	2.7756	2.3975	2.5437	2.6046	3.324	2.7873	2.8483	4.3117	2.9823	2.7871	2.9822	3.348	2.6163	3.1773	2.8479	3.5186	3.4209	5.4209	3.2257	3.4452	3.6037	2.9939	3.7134	3.8841	3.6036	3.0181	5.6889	4.1157	3.4449	3.457	3.9081	4.1154	4.3105	4.8349	4.0056	2.7372	3.225	5.5786	4.1152	4.5175	5.4565	3.7857	3.7856	4.3953	3.8587	3.9075	3.9074	6.7854	3.9925	3.6632	4.1022	6.6875	4.0532	4.5775	4.6506	4.8823	3.5529	4.1015	4.1503	4.6381	5.0648	4.6258	4.2474	4.3938	5.3446	5.3442	6.3554	6.2821
+]';
+units.LW = {'cm', 'g'}; label.LW = {'standard length', 'wet weight'};  
 bibkey.LW = 'FukuTaka1988';
 
-%L-Ww Wakasa Bay
 data.LWw = [ ... % Standard length (cm), (total) wet weight (g)
     6.330054446	6.608553456	6.850764692	7.110987523	7.375158089	7.610028576	7.652229658	7.900159657	8.162842716	8.118978691	8.359281145	8.408204235	8.621610575	8.672168136	8.87424445	8.953674266	9.124463709	9.139324585	9.166427718	9.389780858	9.378958469	9.419665739	9.555705333	9.65642753	9.649705011	9.66878242	9.847382998	9.896355816	9.921577053	9.893309657	10.06395758	10.16083118	10.24486215	10.3392132	10.43337202	10.42117464	10.60317286	10.59948481	10.69949489	10.83987153	10.84567659	10.91948098	10.94787089	11.00021965	11.08040337	11.09596667	11.18438396	11.19921627	11.2276084	11.25669511	11.42415332	11.40010755	11.47504878	11.45019075	11.54413953	11.70842311	11.67608218	11.6297869	11.76926955	11.94777425	11.97822302	12.03701818	12.06015531	12.07574464	12.11215711	12.21769006	12.30685921	12.34175415	12.3760853	12.39459411	12.47920382	12.58135411	12.56594261	12.50565568	12.63047959	12.67806343	12.66149222	12.78008594	12.88103217	12.90946841	12.92888317	13.09066702	13.1516525	13.1611397	13.17689	13.18076634	13.41017854	13.32744968	13.43356401	13.59547994	13.56068641	13.69288273	13.88929801	13.93017928	13.83694684	14.09587402	14.35219798	14.46525522	14.46972862;
 	2.301296183	2.534298923	2.798773597	3.14606915	3.494929098	4.485441046	3.796075017	4.473653334	5.19504918	4.327812668	6.400085826	4.998394437	6.596732062	5.34634384	7.19653322	5.416189448	8.049238725	6.506388287	5.686841179	8.546326473	7.102061533	6.382488252	9.88101275	10.89853612	8.237344661	6.76451336	9.882752494	11.42578287	8.214568919	7.074263448	10.15275321	8.604945133	7.797013653	10.45162625	11.99853974	8.862366229	10.59623667	9.420333559	12.20578991	13.63329326	10.41200623	15.751568	12.46702887	11.02070901	14.45220462	18.15920572	15.84904094	12.59692451	11.30751465	17.59286019	14.33596653	15.21380743	12.80257255	11.74202519	17.20751633	14.42403527	13.2424202	11.83236897	18.17971513	15.45273162	14.14115434	18.89208972	17.10371317	12.11057043	20.29479277	16.07914101	18.34626409	16.97467112	20.40384223	21.74828277	15.60481911	18.95375293	17.68394146	16.69274118	22.57115421	20.22573593	21.5364377	18.31007914	23.25665693	20.08879379	21.63648874	15.19086298	22.7239434	19.85973097	21.57776378	18.68989175	24.33535156	20.38982973	22.21482863	27.53184881	25.9885216	24.41273768	27.12735508	25.36140644	24.19655998	27.58626519	28.76107169	32.81220132	29.47951981
@@ -621,24 +393,7 @@ comment.LWw = 'Data from Wakasaka Bay. Both sexes. Temperatures during year of s
 %% set weights for all real data
 weights = setweights(data, []);
 weights.Lj = 0 * weights.Lj;
-weights.NT19_f0 * weights.NT19_f0
-weights.NT23_f0 = 0 * weights.NT23_f0
-%weights.ab = 0 * weights.ab;
-%weights.am = 0 * weights.am;
-%weights.Lb = 0 * weights.Lb;
-%weights.tp_20 = 0.5 * weights.tp_20;
-%weights.tp_m20 = 0.5 * weights.tp_m20;
-%weights.tp_26 = 0.5 * weights.tp_26;
-%weights.tp_m26 = 0.5 * weights.tp_m26;
-%weights.Tah = 0 * weights.Tah;
-%weights.Wwi = 0 * weights.Wwi;
-%weights.LWw = 0 * weights.LWw;
-%weights.Wwb = 0 * weights.Wwb;
 weights.Li = 0.3 * weights.Li;
-%weights.tL = 5 * weights.tL;
-%weights.Ri = 0 * weights.Ri;
-%weights.tLj = 5 * weights.tLj;
-
 
 %% set pseudodata and respective weights
 [data, units, label, weights] = addpseudodata(data, units, label, weights);
@@ -651,11 +406,11 @@ txtData.bibkey = bibkey;
 txtData.comment = comment;
 
 %% Discussion points
-D1 = 'Added data.Lb, data.Tp_20, data.Tp_26, data.LWw and changed Lp to 6 cm as part of DEB School 2021';
+D1 = 'Added ____ as part of DEB School 2021';
 D2 = 'The data in this entry may be biased towards the Japanese populations of E. japonicus. Uncertain if parameters are the same for other areas e.g. Yellow Sea';
-D3 = 'The original value for Lp (>10cm) seemed larger than what studies have observed around Japan (8.53, 7.57 and 6 cm respectively). The 8.53 cm Lp was observed at "low" food levels, where differences in temperature and daylight were accounted for. I therefore assumed that for Sagami Bay (where Lp = 6cm) f = 1 ';
-D4 = 'Changed the max wet weight Wwi to 45g, the value in Fishbase and more realistic than the previous >600g value that was calculated';
-D5 = 'The original LW data from FukuTaka1988 was in units of mg. LW data in mydata file was over-converted by a factor of 10. New range is 0-6 g (instead of 0-60 g)';
+D3 = 'The value of Lp in the previous mydata file (>10cm) seemed larger than what studies have observed around Japan (8.53, 7.57 and 6 cm respectively). The 8.53 cm Lp was observed at "low" food levels, where differences in temperature and daylight were accounted for. I therefore assumed that for Sagami Bay (where Lp = ~6.5cm) that f = 1 ';
+D4 = 'Changed the max wet weight Wwi to 45g (the value in Fishbase), which seems more realistic than the previously calculated value (>600g)';
+D5 = 'The original LW data from FukuTaka1988 was in units of mg. It seems the LW data in the original mydata file was over-converted by a factor of 10. New weight range is 0-6 g (instead of 0-60 g)';
 metaData.discussion = struct('D1',D1, 'D2',D2, 'D3',D3, 'D4',D4, 'D5',D5);  
                                  
 %% Links

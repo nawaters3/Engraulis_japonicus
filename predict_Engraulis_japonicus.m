@@ -23,9 +23,9 @@ end
   TC_tL = tempcorr(temp.tL, T_ref, T_A);
   TC_20 = tempcorr(temp.tp_20, T_ref, T_A);
   TC_26 = tempcorr(temp.tp_26, T_ref, T_A);
-  TC_TR_f1 = tempcorr(C2K(TR_f1(:,1)), T_ref, T_A);
-  TC_TR_f35 = tempcorr(C2K(TR_f35(:,1)), T_ref, T_A);
-  TC_TR_f0 = tempcorr(C2K(TR_f0(:,1)), T_ref, T_A);
+%  TC_TR_f1 = tempcorr(C2K(data.TR_f1(:,1)), T_ref, T_A);
+%  TC_TR_f35 = tempcorr(C2K(data.TR_f35(:,1)), T_ref, T_A);
+%  TC_TR_f0 = tempcorr(C2K(data.TR_f0(:,1)), T_ref, T_A);
 %  TC_19 = tempcorr(temp.NT19_f1, T_ref, T_A);
 %  TC_23 = tempcorr(temp.NT23_f1, T_ref, T_A);
   
@@ -136,18 +136,18 @@ end
   Eah = a_h ./ TC_Tah; 
 
 % T-N
-%  ER_f1 = TC_TR_f1 .* reprod_rate_j(weight.TR / (1 + f * w)).^(1/3), f, pars_R)
-%  ER_f35 = TC_TR_f35 .* reprod_rate_j(weight.TR / (1 + f_35 * w)).^(1/3), f, pars_R)
-%  ER_f0 = TC_TR_f0 .* reprod_rate_j(weight.TR / (1 + f_0 * w)).^(1/3), f, pars_R)
+%  ER_f1 = TC_TR_f1 .* reprod_rate_j(9.55 * del_M, f, pars_R)
+%  ER_f35 = TC_TR_f35 .* reprod_rate_j(9.55 * del_M, f_35, pars_R)
+%  ER_f0 = TC_TR_f0 .* reprod_rate_j(9.55 * del_M, f_0, pars_R)
 
 % From Bolinopsis mikado Predict file, which looks at temp - # of eggs per day per gram of body weight:
 %  ER = TC_TR .* reprod_rate_j((weight.TR / (1 + f * w)).^(1/3), f, pars_R) ./ weight.TR;  % #/d.g, reproduction rate;
   
 % pack to output
   prdData.Tah = Eah;
-  prdData.TR_f1 = ER_f1
-  prdData.TR_f35 = ER_f35
-  prdData.TR_f0 = ER_f0
+%  prdData.TR_f1 = ER_f1
+%  prdData.TR_f35 = ER_f35
+%  prdData.TR_f0 = ER_f0
   prdData.tp_20 = tT_p20;
   prdData.tp_26 = tT_p26;
   prdData.tL = ELw;
