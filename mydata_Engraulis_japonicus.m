@@ -28,9 +28,14 @@ metaData.date_subm = [2019 02 26];
 metaData.email    = {'laure.pecquerie@ird.fr'};                 
 metaData.address  = {'IRD, Brest'};
 
-metaData.curator     = {'Starrlight Augustine'};
-metaData.email_cur   = {'starrlight@akvaplan.niva.no'}; 
-metaData.date_acc    = [2019 02 26];
+metaData.author_mod_1    = {'Neil Waters'};    
+metaData.date_mod_1 = [2021 06 01];              
+metaData.email_mod_1     = {''};            
+metaData.address_mod_1   = {''};
+
+metaData.curator     = {'Nina Marn'};
+metaData.email_cur   = {'nmarn@irb.hr'}; 
+metaData.date_acc    = [2021 06 02];
 
 %% set data
 % zero-variate data
@@ -38,16 +43,16 @@ metaData.date_acc    = [2019 02 26];
 data.ab = 2;      units.ab = 'd';    label.ab = 'age at birth';      bibkey.ab = 'Fuku1983'; 
   temp.ab = C2K(24); units.temp.ab = 'K'; label.temp.ab = 'temperature';
   comment.ab = 'Temp range 23-25, mouth open and functional from day 2';
-data.tp_20 = 96;  units.tp_20 = 'd'; label.tp_20 = 'time since birth at puberty'; bibkey.tp_20 = 'YoneYama2015';
+data.tp_20 = 96;  units.tp_20 = 'd'; label.tp_20 = 'time since birth at puberty for females at 20-22C'; bibkey.tp_20 = 'YoneYama2015';
   temp.tp_20 = C2K(20.8);  units.temp.tp_20 = 'K'; label.temp.tp_20 = 'temperature';
   comment.tp_20 = 'Females; temp range 20-22; ad libitum food; guess 50% individuals mature at 96 days given data in paper'; 
-data.tp_m20 = 88;  units.tp_m20 = 'd'; label.tp_m20 = 'time since birth at puberty'; bibkey.tp_m20 = 'YoneYama2015';
+data.tp_m20 = 88;  units.tp_m20 = 'd'; label.tp_m20 = 'time since birth at puberty for males at 20-22C'; bibkey.tp_m20 = 'YoneYama2015';
   temp.tp_m20 = C2K(20.8);  units.temp.tp_m20 = 'K'; label.temp.tp_m20 = 'temperature';
   comment.tp_m20 = 'Males; temp range 20-22; ad libitum food; guess 50% mature at 88 days given 14/25 individuals mature at 90d';
-data.tp_26 = 65;   units.tp_26 = 'd'; label.tp_26 = 'time since birth at puberty'; bibkey.tp_26 = 'YoneYama2015';
+data.tp_26 = 65;   units.tp_26 = 'd'; label.tp_26 = 'time since birth at puberty for females at 26-28C'; bibkey.tp_26 = 'YoneYama2015';
   temp.tp_26 = C2K(26.8);  units.temp.tp_26 = 'K'; label.temp.tp_26 = 'temperature';
   comment.tp_26 = 'Females; temp range 26-28; ad libitum food; guess 50% individuals mature at 65 days';
-data.tp_m26 = 60;   units.tp_m26 = 'd'; label.tp_m26 = 'time since birth at puberty'; bibkey.tp_m26 = 'YoneYama2015';
+data.tp_m26 = 60;   units.tp_m26 = 'd'; label.tp_m26 = 'time since birth at puberty for males at 26-28C'; bibkey.tp_m26 = 'YoneYama2015';
   temp.tp_m26 = C2K(26.8);  units.temp.tp_m26 = 'K'; label.temp.tp_m26 = 'temperature';
   comment.tp_m26 = 'Males; temp range 26-28; ad libitum food; 50% individuals mature at 60 days';
 data.am = 4*365.5;  units.am = 'd';    label.am = 'life span';              bibkey.am = 'Fishbase';   
@@ -96,7 +101,7 @@ data.NT23_f1 = 14737/50; units.NT23_f1 = '# / d';  label.NT23_f1 = 'Mean # of eg
 % uni-variate data
 
 % embryo   
-data.Tah = [ ... % temperature (Â°C), development time (days) until hatching
+data.Tah = [ ... % temperature (°C), development time (days) until hatching
 29 20.5/24;
 24 31/24;
 17 52/24];
@@ -169,7 +174,11 @@ data.TR_f1 = [ ... T (deg C) - # eggs in tank / day (by 50 individuals)
 23.7	13872];
 units.TR_f1   = {'C', '#/d'};  label.TR_f1 = {'temperature', 'egg production per day'};  
 bibkey.TR_f1 = 'YoneKita2014';
-comment.TR_f1 = '# of eggs in tank per day from 50 individuals. Adults of unknown weight and age, avg length one week before experiment = 9.4 cm body length. Food treatment after 1 week ad libitum acclimation period. n=30. Ad libitum considered 5% BW dâˆ’1, low food considered 1.75% BW dâˆ’1';
+comment.TR_f1 = ['# of eggs in tank per day from 50 individuals.',... 
+'Adults of unknown weight and age, avg length one week before experiment = 9.4 cm body length. ',...
+'Food treatment after 1 week ad libitum acclimation period. n=30. ',...
+'Ad libitum considered 5\% BW dayˆ-1, low food considered 1.75\% BW dayˆ-1'];
+L0.TR_f1 = 9.4; units.L0.TR_f1 = 'cm'; label.L0.TR_f1 = 'total length 1 week prior to exp';
 
 % temp-reprod data
 data.TR_f35 = [ ... T (deg C) - # eggs in tank / day (by 50 individuals)
@@ -235,7 +244,11 @@ data.TR_f35 = [ ... T (deg C) - # eggs in tank / day (by 50 individuals)
 23.7	2403];
 units.TR_f35   = {'C', '#/d'};  label.TR_f35 = {'temperature', 'egg production per day'};  
 bibkey.TR_f35 = 'YoneKita2014';
-comment.TR_f35 = '# of eggs in tank per day from 50 individuals. Adults of unknown weight and age, avg length one week before experiment = 9.4 cm body length. Food treatment after 1 week ad libitum acclimation period. n=30. Ad libitum considered 5% BW dâˆ’1, low food considered 1.75% BW dâˆ’1';
+comment.TR_f35 = ['# of eggs in tank per day from 50 individuals.',... 
+'Adults of unknown weight and age, avg length one week before experiment = 9.4 cm body length. ',...
+'Food treatment after 1 week ad libitum acclimation period. n=30. ',...
+'Ad libitum considered 5\% BW dayˆ-1, low food considered 1.75\% BW dayˆ-1'];
+L0.TR_f35 = 9.4; units.L0.TR_f35 = 'cm'; label.L0.TR_f35 = 'total length 1 week prior to exp';
 
 % temp-reprod data
 data.TR_f0 = [ ... T (deg C) - # eggs in tank / day (by 50 individuals)
@@ -301,7 +314,11 @@ data.TR_f0 = [ ... T (deg C) - # eggs in tank / day (by 50 individuals)
 23.7	356];
 units.TR_f0   = {'C', '#/d'};  label.TR_f0 = {'temperature', 'egg production per day'};  
 bibkey.TR_f0 = 'YoneKita2014';
-comment.TR_f0 = '# of eggs in tank per day from 50 individuals. Adults of unknown weight and age, avg length one week before experiment = 9.4 cm body length. Food treatment after 1 week ad libitum acclimation period. n=30. Ad libitum considered 5% BW dâˆ’1, low food considered 1.75% BW dâˆ’1';
+comment.TR_f0 = ['# of eggs in tank per day from 50 individuals.',... 
+'Adults of unknown weight and age, avg length one week before experiment = 9.4 cm body length. ',...
+'Food treatment after 1 week ad libitum acclimation period. n=30. ',...
+'Ad libitum considered 5\% BW dayˆ-1, low food considered 1.75\% BW dayˆ-1'];
+L0.TR_f0 = 9.4; units.L0.TR_f0 = 'cm'; label.L0.TR_f0 = 'total length 1 week prior to exp';
 
 % T-dL data, temperature - growth rate 
 data.TdL = [ ... % temperature (C), growth rate (cm^-3/day) of oocytes from mothers fed ad-libitum
@@ -406,12 +423,12 @@ txtData.bibkey = bibkey;
 txtData.comment = comment;
 
 %% Discussion points
-D1 = 'Added ____ as part of DEB School 2021';
-D2 = 'The data in this entry may be biased towards the Japanese populations of E. japonicus. Uncertain if parameters are the same for other areas e.g. Yellow Sea';
-D3 = 'The value of Lp in the previous mydata file (>10cm) seemed larger than what studies have observed around Japan (8.53, 7.57 and 6 cm respectively). The 8.53 cm Lp was observed at "low" food levels, where differences in temperature and daylight were accounted for. I therefore assumed that for Sagami Bay (where Lp = ~6.5cm) that f = 1 ';
-D4 = 'Changed the max wet weight Wwi to 45g (the value in Fishbase), which seems more realistic than the previously calculated value (>600g)';
-D5 = 'The original LW data from FukuTaka1988 was in units of mg. It seems the LW data in the original mydata file was over-converted by a factor of 10. New weight range is 0-6 g (instead of 0-60 g)';
-metaData.discussion = struct('D1',D1, 'D2',D2, 'D3',D3, 'D4',D4, 'D5',D5);  
+%D1 = 'Added ____ as part of DEB School 2021';
+D1 = 'The data in this entry may be biased towards the Japanese populations of E. japonicus. Uncertain if parameters are the same for other areas e.g. Yellow Sea';
+D2 = 'The value of Lp in the previous mydata file (>10cm) seemed larger than what studies have observed around Japan (8.53, 7.57 and 6 cm respectively). The 8.53 cm Lp was observed at "low" food levels, where differences in temperature and daylight were accounted for. I therefore assumed that for Sagami Bay (where Lp = ~6.5cm) that f = 1 ';
+D3 = 'Changed the max wet weight Wwi to 45g (the value in Fishbase), which seems more realistic than the previously calculated value (>600g)';
+D4 = 'The original LW data from FukuTaka1988 was in units of mg. It seems the LW data in the original mydata file was over-converted by a factor of 10. New weight range is 0-6 g (instead of 0-60 g)';
+metaData.discussion = struct('D1',D1, 'D2',D2, 'D3',D3, 'D4',D4);  
                                  
 %% Links
 metaData.links.id_CoL = 'c8c10a1c14ab21459eb2f38d4bf851ad'; % Cat of Life
