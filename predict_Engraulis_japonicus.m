@@ -23,12 +23,9 @@ end
   TC_tL = tempcorr(temp.tL, T_ref, T_A);
   TC_20 = tempcorr(temp.tp_20, T_ref, T_A);
   TC_26 = tempcorr(temp.tp_26, T_ref, T_A);
-%  TC_TR_f1 = tempcorr(C2K(data.TR_f1(:,1)), T_ref, T_A);
-%  TC_TR_f35 = tempcorr(C2K(data.TR_f35(:,1)), T_ref, T_A);
-%  TC_TR_f0 = tempcorr(C2K(data.TR_f0(:,1)), T_ref, T_A);
-%  TC_19 = tempcorr(temp.NT19_f1, T_ref, T_A);
-%  TC_23 = tempcorr(temp.NT23_f1, T_ref, T_A);
-  
+  TC_19 = tempcorr(temp.tN_f1_19, T_ref, T_A);
+ % TC_23 = tempcorr(temp.tN_f1_23, T_ref, T_A);
+
   % life cycle
   pars_tj = [g k l_T v_Hb v_Hj v_Hp];
   [t_j t_p t_b l_j l_p l_b l_i rho_j rho_B info] = get_tj(pars_tj, f);
@@ -64,22 +61,12 @@ end
   pars_R = [kap; kap_R; g; k_J; k_M; L_T; v; U_Hb; U_Hj; U_Hp]; % compose parameter vector
   RT_i = TC * reprod_rate_j(L_i, f, pars_R);                    % ultimate reproduction rate
 
- %{
-  T-N data input as 0-var, probably don't need
-  ER19f1 = (TC_19 * reprod_rate_j(9.55 * del_M, f, pars_R)); % #, daily fecundity
-  ER23f1 = (TC_23 * reprod_rate_j(9.55 * del_M, f, pars_R)); % #, daily fecundity
-  ER19f35 = (TC_19 * reprod_rate_j(9.55 * del_M, f_35, pars_R)); % #, daily fecundity
-  ER23f35 = (TC_23 * reprod_rate_j(9.55 * del_M, f_35, pars_R)); % #, daily fecundity
-  ER19f0 = (TC_19 * reprod_rate_j(9.55 * del_M, f_0, pars_R)); % #, daily fecundity
-  ER23f0 = (TC_23 * reprod_rate_j(9.55 * del_M, f_0, pars_R)); % #, daily fecundity 
-%}
-
 % life span
   pars_tm = [g; l_T; h_a/ k_M^2; s_G];  % compose parameter vector at T_ref
   t_m = get_tm_s(pars_tm, f, l_b);      % -, scaled mean life span at T_ref
   aT_m = t_m/ k_M/ TC;                  % d, mean life span at T
   
-  %Males
+%Males
   pars_tjm = [g k l_T v_Hb v_Hj v_Hpm];
   [t_jm, t_pm, t_bm, l_jm, l_pm, l_bm, l_im, rho_jm, rho_Bm] = get_tj(pars_tjm, f);
   tT_pm20 = (t_pm - t_bm)/ k_M/ TC_20; % d, time since birth at puberty
@@ -99,15 +86,13 @@ end
   prdData.Wwb = Ww_b;
   prdData.Wwi = Ww_i;
   prdData.Ri = RT_i;
-%  prdData.NT19_f1 = ER19f1
-%  prdData.NT19_f35 = ER19f35
-%  prdData.NT19_f0 = ER19f0
-%  prdData.NT23_f1 = ER23f1
-%  prdData.NT23_f35 = ER23f35
-%  prdData.NT23_f0 = ER23f0
 
-  %% uni-variate data
-  
+%% uni-variate data
+
+%Reproduction vectors
+  pars_R = [kap; kap_R; g; TC_19 * k_J; TC_19 * k_M; L_T; TC_19 * v; U_Hb/ TC_19; U_Hj/ TC_19; U_Hp/ TC_19]; % compose parameter vector at T
+
+
  % initial
   pars_UE0 = [V_Hb; g; k_J; k_M; v]; % compose parameter vector
   U_E0  = initial_scaled_reserve(f, pars_UE0); % d.cm^2, initial scaled reserve
@@ -135,21 +120,24 @@ end
   a_h = aUL(2,1);                 % d, age at hatch at f and T_ref
   Eah = a_h ./ TC_Tah; 
 
-% T-N
-%  ER_f1 = TC_TR_f1 .* reprod_rate_j(9.55 * del_M, f, pars_R)
-%  ER_f35 = TC_TR_f35 .* reprod_rate_j(9.55 * del_M, f_35, pars_R)
-%  ER_f0 = TC_TR_f0 .* reprod_rate_j(9.55 * del_M, f_0, pars_R)
+% t-N, f=1
 
-% From Bolinopsis mikado Predict file, which looks at temp - # of eggs per day per gram of body weight:
-%  ER = TC_TR .* reprod_rate_j((weight.TR / (1 + f * w)).^(1/3), f, pars_R) ./ weight.TR;  % #/d.g, reproduction rate;
-  
+  Lwf_t0 = [9.4 * del_M; f] % Length and f before the start of experiment (before t=0), assuming BL = SL
+  EN_f1_19 = cum_reprod_j(tN_f1_19(:,1), f, pars_R, Lwf_t0);
+
 % pack to output
+
   prdData.Tah = Eah;
-%  prdData.TR_f1 = ER_f1
-%  prdData.TR_f35 = ER_f35
-%  prdData.TR_f0 = ER_f0
+  prdData.tN_f1_19 = EN_f1_19
+ %{
+ prdData.tN_f35_19 = EN_f35_19
+  prdData.tN_f0_19 = EN_f0_19
+  prdData.tN_f1_23 = EN_f1_23
+  prdData.tN_f35_23 = EN_f35_23
+  prdData.tN_f0_23 = EN_f0_23
+   %}
   prdData.tp_20 = tT_p20;
-  prdData.tp_26 = tT_p26;
+  prdData.tp_26 = tT_p26; 
   prdData.tL = ELw;
   prdData.tLj = ELw_j;
   prdData.LW = EWw;
