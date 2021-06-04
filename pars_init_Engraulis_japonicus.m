@@ -34,6 +34,7 @@ par.f_35 = 0.35;      free.f_35  = 0;   units.f_35 = '-';         label.f_35 = '
 par.f_LWw = 0.6;      free.f_LWw = 0;   units.f_LWw = '-';        label.f_LWw = 'scaled functional response for length-weight data in Wakasa Bay'; 
 par.f_Tah = 0.45382;  free.f_Tah = 0;   units.f_Tah = '-';        label.f_Tah = 'scaled functional response for Tah data'; 
 par.f_tL = 0.45383;   free.f_tL  = 0;   units.f_tL = '-';         label.f_tL = 'scaled functional response for tL data'; 
+par.f_tR = 1;   free.f_tR  = 1;   units.f_tR = '-';         label.f_tR = 'scaled functional response for ad libitum part of tN-data experiments'; 
 par.t_0 = 1;          free.t_0   = 0;   units.t_0 = 'd';          label.t_0 = 'time at start development at 20 C'; 
 
 %% set chemical parameters from Kooy2010 

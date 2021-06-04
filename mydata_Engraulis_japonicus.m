@@ -28,9 +28,15 @@ metaData.date_subm = [2019 02 26];
 metaData.email    = {'laure.pecquerie@ird.fr'};                 
 metaData.address  = {'IRD, Brest'};
 
-metaData.curator     = {'Starrlight Augustine'};
-metaData.email_cur   = {'starrlight@akvaplan.niva.no'}; 
-metaData.date_acc    = [2019 02 26];
+metaData.author_mod_1    = {'Neil Waters'};    
+metaData.date_mod_1 = [];              
+metaData.email_mod_1     = {''};            
+metaData.address_mod_1   = {''};
+
+metaData.curator     = {'Nina Marn'};
+metaData.email_cur   = {'nina.marn@gmail.com'}; 
+metaData.date_acc    = [];
+
 
 %% set data
 % zero-variate data
@@ -83,31 +89,41 @@ data.Tah(:,1) = C2K(data.Tah(:,1)); % convert C to K
 units.Tah = {'K', 'd'};  label.Tah = {'temperature', 'age at hatching'};  
 bibkey.Tah = {'Fuku1983'};
 
-% time-reproduction data for three feeding conditions and two temperatures
+% time-reproduction rate (eggs/day) data for three feeding conditions and two temperatures
+% individuals for all six treatment were reared under the same (ambiental) temperature and (ad libitum) food before separation into treatments
 
-data.tN_f1_19 = [... %time since start of feeding experiment (d) - Daily reproduction (#eggs)
+data.tR_f1_19 = [... %time since start of feeding experiment (d) - Daily reproduction (#eggs)
 0	1	2	3	4	5	6	7	8	9	10	11	12	13	14
 17616	13795.5	13386	6909	11786	14930.5	7487	17587.5	9694.5	16138	13823	11451	8844	12981	11370
 ]';
-data.tN_f1_19(:,2) = data.tN_f1_19(:,2)/50; % # of eggs in tank per day / # of individuals in tank
-units.tN_f1_19  = {'d', '#'};  label.tN_f1_19 = {'time since start of experiment', 'Daily eggs per individual'};  
-temp.tN_f1_19   = C2K(19.5);  units.temp.tN_f1_19 = 'K'; label.temp.tN_f1_19 = 'temperature';
-bibkey.tN_f1_19 = 'YoneKita2014';
-comment.TR_f1_19 = 'Mean # of eggs in tank per day from 50 individuals, averaged from 2 tanks of 50 individuals with identical treatment. Adults of unknown weight and age. Avg length one week before data = 9.4cm Body Length. Food treatment after 1 week ad libitum acclimation period. Ad libitum considered 5% BW d^−1, low food considered 1.75% BW d^−1';
-%{
-data.tN_f1_23 = [... %time since start of feeding experiment (d) - Daily reproduction (#eggs) 
+data.tR_f1_19(:,2) = data.tR_f1_19(:,2)/50; % # of eggs in tank per day / # of individuals in tank
+units.tR_f1_19  = {'d', '#/d'};  label.tR_f1_19 = {'time since start of experiment', 'Individual reproduction rate'};  
+temp.tR_f1_19   = C2K(19.5);  units.temp.tR_f1_19 = 'K'; label.temp.tR_f1_19 = 'temperature';
+bibkey.tR_f1_19 = 'YoneKita2014';
+comment.tR_f1_19 = 'Mean # of eggs in tank per day from 50 individuals, averaged from 2 tanks of 50 individuals with identical treatment. Adults of unknown weight and age. Avg length one week before data = 9.4cm Body Length. Food treatment after 1 week ad libitum acclimation period. Ad libitum considered 5% BW d^−1, low food considered 1.75% BW d^−1';
+L0.tR_f1_19   = 9.4;  units.L0.tR_f1_19 = 'cm'; label.L0.tR_f1_19 = 'Avg body length one week before data';
+
+% t-R exp2, f=1, T = 23C
+data.tR_f1_23 = [... %time since start of feeding experiment (d) - Daily reproduction (#eggs) 
 0	1	2	3	4	5	6	7	8	9	10	11	12	13	14
 16134	15544.5	14268.5	15501.5	10008	10054	10696	16431	26137	12326.5	14053.5	15475	11057	14407	18958.5
 ]';
-units.tN_f1_23  = {'d', '#'};  label.tN_f1_23 = {'time since start of experiment', 'daily # of eggs'};  
-temp.tN_f1_23   = C2K(23.7);  units.temp.tN_f1_23 = 'K'; label.temp.tN_f1_23 = 'temperature';
-bibkey.tN_f1_23 = 'YoneKita2014';
-comment.TR_f1_23 = 'Mean # of eggs in tank per day from 50 individuals, averaged from 2 tanks of 50 individuals with identical treatment. Adults of unknown weight and age. Avg length one week before data = 9.63cm Body Length. Food treatment after 1 week ad libitum acclimation period. Ad libitum considered 5% BW d^−1, low food considered 1.75% BW d^−1';
+data.tR_f1_23(:,2) = data.tR_f1_23(:,2)/50; % # of eggs in tank per day / # of individuals in tank
+units.tR_f1_23  = {'d', '#/d'};  label.tR_f1_23 = {'time since start of experiment', 'Individual reproduction rate'};  
+temp.tR_f1_23   = C2K(23.7);  units.temp.tR_f1_23 = 'K'; label.temp.tR_f1_23 = 'temperature';
+bibkey.tR_f1_23 = 'YoneKita2014';
+comment.tR_f1_23 = 'Mean # of eggs in tank per day from 50 individuals, averaged from 2 tanks of 50 individuals with identical treatment. Adults of unknown weight and age. Avg length one week before data = 9.63cm Body Length. Food treatment after 1 week ad libitum acclimation period. Ad libitum considered 5% BW d^−1, low food considered 1.75% BW d^−1';
+L0.tR_f1_23   = 9.63;  units.L0.tR_f1_23 = 'cm'; label.L0.tR_f1_23 = 'Avg body length one week before data';
+
+%{
+% @Neil: you need to divide by 50 here and later (I included in tR_f1_23); also change labels to R (marking the repro rate) 
+as oposed to N (number of eggs) because it is more accurate. Sorry, I forgot about this when proposing N :)
 
 data.tN_f35_19 = [... %time since start of feeding experiment (d) - Daily reproduction (#eggs) 
 0	1	2	3	4	5	6	7	8	9	10	11	12	13	14
 6345	9015.5	8308	4626.5	7913.5	6416	3161.5	5886.5	7306	5266	2375.5	3333.5	1360.5	2496	4965.5
 ]';
+
 units.tN_f35_19  = {'d', '#'};  label.tN_f35_19 = {'time since start of experiment', 'daily # of eggs'};  
 temp.tN_f35_19   = C2K(19.5);  units.temp.tN_f35_19 = 'K'; label.temp.tN_f35_19 = 'temperature';
 bibkey.tN_f35_19 = 'YoneKita2014';
@@ -183,11 +199,16 @@ weights.Li = 0.3 * weights.Li;
 [data, units, label, weights] = addpseudodata(data, units, label, weights);
 
 %% pack auxData and txtData for output
-auxData.temp = temp;
+auxData.temp = temp; auxData.L0 = L0;
 txtData.units = units;
 txtData.label = label;
 txtData.bibkey = bibkey;
 txtData.comment = comment;
+
+%% Group plots
+set1 = {'tR_f1_19','tR_f1_23'}; comment1 = {'YoneKita2014, f=1, at 19C and 23C'};
+metaData.grp.sets = {set1};
+metaData.grp.comment = {comment1};
 
 %% Discussion points
 D1 = 'Added ____ as part of DEB School 2021';
