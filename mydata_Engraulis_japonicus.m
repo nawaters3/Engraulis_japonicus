@@ -19,7 +19,7 @@ metaData.ecoCode.reprod  = {'O'};
 
 metaData.T_typical  = C2K(18.4); % K, body temp
 metaData.data_0     = {'ab'; 'am'; 'Lb'; 'Lp'; 'Li'; 'Wwb'; 'Wwi'; 'Ri'}; 
-metaData.data_1     = {'t-L'; 'L-Ww'}; 
+metaData.data_1     = {'T-ah'; 't-L'; 'L-Ww'; 't-R_fT'}; 
 
 metaData.COMPLETE = 2.5; % using criteria of LikaKear2011
 
@@ -121,7 +121,7 @@ data.tR_f35_19 = [... %time since start of feeding experiment (d) - Daily reprod
 6345 9015.5 8308 4626.5 7913.5 6416 3161.5 5886.5 7306 5266 2375.5 3333.5 1360.5 2496 4965.5
 ]';
 data.tR_f35_19(:,2) = data.tR_f35_19(:,2)/50; % # of eggs in tank per day / # of individuals in tank
-units.tR_f35_19  = {'d', '#'};  label.tR_f35_19 = {'time since start of experiment', 'Individual reproduction rate'};  
+units.tR_f35_19  = {'d', '#/d'};  label.tR_f35_19 = {'time since start of experiment', 'Individual reproduction rate'};  
 temp.tR_f35_19   = C2K(19.5);  units.temp.tR_f35_19 = 'K'; label.temp.tR_f35_19 = 'temperature';
 bibkey.tR_f35_19 = 'YoneKita2014';
 comment.tR_f35_19 = 'Mean # of eggs in tank per day from 50 individuals, averaged from 2 tanks of 50 individuals with identical treatment. Adults of unknown weight and age. Avg length one week before data = 9.4cm Body Length. Food treatment after 1 week ad libitum acclimation period. Ad libitum considered 5% BW d^−1, low food considered 1.75% BW d^−1';
@@ -132,7 +132,7 @@ data.tR_f35_23 = [... %time since start of feeding experiment (d) - Daily reprod
 14210	15548	3830.5	8146.5	8980.5	10675.5	6743.5	5281	5690	5314	6043	5549	4766.5	6080.5	3704.5
 ]';
 data.tR_f35_23(:,2) = data.tR_f35_23(:,2)/50; % # of eggs in tank per day / # of individuals in tank
-units.tR_f35_23 = {'d', '#'};  label.tR_f35_23 = {'time since start of experiment', 'Individual reproduction rate'};  
+units.tR_f35_23 = {'d', '#/d'};  label.tR_f35_23 = {'time since start of experiment', 'Individual reproduction rate'};  
 temp.tR_f35_23 = C2K(23.7);  units.temp.tR_f35_23 = 'K'; label.temp.tR_f35_23 = 'temperature';
 bibkey.tR_f35_23 = 'YoneKita2014';
 comment.tR_f35_23 = 'Mean # of eggs in tank per day from 50 individuals, averaged from 2 tanks of 50 individuals with identical treatment. Adults of unknown weight and age. Avg length one week before data = 9.63cm Body Length. Food treatment after 1 week ad libitum acclimation period. Ad libitum considered 5% BW d^−1, low food considered 1.75% BW d^−1';
@@ -143,7 +143,7 @@ data.tR_f0_19 = [... %time since start of feeding experiment (d) - Daily reprodu
 5024	3823	3318	1084.5	7	0	160.5	1258.5	1403.5	2214.5	1887.5	599	0	789.5	607
 ]';
 data.tR_f0_19(:,2) = data.tR_f0_19(:,2)/50; % # of eggs in tank per day / # of individuals in tank
-units.tR_f0_19  = {'d', '#'};  label.tR_f0_19 = {'time since start of experiment', 'Individual reproduction rate'};  
+units.tR_f0_19  = {'d', '#/d'};  label.tR_f0_19 = {'time since start of experiment', 'Individual reproduction rate'};  
 temp.tR_f0_19 = C2K(19.5);  units.temp.tR_f0_19 = 'K'; label.temp.tR_f0_19 = 'temperature';
 bibkey.tR_f0_19 = 'YoneKita2014';
 comment.tR_f0_19 = 'Mean # of eggs in tank per day from 50 individuals, averaged from 2 tanks of 50 individuals with identical treatment. Adults of unknown weight and age. Avg length one week before data = 9.4cm Body Length. Food treatment after 1 week ad libitum acclimation period. Ad libitum considered 5% BW d^−1, low food considered 1.75% BW d^−1';
@@ -154,7 +154,7 @@ data.tR_f0_23 = [... %time since start of feeding experiment (d) - Daily reprodu
 11425	7257	2135.5	2156.5	1983.5	2355	2179.5	580.5	311	443.5	228	1054.5	921.5	261.5	395.5
 ]';
 data.tR_f0_23(:,2) = data.tR_f0_23(:,2)/50; % # of eggs in tank per day / # of individuals in tank
-units.tR_f0_23 = {'d', '#'}; label.tR_f0_23 = {'time since start of experiment', 'Individual reproduction rate'};  
+units.tR_f0_23 = {'d', '#/d'}; label.tR_f0_23 = {'time since start of experiment', 'Individual reproduction rate'};  
 temp.tR_f0_23 = C2K(23.7); units.temp.tR_f0_23 = 'K'; label.temp.tR_f0_23 = 'temperature';
 bibkey.tR_f0_23 = 'YoneKita2014';
 comment.tR_f0_23 = 'Mean # of eggs in tank per day from 50 individuals, averaged from 2 tanks of 50 individuals with identical treatment. Adults of unknown weight and age. Avg length one week before data = 9.63cm Body Length. Food treatment after 1 week ad libitum acclimation period. Ad libitum considered 5% BW d^−1, low food considered 1.75% BW d^−1';
@@ -195,7 +195,7 @@ comment.LWw = 'Data from Wakasaka Bay. Both sexes. Temperatures during year of s
 
 %% set weights for all real data
 weights = setweights(data, []);
-weights.Lj = 0 * weights.Lj;
+weights.Lj = 0 * weights.Lj; % why weight zero here? 
 weights.Li = 0.3 * weights.Li;
 
 %% set pseudodata and respective weights
@@ -209,18 +209,24 @@ txtData.bibkey = bibkey;
 txtData.comment = comment;
 
 %% Group plots
-set1 = {'tR_f1_19','tR_f1_23'}; comment1 = {'YoneKita2014, f=1, at 19C and 23C'};
-set2 = {'tR_f35_19','tR_f35_23'}; comment2 = {'YoneKita2014, f=0.35, at 19C and 23C'};
-set3 = {'tR_f0_19','tR_f0_23'}; comment3 = {'YoneKita2014, f=0.1, at 19C and 23C'};
-metaData.grp.sets = {set1,set2,set3};
-metaData.grp.comment = {comment1,comment2,comment3};
-%}
+% 
+% set1 = {'tR_f1_23','tR_f1_19'}; comment1 = {'YoneKita2014, f=1, at 23C and 19C'};
+% set2 = {'tR_f35_23','tR_f35_19'}; comment2 = {'YoneKita2014, f=0.35, at 23C and 19C'};
+% set3 = {'tR_f0_23','tR_f0_19'}; comment3 = {'YoneKita2014, f=0.1, at 23C and 19C'};
+% metaData.grp.sets = {set1,set2,set3};
+% metaData.grp.comment = {comment1,comment2,comment3};
+
+set4 = {'tR_f1_19','tR_f35_19','tR_f0_19'}; comment4 = {'YoneKita2014, f=1,f=0.35 and f=0, at 19C'};
+set5 = {'tR_f1_23','tR_f35_23','tR_f0_23'}; comment5 = {'YoneKita2014, f=1,f=0.35 and f=0, at 23C'};
+metaData.grp.sets = {set4, set5};
+metaData.grp.comment = {comment4,comment5};
+%
 %% Discussion points
-D1 = 'Added ____ as part of DEB School 2021';
-D2 = 'The data in this entry may be biased towards the Japanese populations of E. japonicus. Uncertain if parameters are the same for other areas e.g. Yellow Sea';
-D3 = 'The value of Lp in the previous mydata file (>10cm) seemed larger than what studies have observed around Japan (8.53, 7.57 and 6 cm respectively). The 8.53 cm Lp was observed at "low" food levels, where differences in temperature and daylight were accounted for. I therefore assumed that for Sagami Bay (where Lp = ~6.5cm) that f = 1 ';
-D4 = 'Changed the max wet weight Wwi to 45g (the value in Fishbase), which seems more realistic than the previously calculated value (>600g)';
-D5 = 'The original LW data from FukuTaka1988 was in units of mg. It seems the LW data in the original mydata file was over-converted by a factor of 10. New weight range is 0-6 g (instead of 0-60 g)';
+D1 = 'The data in this entry may be biased towards the Japanese populations of E. japonicus. Uncertain if parameters are the same for other areas e.g. Yellow Sea';
+D2 = 'Differences to previous entry: The value of Lp in the previous mydata file (>10cm) seemed larger than what studies have observed around Japan (8.53, 7.57 and 6 cm respectively). The 8.53 cm Lp was observed at "low" food levels, where differences in temperature and daylight were accounted for. I therefore assumed that for Sagami Bay (where Lp = ~6.5cm) that f = 1 ';
+D3 = 'Changed the max wet weight Wwi to 45g (the value in Fishbase), which seems more realistic than the previously calculated value (>600g)';
+D4 = 'The original LW data from FukuTaka1988 was in units of mg. It seems the LW data in the original mydata file was over-converted by a factor of 10. New weight range is 0-6 g (instead of 0-60 g)';
+D5 = 'Reproduction experiments (t-R_fT data) could be modeled in more detail to capture starvation (f=0) with initial high repro output';
 metaData.discussion = struct('D1',D1, 'D2',D2, 'D3',D3, 'D4',D4, 'D5',D5);  
                                  
 %% Links

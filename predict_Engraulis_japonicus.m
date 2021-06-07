@@ -5,7 +5,8 @@ function [prdData, info] = predict_Engraulis_japonicus(par, data, auxData)
   vars_pull(cPar);  vars_pull(data);  vars_pull(auxData);
 
 filterChecks = f_tL >1 || ... % f contrained to not be larger than 1 or negative
-               f_tL <0 ; %   
+               f_tL <0 ||... 
+               f_tR>1 || f_0 > f_35 || f_35 > f_tR ; %   scaled food for repro experiments
 if filterChecks
    info = 0;
    prdData = {};
@@ -120,61 +121,68 @@ end
   Eah = a_h ./ TC_Tah; 
 
 %% temperature - daily reproduction rate
+ pars_R = [kap, kap_R, g, k_J, k_M, L_T, v, U_Hb, U_Hj, U_Hp]; % compose parameter vector at T_ref
+ 
 % t-R exp1, f=1, temp = 19C
-    pars_R = [kap, kap_R, g, k_J, k_M, L_T, v, U_Hb, U_Hj, U_Hp]; % compose parameter vector at T_ref
-  [~ , ~,  ~ , ~,  ~, ~,  l_i , ~, rho_B] = get_tj(pars_tj, f_tR);
- rT_B = rho_B * k_M * TC_19; L_i = l_i * L_m; % 1/d, von Bert growth rate and L_i for the first week (f= ad libitum)
-  L_1 = L_i - (L_i - L0.tR_f1_19*del_M) * exp( - rT_B * 7); % cm, expected structural length at start of experiment 
+[~ , ~,  ~ , ~,  ~, ~,  l_i , ~, rhoB_ftR] = get_tj(pars_tj, f_tR);
+ Li_ftR = l_i * L_m; % 1/d, L_i for  general rearing and  the first week(f= ad libitum)
+ 
+ rT_B = rhoB_ftR * k_M * TC_19;  % 1/d, von Bert growth rate 
+ L_1 = Li_ftR - (Li_ftR - L0.tR_f1_19*del_M) * exp( - rT_B * 7); % cm, expected structural length at start of experiment 
   % get predictions for (structural) length throughout experiment; Li and rB will later be different because it depends on f
-  L_f1_19 = L_i - (L_i - L_1) * exp( - rT_B * tR_f1_19(:,1)); % cm, expected structural length throughout experiment 
+  Li_f1 = Li_ftR; 
+  L_f1_19 = Li_f1 - (Li_f1 - L_1) * exp( - rT_B * tR_f1_19(:,1)); % cm, expected structural length throughout experiment 
   ER_f1_19 = reprod_rate_j(L_f1_19, f_tR, pars_R);
-
+  
 % t-R exp2, f=1, temp = 23C
-  [~ , ~,  ~ , ~,  ~, ~,  l_i , ~, rho_B] = get_tj(pars_tj, f_tR);
- rT_B = rho_B * k_M * TC_23; L_i = l_i * L_m; % 1/d, von Bert growth rate and L_i for the first week (f= ad libitum)
-  L_1 = L_i - (L_i - L0.tR_f1_23*del_M) * exp( - rT_B * 7); % cm, expected structural length at start of experiment 
+ rT_B = rhoB_ftR * k_M * TC_23;  % 1/d, von Bert growth rate 
+ L_1 = Li_ftR - (Li_ftR - L0.tR_f1_23*del_M) * exp( - rT_B * 7); % cm, expected structural length at start of experiment 
   % get predictions for (structural) length throughout experiment; Li and rB will later be different because it depends on f
-  L_f1_23 = L_i - (L_i - L_1) * exp( - rT_B * tR_f1_23(:,1)); % cm, expected structural length throughout experiment 
+  L_f1_23 = Li_f1 - (Li_f1 - L_1) * exp( - rT_B * tR_f1_23(:,1)); % cm, expected structural length throughout experiment 
   ER_f1_23 = reprod_rate_j(L_f1_23, f_tR, pars_R);
-  
+      
 % t-R exp3, f=0.35, temp = 19C  
-   [~ , ~,  ~ , ~,  ~, ~,  l_i , ~, rho_B] = get_tj(pars_tj, f_tR);
-  rT_B = rho_B * k_M * TC_19; L_i = l_i * L_m; % 1/d, von Bert growth rate and L_i for the first week (f= ad libitum)
-   L_1 = L_i - (L_i - L0.tR_f35_19*del_M) * exp( - rT_B * 7); % cm, expected structural length at start of experiment 
- % get predictions for (structural) length throughout experiment; Li and rB will later be different because it depends on f
-   L_f35_19 = L_i - (L_i - L_1) * exp( - rT_B * tR_f35_19(:,1)); % cm, expected structural length throughout experiment 
+   rT_B = rhoB_ftR * k_M * TC_19; 
+   L_1 = Li_ftR - (Li_ftR - L0.tR_f35_19*del_M) * exp( - rT_B * 7); % cm, expected structural length at start of experiment 
+  % get predictions for (structural) length throughout experiment; Li and rB will later be different because it depends on f
+  [~ , ~,  ~ , ~,  ~, ~,  l_i , ~, rhoB_f35] = get_tj(pars_tj, f_35);
+   Li_f35 = l_i * L_m; 
+  rT_B = rhoB_f35 * k_M * TC_19; % 1/d, von Bert growth rate and L_i for the experiment
+   L_f35_19 = Li_f35 - (Li_f35 - L_1) * exp( - rT_B * tR_f35_19(:,1)); % cm, expected structural length throughout experiment 
    ER_f35_19 = reprod_rate_j(L_f35_19, f_35, pars_R);
-   
+     
  % t-R exp4, f=0.35, temp = 23C 
-   [~ , ~,  ~ , ~,  ~, ~,  l_i , ~, rho_B] = get_tj(pars_tj, f_tR);
-  rT_B = rho_B * k_M * TC_23; L_i = l_i * L_m; % 1/d, von Bert growth rate and L_i for the first week (f= ad libitum)
-   L_1 = L_i - (L_i - L0.tR_f35_23*del_M) * exp( - rT_B * 7); % cm, expected structural length at start of experiment 
+ rT_B = rhoB_ftR * k_M * TC_23; 
+   L_1 = Li_ftR - (Li_ftR - L0.tR_f35_23*del_M) * exp( - rT_B * 7); % cm, expected structural length at start of experiment   
  % get predictions for (structural) length throughout experiment; Li and rB will later be different because it depends on f
-   L_f35_23 = L_i - (L_i - L_1) * exp( - rT_B * tR_f35_23(:,1)); % cm, expected structural length throughout experiment 
+   rT_B = rhoB_f35 * k_M * TC_23;
+   L_f35_23 = Li_f35 - (Li_f35 - L_1) * exp( - rT_B * tR_f35_23(:,1)); % cm, expected structural length throughout experiment 
    ER_f35_23 = reprod_rate_j(L_f35_23, f_35, pars_R);
-   
+     
 % t-R exp5, f=0.1, temp = 19C  
-   [~ , ~,  ~ , ~,  ~, ~,  l_i , ~, rho_B] = get_tj(pars_tj, f_tR);
-  rT_B = rho_B * k_M * TC_19; L_i = l_i * L_m; % 1/d, von Bert growth rate and L_i for the first week (f= ad libitum)
-   L_1 = L_i - (L_i - L0.tR_f0_19*del_M) * exp( - rT_B * 7); % cm, expected structural length at start of experiment 
+   rT_B = rhoB_ftR * k_M * TC_19; 
+   L_1 = Li_ftR - (Li_ftR - L0.tR_f0_19*del_M) * exp( - rT_B * 7); % cm, expected structural length at start of experiment 
  % get predictions for (structural) length throughout experiment; Li and rB will later be different because it depends on f
-   L_f0_19 = L_i - (L_i - L_1) * exp( - rT_B * tR_f0_19(:,1)); % cm, expected structural length throughout experiment 
+  [~ , ~,  ~ , ~,  ~, ~,  l_i , ~, rhoB_f0] = get_tj(pars_tj, f_0);
+   Li_f0 = l_i * L_m; 
+   rT_B = rhoB_f0 * TC_19;
+   L_f0_19 = Li_f0 - (Li_f0 - L_1) * exp( - rT_B * tR_f0_19(:,1)); % cm, expected structural length throughout experiment 
    ER_f0_19 = reprod_rate_j(L_f0_19, f_0, pars_R);
-   
+     
 % t-R exp6, f=0.1, temp = 23C 
-   [~ , ~,  ~ , ~,  ~, ~,  l_i , ~, rho_B] = get_tj(pars_tj, f_tR);
-  rT_B = rho_B * k_M * TC_23; L_i = l_i * L_m; % 1/d, von Bert growth rate and L_i for the first week (f= ad libitum)
-   L_1 = L_i - (L_i - L0.tR_f0_23*del_M) * exp( - rT_B * 7); % cm, expected structural length at start of experiment 
+   rT_B = rhoB_ftR * k_M * TC_23; % 1/d, von Bert growth rate for the first week (f= ad libitum)
+   L_1 = Li_ftR - (Li_ftR - L0.tR_f0_23*del_M) * exp( - rT_B * 7); % cm, expected structural length at start of experiment 
  % get predictions for (structural) length throughout experiment; Li and rB will later be different because it depends on f
-   L_f0_23 = L_i - (L_i - L_1) * exp( - rT_B * tR_f0_23(:,1)); % cm, expected structural length throughout experiment 
-   ER_f0_23 = reprod_rate_j(L_f0_23, f_0, pars_R);
-  
+   rT_B = rhoB_f0 * TC_23;  
+  L_f0_23 = Li_f0 - (Li_f0 - L_1) * exp( - rT_B * tR_f0_23(:,1)); % cm, expected structural length throughout experiment 
+   ER_f0_23 = reprod_rate_j(L_f0_23, f_0, pars_R );
+    
 % pack to output
 
   prdData.Tah = Eah;
   prdData.tR_f1_19 = ER_f1_19;
   prdData.tR_f1_23 = ER_f1_23;
-  prdData.tR_f35_19 = ER_f35_19
+  prdData.tR_f35_19 = ER_f35_19;
   prdData.tR_f35_23 = ER_f35_23;
   prdData.tR_f0_19 = ER_f0_19; 
   prdData.tR_f0_23 = ER_f0_23;
