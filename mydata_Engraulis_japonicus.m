@@ -116,16 +116,12 @@ bibkey.tR_f1_23 = 'YoneKita2014';
 comment.tR_f1_23 = 'Mean # of eggs in tank per day from 50 individuals, averaged from 2 tanks of 50 individuals with identical treatment. Adults of unknown weight and age. Avg length one week before data = 9.63cm Body Length. Food treatment after 1 week ad libitum acclimation period. Ad libitum considered 5% BW d^−1, low food considered 1.75% BW d^−1';
 L0.tR_f1_23 = 9.63; units.L0.tR_f1_23 = 'cm'; label.L0.tR_f1_23 = 'Avg body length one week before data';
 
-%{
-% @Neil: you need to divide by 50 here and later (I included in tR_f1_23); also change labels to R (marking the repro rate) 
-as oposed to N (number of eggs) because it is more accurate. Sorry, I forgot about this when proposing N :)
-
 data.tR_f35_19 = [... %time since start of feeding experiment (d) - Daily reproduction (#eggs) 
-0	1	2	3	4	5	6	7	8	9	10	11	12	13	14
-6345	9015.5	8308	4626.5	7913.5	6416	3161.5	5886.5	7306	5266	2375.5	3333.5	1360.5	2496	4965.5
+0 1	2 3 4 5 6 7 8 9 10 11 12 13 14
+6345 9015.5 8308 4626.5 7913.5 6416 3161.5 5886.5 7306 5266 2375.5 3333.5 1360.5 2496 4965.5
 ]';
 data.tR_f35_19(:,2) = data.tR_f35_19(:,2)/50; % # of eggs in tank per day / # of individuals in tank
-units.tR_f35_19  = {'d', '#'};  label.tR_f35_19 = {'time since start of experiment', 'daily # of eggs'};  
+units.tR_f35_19  = {'d', '#'};  label.tR_f35_19 = {'time since start of experiment', 'Individual reproduction rate'};  
 temp.tR_f35_19   = C2K(19.5);  units.temp.tR_f35_19 = 'K'; label.temp.tR_f35_19 = 'temperature';
 bibkey.tR_f35_19 = 'YoneKita2014';
 comment.tR_f35_19 = 'Mean # of eggs in tank per day from 50 individuals, averaged from 2 tanks of 50 individuals with identical treatment. Adults of unknown weight and age. Avg length one week before data = 9.4cm Body Length. Food treatment after 1 week ad libitum acclimation period. Ad libitum considered 5% BW d^−1, low food considered 1.75% BW d^−1';
@@ -136,8 +132,8 @@ data.tR_f35_23 = [... %time since start of feeding experiment (d) - Daily reprod
 14210	15548	3830.5	8146.5	8980.5	10675.5	6743.5	5281	5690	5314	6043	5549	4766.5	6080.5	3704.5
 ]';
 data.tR_f35_23(:,2) = data.tR_f35_23(:,2)/50; % # of eggs in tank per day / # of individuals in tank
-units.tR_f35_23  = {'d', '#'};  label.tR_f35_23 = {'time since start of experiment', 'daily # of eggs'};  
-temp.tR_f35_23   = C2K(23.7);  units.temp.tR_f35_23 = 'K'; label.temp.tR_f35_23 = 'temperature';
+units.tR_f35_23 = {'d', '#'};  label.tR_f35_23 = {'time since start of experiment', 'Individual reproduction rate'};  
+temp.tR_f35_23 = C2K(23.7);  units.temp.tR_f35_23 = 'K'; label.temp.tR_f35_23 = 'temperature';
 bibkey.tR_f35_23 = 'YoneKita2014';
 comment.tR_f35_23 = 'Mean # of eggs in tank per day from 50 individuals, averaged from 2 tanks of 50 individuals with identical treatment. Adults of unknown weight and age. Avg length one week before data = 9.63cm Body Length. Food treatment after 1 week ad libitum acclimation period. Ad libitum considered 5% BW d^−1, low food considered 1.75% BW d^−1';
 L0.tR_f35_23 = 9.63;  units.L0.tR_f35_23 = 'cm'; label.L0.tR_f35_23 = 'Avg body length one week before data';
@@ -146,8 +142,8 @@ data.tR_f0_19 = [... %time since start of feeding experiment (d) - Daily reprodu
 0	1	2	3	4	5	6	7	8	9	10	11	12	13	14
 5024	3823	3318	1084.5	7	0	160.5	1258.5	1403.5	2214.5	1887.5	599	0	789.5	607
 ]';
-data.tR_f35_19(:,2) = data.tR_f35_19(:,2)/50; % # of eggs in tank per day / # of individuals in tank
-units.tR_f0_19  = {'d', '#'};  label.tR_f0_19 = {'time since start of experiment', 'daily # of eggs'};  
+data.tR_f0_19(:,2) = data.tR_f0_19(:,2)/50; % # of eggs in tank per day / # of individuals in tank
+units.tR_f0_19  = {'d', '#'};  label.tR_f0_19 = {'time since start of experiment', 'Individual reproduction rate'};  
 temp.tR_f0_19 = C2K(19.5);  units.temp.tR_f0_19 = 'K'; label.temp.tR_f0_19 = 'temperature';
 bibkey.tR_f0_19 = 'YoneKita2014';
 comment.tR_f0_19 = 'Mean # of eggs in tank per day from 50 individuals, averaged from 2 tanks of 50 individuals with identical treatment. Adults of unknown weight and age. Avg length one week before data = 9.4cm Body Length. Food treatment after 1 week ad libitum acclimation period. Ad libitum considered 5% BW d^−1, low food considered 1.75% BW d^−1';
@@ -158,12 +154,11 @@ data.tR_f0_23 = [... %time since start of feeding experiment (d) - Daily reprodu
 11425	7257	2135.5	2156.5	1983.5	2355	2179.5	580.5	311	443.5	228	1054.5	921.5	261.5	395.5
 ]';
 data.tR_f0_23(:,2) = data.tR_f0_23(:,2)/50; % # of eggs in tank per day / # of individuals in tank
-units.tR_f0_23 = {'d', '#'}; label.tR_f0_23 = {'time since start of experiment', 'daily # of eggs'};  
+units.tR_f0_23 = {'d', '#'}; label.tR_f0_23 = {'time since start of experiment', 'Individual reproduction rate'};  
 temp.tR_f0_23 = C2K(23.7); units.temp.tR_f0_23 = 'K'; label.temp.tR_f0_23 = 'temperature';
 bibkey.tR_f0_23 = 'YoneKita2014';
 comment.tR_f0_23 = 'Mean # of eggs in tank per day from 50 individuals, averaged from 2 tanks of 50 individuals with identical treatment. Adults of unknown weight and age. Avg length one week before data = 9.63cm Body Length. Food treatment after 1 week ad libitum acclimation period. Ad libitum considered 5% BW d^−1, low food considered 1.75% BW d^−1';
 L0.tR_f0_23 = 9.63;  units.L0.tR_f0_23 = 'cm'; label.L0.tR_f0_23 = 'Avg body length one week before data';
-%}
 
 % time-Length
 data.tL = [ ... % time since birth (d), standard length (cm)
@@ -215,9 +210,11 @@ txtData.comment = comment;
 
 %% Group plots
 set1 = {'tR_f1_19','tR_f1_23'}; comment1 = {'YoneKita2014, f=1, at 19C and 23C'};
-metaData.grp.sets = {set1};
-metaData.grp.comment = {comment1};
-
+set2 = {'tR_f35_19','tR_f35_23'}; comment2 = {'YoneKita2014, f=0.35, at 19C and 23C'};
+set3 = {'tR_f0_19','tR_f0_23'}; comment3 = {'YoneKita2014, f=0.1, at 19C and 23C'};
+metaData.grp.sets = {set1,set2,set3};
+metaData.grp.comment = {comment1,comment2,comment3};
+%}
 %% Discussion points
 D1 = 'Added ____ as part of DEB School 2021';
 D2 = 'The data in this entry may be biased towards the Japanese populations of E. japonicus. Uncertain if parameters are the same for other areas e.g. Yellow Sea';

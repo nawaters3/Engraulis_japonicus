@@ -96,7 +96,6 @@ end
  % initial
   pars_UE0 = [V_Hb; g; k_J; k_M; v]; % compose parameter vector
   U_E0  = initial_scaled_reserve(f, pars_UE0); % d.cm^2, initial scaled reserve
-%  E0    = U_E0 * p_Am;               % J, initial energy in egg
   
   % time-length
   [t_j t_p t_b l_j l_p l_b l_i rho_j rho_B] = get_tj(pars_tj, f_tL);
@@ -138,26 +137,48 @@ end
   L_f1_23 = L_i - (L_i - L_1) * exp( - rT_B * tR_f1_23(:,1)); % cm, expected structural length throughout experiment 
   ER_f1_23 = reprod_rate_j(L_f1_23, f_tR, pars_R);
   
-  % t-R exp3, f=0.35, temp = 19C  --> something like this
-%   [~ , ~,  ~ , ~,  ~, ~,  l_i , ~, rho_B] = get_tj(pars_tj, f_35);
-%  rT_B = rho_B * k_M * TC_19; L_i = l_i * L_m; % 1/d, von Bert growth rate and L_i for the first week (f= ad libitum)
-%   L_1 = L_i - (L_i - L0.tR_f35_19*del_M) * exp( - rT_B * 7); % cm, expected structural length at start of experiment 
-%   % get predictions for (structural) length throughout experiment; Li and rB will later be different because it depends on f
-%   L_f35_23 = L_i - (L_i - L_1) * exp( - rT_B * tR_f35_19(:,1)); % cm, expected structural length throughout experiment 
-%   ER_f35_19 = reprod_rate_j(L_f35_19, f_tR, pars_R);
-  
+% t-R exp3, f=0.35, temp = 19C  
+   [~ , ~,  ~ , ~,  ~, ~,  l_i , ~, rho_B] = get_tj(pars_tj, f_tR);
+  rT_B = rho_B * k_M * TC_19; L_i = l_i * L_m; % 1/d, von Bert growth rate and L_i for the first week (f= ad libitum)
+   L_1 = L_i - (L_i - L0.tR_f35_19*del_M) * exp( - rT_B * 7); % cm, expected structural length at start of experiment 
+ % get predictions for (structural) length throughout experiment; Li and rB will later be different because it depends on f
+   L_f35_19 = L_i - (L_i - L_1) * exp( - rT_B * tR_f35_19(:,1)); % cm, expected structural length throughout experiment 
+   ER_f35_19 = reprod_rate_j(L_f35_19, f_35, pars_R);
+   
+ % t-R exp4, f=0.35, temp = 23C 
+   [~ , ~,  ~ , ~,  ~, ~,  l_i , ~, rho_B] = get_tj(pars_tj, f_tR);
+  rT_B = rho_B * k_M * TC_23; L_i = l_i * L_m; % 1/d, von Bert growth rate and L_i for the first week (f= ad libitum)
+   L_1 = L_i - (L_i - L0.tR_f35_23*del_M) * exp( - rT_B * 7); % cm, expected structural length at start of experiment 
+ % get predictions for (structural) length throughout experiment; Li and rB will later be different because it depends on f
+   L_f35_23 = L_i - (L_i - L_1) * exp( - rT_B * tR_f35_23(:,1)); % cm, expected structural length throughout experiment 
+   ER_f35_23 = reprod_rate_j(L_f35_23, f_35, pars_R);
+   
+% t-R exp5, f=0.1, temp = 19C  
+   [~ , ~,  ~ , ~,  ~, ~,  l_i , ~, rho_B] = get_tj(pars_tj, f_tR);
+  rT_B = rho_B * k_M * TC_19; L_i = l_i * L_m; % 1/d, von Bert growth rate and L_i for the first week (f= ad libitum)
+   L_1 = L_i - (L_i - L0.tR_f0_19*del_M) * exp( - rT_B * 7); % cm, expected structural length at start of experiment 
+ % get predictions for (structural) length throughout experiment; Li and rB will later be different because it depends on f
+   L_f0_19 = L_i - (L_i - L_1) * exp( - rT_B * tR_f0_19(:,1)); % cm, expected structural length throughout experiment 
+   ER_f0_19 = reprod_rate_j(L_f0_19, f_0, pars_R);
+   
+% t-R exp6, f=0.1, temp = 23C 
+   [~ , ~,  ~ , ~,  ~, ~,  l_i , ~, rho_B] = get_tj(pars_tj, f_tR);
+  rT_B = rho_B * k_M * TC_23; L_i = l_i * L_m; % 1/d, von Bert growth rate and L_i for the first week (f= ad libitum)
+   L_1 = L_i - (L_i - L0.tR_f0_23*del_M) * exp( - rT_B * 7); % cm, expected structural length at start of experiment 
+ % get predictions for (structural) length throughout experiment; Li and rB will later be different because it depends on f
+   L_f0_23 = L_i - (L_i - L_1) * exp( - rT_B * tR_f0_23(:,1)); % cm, expected structural length throughout experiment 
+   ER_f0_23 = reprod_rate_j(L_f0_23, f_0, pars_R);
   
 % pack to output
 
   prdData.Tah = Eah;
   prdData.tR_f1_19 = ER_f1_19;
   prdData.tR_f1_23 = ER_f1_23;
- %{
- prdData.tN_f35_19 = EN_f35_19;
-  prdData.tN_f0_19 = EN_f0_19;
-    prdData.tN_f35_23 = EN_f35_23;
-  prdData.tN_f0_23 = EN_f0_23;
-   %}
+  prdData.tR_f35_19 = ER_f35_19
+  prdData.tR_f35_23 = ER_f35_23;
+  prdData.tR_f0_19 = ER_f0_19; 
+  prdData.tR_f0_23 = ER_f0_23;
+ 
   prdData.tp_20 = tT_p20;
   prdData.tp_26 = tT_p26; 
   prdData.tL = ELw;
