@@ -21,7 +21,7 @@ metaData.T_typical  = C2K(18.4); % K, body temp
 metaData.data_0     = {'ab'; 'am'; 'Lb'; 'Lp'; 'Li'; 'Wwb'; 'Wwi'; 'Ri'}; 
 metaData.data_1     = {'T-ah'; 't-L'; 'L-Ww'; 't-R_fT'}; 
 
-metaData.COMPLETE = 2.5; % using criteria of LikaKear2011
+metaData.COMPLETE = 3; % using criteria of LikaKear2011
 
 metaData.author   = {'Bas Kooijman'};        
 metaData.date_subm = [2019 02 26];                           
@@ -40,8 +40,8 @@ metaData.date_acc    = [];
 
 %% set data
 % zero-variate data
-
-data.ab = 2;      units.ab = 'd';    label.ab = 'age at birth';      bibkey.ab = 'Fuku1983'; 
+% age at birth is calculated as time from egg fertilization to mouth opening, so I have added age at hatch at 24C from Tah dataset 
+data.ab = 1.3 + 2;      units.ab = 'd';    label.ab = 'age at birth';      bibkey.ab = 'Fuku1983'; 
   temp.ab = C2K(24); units.temp.ab = 'K'; label.temp.ab = 'temperature';
   comment.ab = 'Temp range 23-25, mouth open and functional from day 2';
 data.tp_20 = 96;  units.tp_20 = 'd'; label.tp_20 = 'time since birth at puberty'; bibkey.tp_20 = 'YoneYama2015';
@@ -56,7 +56,7 @@ data.tp_26 = 65;   units.tp_26 = 'd'; label.tp_26 = 'time since birth at puberty
 data.tp_m26 = 60;   units.tp_m26 = 'd'; label.tp_m26 = 'time since birth at puberty'; bibkey.tp_m26 = 'YoneYama2015';
   temp.tp_m26 = C2K(26.8);  units.temp.tp_m26 = 'K'; label.temp.tp_m26 = 'temperature';
   comment.tp_m26 = 'Males; temp range 26-28; ad libitum food; 50% individuals mature at 60 days';
-data.am = 4*365.5;  units.am = 'd';    label.am = 'life span';              bibkey.am = 'Fishbase';   
+data.am = 4*365.5;  units.am = 'd';    label.am = 'life span';              bibkey.am = 'fishbase';   
   temp.am = C2K(18.4); units.temp.am = 'K'; label.temp.am = 'temperature';
 
 data.Lb = 0.33475;   units.Lb = 'cm'; label.Lb = 'standard length at birth';bibkey.Lb = 'Fuku1983';
@@ -65,10 +65,12 @@ data.Lj = 2.1;   units.Lj = 'cm';   label.Lj = 'standard length at metamorphosis
   comment.Lj = ' "Transformation from the larval to the juv. stage", signified by completed fin development';
 %data.Lj = 3.44;   units.Lj = 'cm';   label.Lj = 'standard length at metamorphosis';bibkey.Lj = 'TakaWata2004';
 %  comment.Lj = 'Range 2.64-4.70 cm, mean 3.44. Metam defined as: "fish with guanine deposition on the peritoneal surface but not on the trunk surface correspond to the end of the metamorphosing stage" for anchovy in Pacific around 35N 150E';
-data.Lp = 6.5;   units.Lp = 'cm'; label.Lp = 'standard length at puberty';bibkey.Lp = 'FunaAoki2004';
+data.Lp = 7;   units.Lp = 'cm'; label.Lp = 'standard length at puberty';bibkey.Lp = 'FunaAoki2004';
   comment.Lp = 'Guessed. 7.38 in Osaka Bay where food was considered "high". 50% of females mature in Sagami Bay at 6 cm SL (no food info), 8.53cm In Wakasa Bay where food availability for large anchovy (copepods) was considered "low"';
+% nm: could you get Lp for males? 
 data.Li = 18;     units.Li = 'cm';   label.Li = 'ultimate total length';  bibkey.Li = 'fishbase';
   comment.Li = 'total length * 1.162 = 20.91 SL, seems a bit high...';
+
 data.Wwb = 2.5e-4; units.Wwb = 'g';    label.Wwb = 'wet weight at birth';    bibkey.Wwb = 'FukuTaka1988';
   comment.Wwb = 'based on egg length of 1.21 mm, width 0.63 mm: pi/6*0.121*0.063^2';
 data.Wwi = 45; units.Wwi = 'g';    label.Wwi = 'ultimate wet weight';    bibkey.Wwi = 'fishbase';
@@ -81,7 +83,7 @@ data.Ri = 600;   units.Ri = '#/d';  label.Ri = 'maximum reprod rate';    bibkey.
 % uni-variate data
 
 % embryo   
-data.Tah = [ ... % temperature (°C), development time (days) until hatching
+data.Tah = [ ... % temperature (C), development time (days) until hatching
 29 20.5/24;
 24 31/24;
 17 52/24];
@@ -102,7 +104,7 @@ units.tR_f1_19  = {'d', '#/d'};  label.tR_f1_19 = {'time since start of experime
 temp.tR_f1_19   = C2K(19.5);  units.temp.tR_f1_19 = 'K'; label.temp.tR_f1_19 = 'temperature';
 bibkey.tR_f1_19 = 'YoneKita2014';
 comment.tR_f1_19 = 'Mean # of eggs in tank per day from 50 individuals, averaged from 2 tanks of 50 individuals with identical treatment. Adults of unknown weight and age. Avg length one week before data = 9.4cm Body Length. Food treatment after 1 week ad libitum acclimation period. Ad libitum considered 5% BW d^−1, low food considered 1.75% BW d^−1';
-L0.tR_f1_19   = 9.4;  units.L0.tR_f1_19 = 'cm'; label.L0.tR_f1_19 = 'Avg body length one week before data';
+L0.tR_f1_19   = 9.4;  units.L0.tR_f1_19 = 'cm'; label.L0.tR_f1_19 = 'Avg standard length one week before data start';
 
 % t-R exp2, f=1, T = 23.7C
 data.tR_f1_23 = [... %time since start of feeding experiment (d) - Daily reproduction (#eggs) 
@@ -114,7 +116,7 @@ units.tR_f1_23  = {'d', '#/d'};  label.tR_f1_23 = {'time since start of experime
 temp.tR_f1_23   = C2K(23.7);  units.temp.tR_f1_23 = 'K'; label.temp.tR_f1_23 = 'temperature';
 bibkey.tR_f1_23 = 'YoneKita2014';
 comment.tR_f1_23 = 'Mean # of eggs in tank per day from 50 individuals, averaged from 2 tanks of 50 individuals with identical treatment. Adults of unknown weight and age. Avg length one week before data = 9.63cm Body Length. Food treatment after 1 week ad libitum acclimation period. Ad libitum considered 5% BW d^−1, low food considered 1.75% BW d^−1';
-L0.tR_f1_23 = 9.63; units.L0.tR_f1_23 = 'cm'; label.L0.tR_f1_23 = 'Avg body length one week before data';
+L0.tR_f1_23 = 9.63; units.L0.tR_f1_23 = 'cm'; label.L0.tR_f1_23 = 'Avg standard length one week before data start';
 
 data.tR_f35_19 = [... %time since start of feeding experiment (d) - Daily reproduction (#eggs) 
 0 1	2 3 4 5 6 7 8 9 10 11 12 13 14
@@ -125,7 +127,7 @@ units.tR_f35_19  = {'d', '#/d'};  label.tR_f35_19 = {'time since start of experi
 temp.tR_f35_19   = C2K(19.5);  units.temp.tR_f35_19 = 'K'; label.temp.tR_f35_19 = 'temperature';
 bibkey.tR_f35_19 = 'YoneKita2014';
 comment.tR_f35_19 = 'Mean # of eggs in tank per day from 50 individuals, averaged from 2 tanks of 50 individuals with identical treatment. Adults of unknown weight and age. Avg length one week before data = 9.4cm Body Length. Food treatment after 1 week ad libitum acclimation period. Ad libitum considered 5% BW d^−1, low food considered 1.75% BW d^−1';
-L0.tR_f35_19 = 9.40; units.L0.tR_f35_19 = 'cm'; label.L0.tR_f35_19 = 'Avg body length one week before data';
+L0.tR_f35_19 = 9.40; units.L0.tR_f35_19 = 'cm'; label.L0.tR_f35_19 = 'Avg standard length one week before data start';
 
 data.tR_f35_23 = [... %time since start of feeding experiment (d) - Daily reproduction (#eggs) 
 0	1	2	3	4	5	6	7	8	9	10	11	12	13	14
@@ -136,7 +138,7 @@ units.tR_f35_23 = {'d', '#/d'};  label.tR_f35_23 = {'time since start of experim
 temp.tR_f35_23 = C2K(23.7);  units.temp.tR_f35_23 = 'K'; label.temp.tR_f35_23 = 'temperature';
 bibkey.tR_f35_23 = 'YoneKita2014';
 comment.tR_f35_23 = 'Mean # of eggs in tank per day from 50 individuals, averaged from 2 tanks of 50 individuals with identical treatment. Adults of unknown weight and age. Avg length one week before data = 9.63cm Body Length. Food treatment after 1 week ad libitum acclimation period. Ad libitum considered 5% BW d^−1, low food considered 1.75% BW d^−1';
-L0.tR_f35_23 = 9.63;  units.L0.tR_f35_23 = 'cm'; label.L0.tR_f35_23 = 'Avg body length one week before data';
+L0.tR_f35_23 = 9.63;  units.L0.tR_f35_23 = 'cm'; label.L0.tR_f35_23 = 'Avg standard length one week before data start';
 
 data.tR_f0_19 = [... %time since start of feeding experiment (d) - Daily reproduction (#eggs) 
 0	1	2	3	4	5	6	7	8	9	10	11	12	13	14
@@ -147,7 +149,7 @@ units.tR_f0_19  = {'d', '#/d'};  label.tR_f0_19 = {'time since start of experime
 temp.tR_f0_19 = C2K(19.5);  units.temp.tR_f0_19 = 'K'; label.temp.tR_f0_19 = 'temperature';
 bibkey.tR_f0_19 = 'YoneKita2014';
 comment.tR_f0_19 = 'Mean # of eggs in tank per day from 50 individuals, averaged from 2 tanks of 50 individuals with identical treatment. Adults of unknown weight and age. Avg length one week before data = 9.4cm Body Length. Food treatment after 1 week ad libitum acclimation period. Ad libitum considered 5% BW d^−1, low food considered 1.75% BW d^−1';
-L0.tR_f0_19 = 9.40; units.L0.tR_f0_19 = 'cm'; label.L0.tR_f0_19 = 'Avg body length one week before data';
+L0.tR_f0_19 = 9.40; units.L0.tR_f0_19 = 'cm'; label.L0.tR_f0_19 = 'Avg standard length one week before data start';
 
 data.tR_f0_23 = [... %time since start of feeding experiment (d) - Daily reproduction (#eggs) 
 0	1	2	3	4	5	6	7	8	9	10	11	12	13	14
@@ -158,7 +160,7 @@ units.tR_f0_23 = {'d', '#/d'}; label.tR_f0_23 = {'time since start of experiment
 temp.tR_f0_23 = C2K(23.7); units.temp.tR_f0_23 = 'K'; label.temp.tR_f0_23 = 'temperature';
 bibkey.tR_f0_23 = 'YoneKita2014';
 comment.tR_f0_23 = 'Mean # of eggs in tank per day from 50 individuals, averaged from 2 tanks of 50 individuals with identical treatment. Adults of unknown weight and age. Avg length one week before data = 9.63cm Body Length. Food treatment after 1 week ad libitum acclimation period. Ad libitum considered 5% BW d^−1, low food considered 1.75% BW d^−1';
-L0.tR_f0_23 = 9.63;  units.L0.tR_f0_23 = 'cm'; label.L0.tR_f0_23 = 'Avg body length one week before data';
+L0.tR_f0_23 = 9.63;  units.L0.tR_f0_23 = 'cm'; label.L0.tR_f0_23 = 'Avg standard length one week before data start';
 
 % time-Length
 data.tL = [ ... % time since birth (d), standard length (cm)
@@ -169,13 +171,13 @@ units.tL = {'d', 'cm'}; label.tL = {'time since birth', 'standard length'};
 temp.tL = C2K(22);  units.temp.tL = 'K'; label.temp.tL = 'temperature';
 bibkey.tL = 'FukuTaka1988';
 
-data.tLj = [ ...  % time since birth (d), standard length (cm)
+data.tL2 = [ ...  % time since birth (d), standard length (cm)
 0	0.715	3.688	7.795	10.771	14.878	17.783	20.971	24.724	28.902	30.886	34.92	39.88	43.916	48.022	51.001	55.036	59.145	62.192
 0.247	0.304	0.376	0.526	0.697	0.847	0.99	1.196	1.296	1.468	1.568	1.612	1.925	2.04	2.154	2.466	2.553	2.746	2.93
 ]';
-units.tLj = {'d', 'cm'}; label.tLj = {'time since birth', 'standard length'};  
-temp.tLj = C2K(22);  units.temp.tLj = 'K'; label.temp.tLj = 'temperature';
-bibkey.tLj = 'Fuku1983';
+units.tL2 = {'d', 'cm'}; label.tL2 = {'time since birth', 'standard length'};  
+temp.tL2 = C2K(22);  units.temp.tL2 = 'K'; label.temp.tL2 = 'temperature';
+bibkey.tL2 = 'Fuku1983';
 
 % Length-Weight
 data.LW = [ ... 
@@ -195,8 +197,7 @@ comment.LWw = 'Data from Wakasaka Bay. Both sexes. Temperatures during year of s
 
 %% set weights for all real data
 weights = setweights(data, []);
-weights.Lj = 0 * weights.Lj; % why weight zero here? 
-weights.Li = 0.3 * weights.Li;
+% weights.Lj = 0 * weights.Lj; % why weight zero here? 
 
 %% set pseudodata and respective weights
 [data, units, label, weights] = addpseudodata(data, units, label, weights);
@@ -221,13 +222,19 @@ set5 = {'tR_f1_23','tR_f35_23','tR_f0_23'}; comment5 = {'YoneKita2014, f=1,f=0.3
 metaData.grp.sets = {set4, set5};
 metaData.grp.comment = {comment4,comment5};
 %
+%% Facts
+F1 = 'Standard to total length: TL * 1.162 =  SL';
+metaData.bibkey.F1 = '??'; % put reference here
+metaData.facts = struct('F1',F1);
+
 %% Discussion points
 D1 = 'The data in this entry may be biased towards the Japanese populations of E. japonicus. Uncertain if parameters are the same for other areas e.g. Yellow Sea';
-D2 = 'Differences to previous entry: The value of Lp in the previous mydata file (>10cm) seemed larger than what studies have observed around Japan (8.53, 7.57 and 6 cm respectively). The 8.53 cm Lp was observed at "low" food levels, where differences in temperature and daylight were accounted for. I therefore assumed that for Sagami Bay (where Lp = ~6.5cm) that f = 1 ';
-D3 = 'Changed the max wet weight Wwi to 45g (the value in Fishbase), which seems more realistic than the previously calculated value (>600g)';
-D4 = 'The original LW data from FukuTaka1988 was in units of mg. It seems the LW data in the original mydata file was over-converted by a factor of 10. New weight range is 0-6 g (instead of 0-60 g)';
-D5 = 'Reproduction experiments (t-R_fT data) could be modeled in more detail to capture starvation (f=0) with initial high repro output';
-metaData.discussion = struct('D1',D1, 'D2',D2, 'D3',D3, 'D4',D4, 'D5',D5);  
+D2 = 'Males are assumed to differ from females in EH^p';
+D3 = 'Differences to previous entry: The value of Lp in the previous mydata file (>10cm) seemed larger than what studies have observed around Japan (8.53, 7.57 and 6 cm respectively). The 8.53 cm Lp was observed at "low" food levels, where differences in temperature and daylight were accounted for. I therefore assumed that for Sagami Bay (where Lp = ~6.5cm) that f = 1 ';
+D4 = 'Changed the max wet weight Wwi to 45g (the value in Fishbase), which seems more realistic than the previously calculated value (>600g)';
+D5 = 'The original LW data from FukuTaka1988 was in units of mg. It seems the LW data in the original mydata file was over-converted by a factor of 10. New weight range is 0-6 g (instead of 0-60 g)';
+D6 = 'Reproduction experiments (t-R_fT data) could be modeled in more detail to capture starvation (f=0) with initial high repro output';
+metaData.discussion = struct('D1',D1, 'D2',D2, 'D3',D3, 'D4',D4, 'D5',D5, 'D6',D6);  
                                  
 %% Links
 metaData.links.id_CoL = 'c8c10a1c14ab21459eb2f38d4bf851ad'; % Cat of Life
@@ -273,7 +280,7 @@ metaData.biblist.(bibkey) = ['''@', type, '{', bibkey, ', ' bib, '}'';'];
 bibkey = 'FunaAoki2004'; type = 'Article'; bib = [ ...
 'author = {Funamoto, T. and Ichiro, A. and Wada, Y.},' ...
 'year = {2004}, ' ...
-'title = {Reproductive characteristics of Japanese anchovy, Engraulis japonicus, in two bays of Japan}, ' ... 
+'title = {Reproductive characteristics of {J}apanese anchovy, \textit{Engraulis japonicus}, in two bays of {J}apan}, ' ... 
 'journal = {Fisheries Research}, ' ...
 'volume = {70}, '...
 'pages = {71-81}'];
@@ -282,7 +289,7 @@ metaData.biblist.(bibkey) = ['''@', type, '{', bibkey, ', ' bib, '}'';'];
 bibkey = 'YoneKita2014'; type = 'Article'; bib = [ ...
 'author = {Yoneda, M. and Kitano, H. and Tanaka, H. and Kawamura, K. and Selvaraj, S. and Ohshimo, S. and Matsuyama, M. and Shimmizu, A.}, ' ...
 'year = {2014}, ' ...
-'title  = {Temperature- and income resource availability- mediated variation in reproductive investment in a multiple-batch-spawning Japanese anchovy}, ' ...
+'title  = {Temperature- and income resource availability- mediated variation in reproductive investment in a multiple-batch-spawning {J}apanese anchovy}, ' ...
 'journal = {MARINE ECOLOGY PROGRESS SERIES}, ' ...
 'volume = {516}, '...
 'pages = {251-262}'];
@@ -291,7 +298,7 @@ metaData.biblist.(bibkey) = ['''@', type, '{', bibkey, ', ' bib, '}'';'];
 bibkey = 'YoneYama2015'; type = 'Article'; bib = [ ...
 'author = {Yoneda, M. and Yamamoto, T. and Yamada, T. and Takahashi, M.}, ' ...
 'year = {2015}, ' ...
-'title  = {Temperature-induced variation in sexual maturation of Japanese anchovy Engraulis japonicus}, ' ...
+'title  = {Temperature-induced variation in sexual maturation of {J}apanese anchovy \textit{Engraulis japonicus}}, ' ...
 'journal = {Journal of the Marine Biological Association of the United Kingdom}, ' ...
 'volume = {95}, '...
 'pages = {1271-1276}'];

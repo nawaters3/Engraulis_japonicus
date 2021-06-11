@@ -6,34 +6,34 @@ metaPar.model = 'abj';
 par.T_ref = 293.15;   free.T_ref = 0;   units.T_ref = 'K';        label.T_ref = 'Reference temperature'; 
 
 %% core primary parameters 
-par.T_A = 5076.6396;  free.T_A   = 1;   units.T_A = 'K';          label.T_A = 'Arrhenius temp'; 
-par.z = 1.7176;       free.z     = 1;   units.z = '-';            label.z = 'zoom factor'; 
+par.T_A = 5120.3797;  free.T_A   = 1;   units.T_A = 'K';          label.T_A = 'Arrhenius temp'; 
+par.z = 0.92417;      free.z     = 1;   units.z = '-';            label.z = 'zoom factor'; 
 par.F_m = 6.5;        free.F_m   = 0;   units.F_m = 'l/d.cm^2';   label.F_m = '{F_m}, max spec searching rate'; 
 par.kap_X = 0.8;      free.kap_X = 0;   units.kap_X = '-';        label.kap_X = 'digestion efficiency of food to reserve'; 
 par.kap_P = 0.1;      free.kap_P = 0;   units.kap_P = '-';        label.kap_P = 'faecation efficiency of food to faeces'; 
-par.v = 0.058952;     free.v     = 1;   units.v = 'cm/d';         label.v = 'energy conductance'; 
-par.kap = 0.73394;    free.kap   = 1;   units.kap = '-';          label.kap = 'allocation fraction to soma'; 
+par.v = 0.03761;      free.v     = 1;   units.v = 'cm/d';         label.v = 'energy conductance'; 
+par.kap = 0.7484;     free.kap   = 1;   units.kap = '-';          label.kap = 'allocation fraction to soma'; 
 par.kap_R = 0.95;     free.kap_R = 0;   units.kap_R = '-';        label.kap_R = 'reproduction efficiency'; 
-par.p_M = 150.3115;   free.p_M   = 1;   units.p_M = 'J/d.cm^3';   label.p_M = '[p_M], vol-spec somatic maint'; 
+par.p_M = 192.9641;   free.p_M   = 1;   units.p_M = 'J/d.cm^3';   label.p_M = '[p_M], vol-spec somatic maint'; 
 par.p_T = 0;          free.p_T   = 0;   units.p_T = 'J/d.cm^2';   label.p_T = '{p_T}, surf-spec somatic maint'; 
 par.k_J = 0.002;      free.k_J   = 0;   units.k_J = '1/d';        label.k_J = 'maturity maint rate coefficient'; 
-par.E_G = 5202.2797;  free.E_G   = 1;   units.E_G = 'J/cm^3';     label.E_G = '[E_G], spec cost for structure'; 
-par.E_Hb = 2.271e-01; free.E_Hb  = 1;   units.E_Hb = 'J';         label.E_Hb = 'maturity at birth'; 
-par.E_Hj = 9.170e-01; free.E_Hj  = 1;   units.E_Hj = 'J';         label.E_Hj = 'maturity at metam'; 
-par.E_Hp = 4.663e+03; free.E_Hp  = 1;   units.E_Hp = 'J';         label.E_Hp = 'maturity at puberty'; 
+par.E_G = 5242.4281;  free.E_G   = 1;   units.E_G = 'J/cm^3';     label.E_G = '[E_G], spec cost for structure'; 
+par.E_Hb = 2.267e-01; free.E_Hb  = 1;   units.E_Hb = 'J';         label.E_Hb = 'maturity at birth'; 
+par.E_Hj = 6.307e+00; free.E_Hj  = 1;   units.E_Hj = 'J';         label.E_Hj = 'maturity at metam'; 
+par.E_Hp = 8.413e+03; free.E_Hp  = 1;   units.E_Hp = 'J';         label.E_Hp = 'maturity at puberty'; 
 par.h_a = 3.179e-08;  free.h_a   = 0;   units.h_a = '1/d^2';      label.h_a = 'Weibull aging acceleration'; 
 par.s_G = 0.0001;     free.s_G   = 0;   units.s_G = '-';          label.s_G = 'Gompertz stress coefficient'; 
 
 %% other parameters 
-par.E_Hh = 5.311e-02; free.E_Hh  = 1;   units.E_Hh = 'J';         label.E_Hh = 'maturity at hatching'; 
-par.E_Hpm = 3.575e+03; free.E_Hpm = 1;   units.E_Hpm = 'J';        label.E_Hpm = 'maturity at puberty for males'; 
-par.del_M = 0.18814;  free.del_M = 1;   units.del_M = '-';        label.del_M = 'shape coefficient for standard length'; 
+par.E_Hh = 8.280e-04; free.E_Hh  = 1;   units.E_Hh = 'J';         label.E_Hh = 'maturity at hatching'; 
+par.E_Hpm = 4.443e+03; free.E_Hpm = 1;   units.E_Hpm = 'J';        label.E_Hpm = 'maturity at puberty for males'; 
+par.del_M = 0.18577;  free.del_M = 1;   units.del_M = '-';        label.del_M = 'shape coefficient for standard length'; 
+par.del_M_TL = 0.15978;  free.del_M_TL = 1;   units.del_M_TL = '-';     label.del_M_TL = 'shape coefficient for total length'; 
 par.f = 1;            free.f     = 0;   units.f = '-';            label.f = 'scaled functional response for 0-var data'; 
-par.f_0 = 0.28159;    free.f_0   = 1;   units.f_0 = '-';          label.f_0 = 'scaled functional response for N-T 0 food data'; 
-par.f_35 = 0.28407;   free.f_35  = 1;   units.f_35 = '-';         label.f_35 = 'scaled functional response for N-T low food data'; 
-par.f_LWw = 0.3355;   free.f_LWw = 1;   units.f_LWw = '-';        label.f_LWw = 'scaled functional response for length-weight data in Wakasa Bay'; 
-par.f_Tah = 0.60829;  free.f_Tah = 1;   units.f_Tah = '-';        label.f_Tah = 'scaled functional response for Tah data'; 
-par.f_tL = 0.54002;   free.f_tL  = 1;   units.f_tL = '-';         label.f_tL = 'scaled functional response for tL data'; 
+par.f_0 = 0.28194;    free.f_0   = 1;   units.f_0 = '-';          label.f_0 = 'scaled functional response for N-T 0 food data'; 
+par.f_35 = 0.28797;   free.f_35  = 1;   units.f_35 = '-';         label.f_35 = 'scaled functional response for N-T low food data'; 
+par.f_LWw = 0.1464;   free.f_LWw = 1;   units.f_LWw = '-';        label.f_LWw = 'scaled functional response for length-weight data in Wakasa Bay'; 
+par.f_tL = 0.45702;   free.f_tL  = 1;   units.f_tL = '-';         label.f_tL = 'scaled functional response for tL data'; 
 par.f_tR = 1;         free.f_tR  = 1;   units.f_tR = '-';         label.f_tR = 'scaled functional response for ad libitum part of tN-data experiments'; 
 par.t_0 = 1;          free.t_0   = 0;   units.t_0 = 'd';          label.t_0 = 'time at start development at 20 C'; 
 
