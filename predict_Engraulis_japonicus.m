@@ -48,7 +48,7 @@ end
 
   % puberty 
   L_p = L_m * l_p;                  % cm, structural length at puberty at f
-  Lw_p = L_p/ del_M;                % cm, total length at puberty at f
+  Lw_p = L_p/ del_M_TL;                % cm, total length at puberty at f
   Ww_p = L_p^3 * (1 + f * ome);       % g, wet weight at puberty 
   tT_p20 = (tau_p - tau_b)/ k_M/ TC_20; % d, time since birth at puberty
   tT_p26 = (tau_p - tau_b)/ k_M/ TC_26; % d, time since birth at puberty

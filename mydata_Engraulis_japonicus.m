@@ -223,8 +223,8 @@ metaData.grp.sets = {set4, set5};
 metaData.grp.comment = {comment4,comment5};
 %
 %% Facts
-F1 = 'Standard to total length: TL * 1.162 =  SL';
-metaData.bibkey.F1 = '??'; % put reference here
+F1 = 'Standard to total length: SL * 1.162 =  TL';
+metaData.bibkey.F1 = 'Fishbase'; % "Entered on Fishbase by Froese, Rainer on 11.15.01"
 metaData.facts = struct('F1',F1);
 
 %% Discussion points
@@ -234,7 +234,8 @@ D3 = 'Differences to previous entry: The value of Lp in the previous mydata file
 D4 = 'Changed the max wet weight Wwi to 45g (the value in Fishbase), which seems more realistic than the previously calculated value (>600g)';
 D5 = 'The original LW data from FukuTaka1988 was in units of mg. It seems the LW data in the original mydata file was over-converted by a factor of 10. New weight range is 0-6 g (instead of 0-60 g)';
 D6 = 'Reproduction experiments (t-R_fT data) could be modeled in more detail to capture starvation (f=0) with initial high repro output';
-metaData.discussion = struct('D1',D1, 'D2',D2, 'D3',D3, 'D4',D4, 'D5',D5, 'D6',D6);  
+D7 = 'SL in FunaAoki not defined; In Fuku:Tip of snout to tip of notochord or caudal fin in more developed fish;In YoneKita: tip of snout to posterior end of midlateral portion of scale';
+metaData.discussion = struct('D1',D1, 'D2',D2, 'D3',D3, 'D4',D4, 'D5',D5, 'D6',D6, 'D7',D7);  
                                  
 %% Links
 metaData.links.id_CoL = 'c8c10a1c14ab21459eb2f38d4bf851ad'; % Cat of Life
