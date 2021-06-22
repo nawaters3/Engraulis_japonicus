@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+  <TITLE>Engraulis_japonicus pop</TITLE>
+  <style>
+    #InputSymbol {
+      background-image: url('../../img/searchicon.png');
+      background-position: 2px -10px;
+      background-repeat: no-repeat;
+      width: 15%; /* Width of search field */
+      font-size: 14px; /* Increase font-size */
+      padding: 5px 10px 7px 40px;
+      border: 1px solid #ddd; /* Add a grey border */
+      margin-bottom: 12px; /* Add some space below the input */
+    }
+
+    #InputUnits {
+      background-image: url('../../img/searchicon.png');
+      background-position: 2px -10px;
+      background-repeat: no-repeat;
+      width: 15%; /* Width of search field */
+      font-size: 14px; /* Increase font-size */
+      padding: 5px 10px 7px 40px;
+      border: 1px solid #ddd; /* Add a grey border */
+      margin-bottom: 12px; /* Add some space below the input */
+    }
+
+    #InputLabel {
+      background-image: url('../../img/searchicon.png');
+      background-position: 2px -10px;
+      background-repeat: no-repeat;
+      width: 15%; /* Width of search field */
+      font-size: 14px; /* Increase font-size */
+      padding: 5px 10px 7px 40px;
+      border: 1px solid #ddd; /* Add a grey border */
+      margin-bottom: 12px; /* Add some space below the input */
+    }
+
+    #InputShort {
+      background-image: url('../../img/searchicon.png');
+      background-position: 2px -10px;
+      background-repeat: no-repeat;
+      width: 15%; /* Width of search field */
+      font-size: 14px; /* Increase font-size */
+      padding: 5px 10px 7px 40px;
+      border: 1px solid #ddd; /* Add a grey border */
+      margin-bottom: 12px; /* Add some space below the input */
+    }
+
+    #head0 {
+      background-color: #FFE7C6;
+    }
+
+    #head1 {
+      background-color: #FFE7C6;
+    }
+
+    #head2 {
+      background-color: #FFE7C6;
+    }
+
+    #caption {
+      width: 425px;
+      padding-top: 15px;
+    }
+
+    div.fig {
+      width: 50%;
+      float: left;
+      padding-top: 25px;
+      padding-bottom: 25px;
+    }
+
+    #Table {
+      border-style: solid hidden solid hidden;
+    }
+
+    tr:nth-child(even){background-color: #f2f2f2};
+    td:nth-child(odd){border-left: solid 1px black};
+
+  </style>
+
+</HEAD>
+
+<BODY>
+
+    <h1 align="center">Engraulis japonicus: Population traits</h1>
+    <h3 align="center">at T = 18.4 &deg;C with background hazards for embryo, larva, juv, adult: 0, 0, 0, 0 1/d</h3>
+      <div class="fig">
+        <img src="Engraulis_japonicus_pop_01.png" width="425px"> 
+        <div id="caption">
+          Ln survival probability as function of age, 
+          with (dashed) and without (solid) thinning at max (red) and min (blue) scaled functional response for females.
+        </div>
+      </div>
+
+      <div class="fig">
+        <img src="Engraulis_japonicus_pop_02.png" width="425px"> 
+        <div id="caption">
+          Ln survivor function of the stable age distribution as function of age, 
+          with (dashed) and without (solid) thinning at max (red) and min (blue) scaled functional response for females.
+        </div>
+      </div>
+
+      <div>
+        <input type="text" id="InputSymbol" onkeyup="FunctionSymbol()" placeholder="Search for symbol ..">
+        <input type="text" id="InputUnits"  onkeyup="FunctionUnits()"  placeholder="Search for units ..">
+        <input type="text" id="InputLabel"  onkeyup="FunctionLabel()"  placeholder="Search for label ..">
+        <input type="text" id="InputShort"  onkeyup="FunctionShort()"  placeholder="Short/Medium/Yields" title="Type S or M or Y">
+      </div>
+
+      <TABLE id="Table">
+        <TR id="head0"> <TH  colspan="2">model abj</TH> <TH colspan="4">f_min</TH> <TH colspan="4">f</TH> <TH colspan="4">f_max</TH> <TH>date: 2021/06/22</TH></TR>
+        <TR id="head1"> <TH>symbol</TH> <TH>units</TH> <TH colspan="2">thinning false</TH><TH colspan="2">thinning true</TH>  <TH colspan="2">thinning false</TH><TH colspan="2">thinning true</TH>  <TH colspan="2">thinning false</TH><TH colspan="2">thinning true</TH>  <TH>description</TH></TR>
+        <TR id="head2"> <TH></TH> <TH></TH>  <TH>female</TH><TH>male</TH> <TH>female</TH><TH>male</TH> <TH>female</TH><TH>male</TH> <TH>female</TH><TH>male</TH> <TH>female</TH><TH>male</TH> <TH>female</TH><TH>male</TH> <TH></TH></TR>
+
+        <TR id="f"> <TD>f</TD> <TD>-</TD>
+          <TD>0.30008</TD> <TD>0.30008</TD> <TD>0.32736</TD> <TD>0.32736</TD> <TD>0.66368</TD> <TD>0.66368</TD> <TD>0.66368</TD> <TD>0.66368</TD> <TD>1</TD> <TD>1</TD> <TD>1</TD> <TD>1</TD>   <TD>scaled functional response</TD>
+        </TR>
+        <TR id="r"> <TD>r</TD> <TD>1/d</TD>
+          <TD>0</TD> <TD>0</TD> <TD>0</TD> <TD>0</TD> <TD>0.0420982</TD> <TD>0.0420982</TD> <TD>0.00455627</TD> <TD>0.00455627</TD> <TD>0.0666877</TD> <TD>0.0666877</TD> <TD>0.0065667</TD> <TD>0.0065667</TD>   <TD>spec pop growth rate</TD>
+        </TR>
+        <TR id="t2"> <TD>t2</TD> <TD>d</TD>
+          <TD>NaN</TD> <TD>NaN</TD> <TD>NaN</TD> <TD>NaN</TD> <TD>16.465</TD> <TD>16.465</TD> <TD>152.13</TD> <TD>152.13</TD> <TD>10.3939</TD> <TD>10.3939</TD> <TD>105.555</TD> <TD>105.555</TD>   <TD>population doubling time</TD>
+        </TR>
+        <TR id="a_b"> <TD>a_b</TD> <TD>d</TD>
+          <TD>7.50385</TD> <TD>7.50385</TD> <TD>7.39633</TD> <TD>7.39633</TD> <TD>6.60169</TD> <TD>6.60169</TD> <TD>6.60169</TD> <TD>6.60169</TD> <TD>6.21674</TD> <TD>6.21674</TD> <TD>6.21674</TD> <TD>6.21674</TD>   <TD>age at birth</TD>
+        </TR>
+        <TR id="t_j"> <TD>t_j</TD> <TD>d</TD>
+          <TD>92.8969</TD> <TD>92.8969</TD> <TD>82.6557</TD> <TD>82.6557</TD> <TD>38.76</TD> <TD>38.76</TD> <TD>38.76</TD> <TD>38.76</TD> <TD>27.8308</TD> <TD>27.8308</TD> <TD>27.8308</TD> <TD>27.8308</TD>   <TD>time since birth at metam</TD>
+        </TR>
+        <TR id="t_p"> <TD>t_p</TD> <TD>d</TD>
+          <TD>319.248</TD> <TD>662.401</TD> <TD>917.419</TD> <TD>873.732</TD> <TD>172.842</TD> <TD>170.572</TD> <TD>172.842</TD> <TD>170.572</TD> <TD>111.014</TD> <TD>109.813</TD> <TD>111.014</TD> <TD>109.813</TD>   <TD>time since birth at puberty</TD>
+        </TR>
+        <TR id="S_b"> <TD>S_b</TD> <TD>-</TD>
+          <TD>1</TD> <TD>1</TD> <TD>1</TD> <TD>1</TD> <TD>1</TD> <TD>1</TD> <TD>1</TD> <TD>1</TD> <TD>1</TD> <TD>1</TD> <TD>1</TD> <TD>1</TD>   <TD>survival probability at birth</TD>
+        </TR>
+        <TR id="S_j"> <TD>S_j</TD> <TD>-</TD>
+          <TD>0.999998</TD> <TD>0.999998</TD> <TD>0.613667</TD> <TD>0.613667</TD> <TD>0.999999</TD> <TD>0.999999</TD> <TD>0.380638</TD> <TD>0.380638</TD> <TD>0.999999</TD> <TD>0.999999</TD> <TD>0.278229</TD> <TD>0.278229</TD>   <TD>survival probability at metam</TD>
+        </TR>
+        <TR id="S_p"> <TD>S_p</TD> <TD>-</TD>
+          <TD>0.999911</TD> <TD>0.999911</TD> <TD>0.00426661</TD> <TD>0.00426661</TD> <TD>0.999988</TD> <TD>0.999988</TD> <TD>0.00344422</TD> <TD>0.00344422</TD> <TD>0.999994</TD> <TD>0.999994</TD> <TD>0.00325634</TD> <TD>0.00325634</TD>   <TD>survival probability at puberty</TD>
+        </TR>
+        <TR id="theta_0b"> <TD>theta_0b</TD> <TD>-</TD>
+          <TD>0.00502807</TD> <TD>0.00502807</TD> <TD>0.315713</TD> <TD>0.315713</TD> <TD>0.242533</TD> <TD>0.242533</TD> <TD>0.500774</TD> <TD>0.500774</TD> <TD>0.339278</TD> <TD>0.339278</TD> <TD>0.572525</TD> <TD>0.572525</TD>   <TD>frac of ind that is embryo</TD>
+        </TR>
+        <TR id="theta_bj"> <TD>theta_bj</TD> <TD>-</TD>
+          <TD>0.00503431</TD> <TD>0.00503431</TD> <TD>0.250076</TD> <TD>0.250076</TD> <TD>0.183795</TD> <TD>0.183795</TD> <TD>0.31255</TD> <TD>0.31255</TD> <TD>0.224238</TD> <TD>0.224238</TD> <TD>0.311584</TD> <TD>0.311584</TD>   <TD>frac of ind that is pre-metam juvenile</TD>
+        </TR>
+        <TR id="theta_jp"> <TD>theta_jp</TD> <TD>-</TD>
+          <TD>0.0572876</TD> <TD>0.0572876</TD> <TD>0.394467</TD> <TD>0.394467</TD> <TD>0.425522</TD> <TD>0.425522</TD> <TD>0.181627</TD> <TD>0.181627</TD> <TD>0.333213</TD> <TD>0.333213</TD> <TD>0.112401</TD> <TD>0.112401</TD>   <TD>frac of ind that is post-metam juvenile</TD>
+        </TR>
+        <TR id="theta_pi"> <TD>theta_pi</TD> <TD>-</TD>
+          <TD>0.93265</TD> <TD>0.93265</TD> <TD>0.039744</TD> <TD>0.039744</TD> <TD>0.148151</TD> <TD>0.148151</TD> <TD>0.00504863</TD> <TD>0.00504863</TD> <TD>0.103271</TD> <TD>0.103271</TD> <TD>0.00348985</TD> <TD>0.00348985</TD>   <TD>frac of ind that is adult</TD>
+        </TR>
+        <TR id="L_bi"> <TD>L_bi</TD> <TD>cm</TD>
+          <TD>0.724096</TD> <TD>0.724096</TD> <TD>0.118645</TD> <TD>0.118645</TD> <TD>0.228999</TD> <TD>0.228999</TD> <TD>0.0851977</TD> <TD>0.0851977</TD> <TD>0.20674</TD> <TD>0.20674</TD> <TD>0.0840929</TD> <TD>0.0840929</TD>   <TD>mean structural length of post-natals</TD>
+        </TR>
+        <TR id="L2_bi"> <TD>L2_bi</TD> <TD>cm^2</TD>
+          <TD>0.552089</TD> <TD>0.552089</TD> <TD>0.0449884</TD> <TD>0.0449884</TD> <TD>0.116824</TD> <TD>0.116824</TD> <TD>0.0182189</TD> <TD>0.0182189</TD> <TD>0.100505</TD> <TD>0.100505</TD> <TD>0.0179562</TD> <TD>0.0179562</TD>   <TD>mean squared structural length of post-natals</TD>
+        </TR>
+        <TR id="L3_bi"> <TD>L3_bi</TD> <TD>cm^3</TD>
+          <TD>0.426586</TD> <TD>0.426586</TD> <TD>0.0331986</TD> <TD>0.0331986</TD> <TD>0.092049</TD> <TD>0.092049</TD> <TD>0.017225</TD> <TD>0.017225</TD> <TD>0.0822903</TD> <TD>0.0822903</TD> <TD>0.0215222</TD> <TD>0.0215222</TD>   <TD>mean cubed structural length of post-natals</TD>
+        </TR>
+        <TR id="Ww_bi"> <TD>Ww_bi</TD> <TD>g</TD>
+          <TD>0.530873</TD> <TD>0.530873</TD> <TD>0.0420524</TD> <TD>0.0420524</TD> <TD>0.141819</TD> <TD>0.141819</TD> <TD>0.0265383</TD> <TD>0.0265383</TD> <TD>0.14933</TD> <TD>0.14933</TD> <TD>0.0390559</TD> <TD>0.0390559</TD>   <TD>mean wet weight of post-natals</TD>
+        </TR>
+        <TR id="L_pi"> <TD>L_pi</TD> <TD>cm</TD>
+          <TD>0.762687</TD> <TD>0.762687</TD> <TD>0.801131</TD> <TD>0.801131</TD> <TD>0.669388</TD> <TD>0.669388</TD> <TD>0.93075</TD> <TD>0.93075</TD> <TD>0.677809</TD> <TD>0.677809</TD> <TD>0.95865</TD> <TD>0.95865</TD>   <TD>mean structural length of adults</TD>
+        </TR>
+        <TR id="L2_pi"> <TD>L2_pi</TD> <TD>cm^2</TD>
+          <TD>0.587176</TD> <TD>0.587176</TD> <TD>0.663057</TD> <TD>0.663057</TD> <TD>0.515717</TD> <TD>0.515717</TD> <TD>1.12868</TD> <TD>1.12868</TD> <TD>0.53955</TD> <TD>0.53955</TD> <TD>1.35581</TD> <TD>1.35581</TD>   <TD>mean squared structural length of adults</TD>
+        </TR>
+        <TR id="L3_pi"> <TD>L3_pi</TD> <TD>cm^3</TD>
+          <TD>0.454702</TD> <TD>0.454702</TD> <TD>0.558954</TD> <TD>0.558954</TD> <TD>0.453797</TD> <TD>0.453797</TD> <TD>1.62639</TD> <TD>1.62639</TD> <TD>0.505171</TD> <TD>0.505171</TD> <TD>2.53896</TD> <TD>2.53896</TD>   <TD>mean cubed structural length of adults</TD>
+        </TR>
+        <TR id="Ww_pi"> <TD>Ww_pi</TD> <TD>g</TD>
+          <TD>0.565863</TD> <TD>0.565863</TD> <TD>0.708024</TD> <TD>0.708024</TD> <TD>0.699158</TD> <TD>0.699158</TD> <TD>2.50576</TD> <TD>2.50576</TD> <TD>0.916723</TD> <TD>0.916723</TD> <TD>4.60741</TD> <TD>4.60741</TD>   <TD>mean wet weight of adults</TD>
+        </TR>
+        <TR id="R"> <TD>R</TD> <TD>1/d</TD>
+          <TD>0</TD> <TD>0</TD> <TD>2.88318</TD> <TD>3.38329</TD> <TD>9.65136</TD> <TD>10.082</TD> <TD>42.8217</TD> <TD>43.2524</TD> <TD>16.9235</TD> <TD>17.3011</TD> <TD>72.957</TD> <TD>73.3345</TD>   <TD>mean reproduction rate of adults</TD>
+        </TR>
+        <TR id="J_X"> <TD>J_X</TD> <TD>g/d</TD>
+          <TD>0.0349098</TD> <TD>0.0349098</TD> <TD>0.00286019</TD> <TD>0.00286019</TD> <TD>0.016841</TD> <TD>0.016841</TD> <TD>0.00208298</TD> <TD>0.00208298</TD> <TD>0.0219548</TD> <TD>0.0219548</TD> <TD>0.00311616</TD> <TD>0.00311616</TD>   <TD>mean ingestion rate of wet food by post-natals</TD>
+        </TR>
+        <TR id="Y_PX"> <TD>Y_PX</TD> <TD>mol/mol</TD>
+          <TD>0.109375</TD> <TD>0.109375</TD> <TD>0.109375</TD> <TD>0.109375</TD> <TD>0.109375</TD> <TD>0.109375</TD> <TD>0.109375</TD> <TD>0.109375</TD> <TD>0.109375</TD> <TD>0.109375</TD> <TD>0.109375</TD> <TD>0.109375</TD>   <TD>yield of faeces on food</TD>
+        </TR>
+        <TR id="Y_VX"> <TD>Y_VX</TD> <TD>mol/mol</TD>
+          <TD>0.00946619</TD> <TD>0.00946619</TD> <TD>0.0412365</TD> <TD>0.0426807</TD> <TD>0.246121</TD> <TD>0.246851</TD> <TD>0.168054</TD> <TD>0.168359</TD> <TD>0.267329</TD> <TD>0.267727</TD> <TD>0.18734</TD> <TD>0.187487</TD>   <TD>yield of living structure on food</TD>
+        </TR>
+        <TR id="Y_VX_d"> <TD>Y_VX_d</TD> <TD>mol/mol</TD>
+          <TD>0.00946891</TD> <TD>0.00946891</TD> <TD>0.0360011</TD> <TD>0.0360011</TD> <TD>1.09857e-05</TD> <TD>1.09859e-05</TD> <TD>0.110508</TD> <TD>0.110508</TD> <TD>3.8412e-06</TD> <TD>3.84129e-06</TD> <TD>0.123743</TD> <TD>0.123743</TD>   <TD>yield of dead structure on food</TD>
+        </TR>
+        <TR id="Y_EX"> <TD>Y_EX</TD> <TD>mol/mol</TD>
+          <TD>0.00231419</TD> <TD>0.00231419</TD> <TD>0.0109975</TD> <TD>0.0113827</TD> <TD>0.133074</TD> <TD>0.133469</TD> <TD>0.0908644</TD> <TD>0.0910295</TD> <TD>0.217787</TD> <TD>0.218111</TD> <TD>0.152622</TD> <TD>0.152742</TD>   <TD>yield of living reserve on food</TD>
+        </TR>
+        <TR id="Y_EX_d"> <TD>Y_EX_d</TD> <TD>mol/mol</TD>
+          <TD>0.00231485</TD> <TD>0.00231485</TD> <TD>0.00960127</TD> <TD>0.00960127</TD> <TD>5.9398e-06</TD> <TD>5.93991e-06</TD> <TD>0.0597502</TD> <TD>0.0597502</TD> <TD>3.12935e-06</TD> <TD>3.12942e-06</TD> <TD>0.100811</TD> <TD>0.100811</TD>   <TD>yield of dead reserve on food</TD>
+        </TR>
+        <TR id="Y_CX"> <TD>Y_CX</TD> <TD>mol/mol</TD>
+          <TD>0.867061</TD> <TD>0.867061</TD> <TD>0.792789</TD> <TD>0.790959</TD> <TD>0.511413</TD> <TD>0.510287</TD> <TD>0.461449</TD> <TD>0.460978</TD> <TD>0.405502</TD> <TD>0.40478</TD> <TD>0.326108</TD> <TD>0.325843</TD>   <TD>yield of CO2 on food</TD>
+        </TR>
+        <TR id="Y_HX"> <TD>Y_HX</TD> <TD>mol/mol</TD>
+          <TD>0.623802</TD> <TD>0.623802</TD> <TD>0.570367</TD> <TD>0.569051</TD> <TD>0.367933</TD> <TD>0.367123</TD> <TD>0.331987</TD> <TD>0.331648</TD> <TD>0.291736</TD> <TD>0.291217</TD> <TD>0.234617</TD> <TD>0.234426</TD>   <TD>yield of H2O on food</TD>
+        </TR>
+        <TR id="Y_OX"> <TD>Y_OX</TD> <TD>mol/mol</TD>
+          <TD>-0.942929</TD> <TD>-0.942929</TD> <TD>-0.862158</TD> <TD>-0.860168</TD> <TD>-0.556162</TD> <TD>-0.554938</TD> <TD>-0.501826</TD> <TD>-0.501314</TD> <TD>-0.440983</TD> <TD>-0.440198</TD> <TD>-0.354643</TD> <TD>-0.354354</TD>   <TD>yield of O2 on food</TD>
+        </TR>
+        <TR id="Y_NX"> <TD>Y_NX</TD> <TD>mol/mol</TD>
+          <TD>0.130059</TD> <TD>0.130059</TD> <TD>0.118918</TD> <TD>0.118644</TD> <TD>0.076712</TD> <TD>0.0765431</TD> <TD>0.0692173</TD> <TD>0.0691467</TD> <TD>0.0608252</TD> <TD>0.060717</TD> <TD>0.0489162</TD> <TD>0.0488764</TD>   <TD>yield of N-waste on food</TD>
+        </TR>
+        <TR id="mu_TX"> <TD>mu_TX</TD> <TD>J/mol</TD>
+          <TD>460486</TD> <TD>460486</TD> <TD>422552</TD> <TD>421618</TD> <TD>276240</TD> <TD>275657</TD> <TD>250381</TD> <TD>250138</TD> <TD>219049</TD> <TD>218672</TD> <TD>177570</TD> <TD>177431</TD>   <TD>yield of heat on food</TD>
+        </TR>
+      </TABLE>
+
+      <div>
+        <h2>Remarks</h2>
+        <ul>
+          <li>Reprod-code O applies. Sex ratio is assumed to be 1:1. Parameters of male and female differ.</li>
+          <li>Buffer handling rule: release each egg as soon as reproduction buffer allows</li>
+          <li>Weights of adults do not include reproduction buffer</li>
+        </ul>
+      </div>
+      <script>
+        function FunctionSymbol() {
+          // Declare variables
+          var input, filter, table, tr, td, i;
+          input = document.getElementById("InputSymbol");
+          filter = input.value.toUpperCase();
+          table = document.getElementById("Table");
+          tr = table.getElementsByTagName("tr");
+
+          // Loop through all table rows, and hide those who don't match the search query
+          for (i = 0; i < tr.length; i++) {
+          td = tr[i].getElementsByTagName("td")[0];
+          if (td) {
+            if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+              tr[i].style.display = "";
+            } else {
+              tr[i].style.display = "none";
+              }
+            }
+          }
+        }
+
+        function FunctionUnits() {
+          // Declare variables
+          var input, filter, table, tr, td, i;
+          input = document.getElementById("InputUnits");
+          filter = input.value.toUpperCase();
+          table = document.getElementById("Table");
+          tr = table.getElementsByTagName("tr");
+
+          // Loop through all table rows, and hide those who don't match the search query
+          for (i = 0; i < tr.length; i++) {
+          td = tr[i].getElementsByTagName("td")[1];
+          if (td) {
+            if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+              tr[i].style.display = "";
+            } else {
+              tr[i].style.display = "none";
+              }
+            }
+          }
+        }
+
+        function FunctionLabel() {
+          // Declare variables
+          var input, filter, table, tr, td, i;
+          input = document.getElementById("InputLabel");
+          filter = input.value.toUpperCase();
+          table = document.getElementById("Table");
+          tr = table.getElementsByTagName("tr");
+
+          // Loop through all table rows, and hide those who don't match the search query
+          for (i = 0; i < tr.length; i++) {
+          td = tr[i].getElementsByTagName("td")[8];
+          if (td) {
+            if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+              tr[i].style.display = "";
+            } else {
+              tr[i].style.display = "none";
+              }
+            }
+          }
+        }
+
+        function FunctionShort() {
+          // Declare variables
+          var input, filter, table, tr, td, i;
+          input = document.getElementById("InputShort");
+          filter = input.value.toUpperCase();
+          table = document.getElementById("Table");
+          tr = table.getElementsByTagName("tr");
+
+          // Loop through all table rows, and show some from the long list
+          if (filter == "S") {
+            for (i = 0; i < tr.length; i++) {
+              td = tr[i].getElementsByTagName("td")[0];
+              if (td) {
+                if (
+                    td.innerHTML == "f" ||
+                    td.innerHTML == "r" ||
+                    td.innerHTML == "t2" ||
+                    td.innerHTML == "Ww_bi" ||
+                    td.innerHTML == "R" ||
+                    td.innerHTML == "J_X" 
+                  ) {
+                  tr[i].style.display = "";
+                } else {
+                  tr[i].style.display = "none";
+                }
+              }
+            }
+          } else if (filter == "M") {
+            for (i = 0; i < tr.length; i++) {
+              td = tr[i].getElementsByTagName("td")[0];
+              if (td) {
+                if (
+                    td.innerHTML == "f" ||
+                    td.innerHTML == "r" ||
+                    td.innerHTML == "t2" ||
+                    td.innerHTML == "S_b" ||
+                    td.innerHTML == "S_j" ||
+                    td.innerHTML == "S_p" ||
+                    td.innerHTML == "theta_0b" ||
+                    td.innerHTML == "theta_bj" ||
+                    td.innerHTML == "theta_jp" ||
+                    td.innerHTML == "theta_pi" ||
+                    td.innerHTML == "Ww_bi" ||
+                    td.innerHTML == "R" ||
+                    td.innerHTML == "J_X" 
+                  ) {
+                  tr[i].style.display = "";
+                } else {
+                  tr[i].style.display = "none";
+                }
+              }
+            }
+          } else if (filter == "Y") {
+            for (i = 0; i < tr.length; i++) {
+              td = tr[i].getElementsByTagName("td")[0];
+              if (td) {
+                if (
+                    td.innerHTML == "f" ||
+                    td.innerHTML == "r" ||
+                    td.innerHTML == "Y_PX" ||
+                    td.innerHTML == "Y_VX" ||
+                    td.innerHTML == "Y_VX_d" ||
+                    td.innerHTML == "Y_EX" ||
+                    td.innerHTML == "Y_EX_d" ||
+                    td.innerHTML == "mu_hX" ||
+                    td.innerHTML == "Y_CX" ||
+                    td.innerHTML == "Y_HX" ||
+                    td.innerHTML == "Y_OX" ||
+                    td.innerHTML == "Y_NX" 
+                  ) {
+                  tr[i].style.display = "";
+                } else {
+                  tr[i].style.display = "none";
+                }
+              }
+            }
+          } else {
+            for (i = 0; i < tr.length; i++) {
+              tr[i].style.display = "";
+            }
+          }
+        }
+      </script>
+</BODY>
+</HTML>

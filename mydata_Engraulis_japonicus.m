@@ -61,13 +61,20 @@ data.am = 4*365.5;  units.am = 'd';    label.am = 'life span';              bibk
 
 data.Lb = 0.33475;   units.Lb = 'cm'; label.Lb = 'standard length at birth';bibkey.Lb = 'Fuku1983';
   comment.Lb = 'Guessed SL of larvae at day 2 (functional mouth / onset feeding) given SL at day 1 and day 5';
-data.Lj = 2.1;   units.Lj = 'cm';   label.Lj = 'standard length at metamorphosis' ;bibkey.Lj = 'Fuku1983';
-  comment.Lj = ' "Transformation from the larval to the juv. stage", signified by completed fin development';
-%data.Lj = 3.44;   units.Lj = 'cm';   label.Lj = 'standard length at metamorphosis';bibkey.Lj = 'TakaWata2004';
-%  comment.Lj = 'Range 2.64-4.70 cm, mean 3.44. Metam defined as: "fish with guanine deposition on the peritoneal surface but not on the trunk surface correspond to the end of the metamorphosing stage" for anchovy in Pacific around 35N 150E';
+%data.Lj = 2.1;   units.Lj = 'cm';   label.Lj = 'standard length at metamorphosis' ;bibkey.Lj = 'Fuku1983';
+%  comment.Lj = ' "Transformation from the larval to the juv. stage", signified by completed fin development';
+data.Lj = 3.7;   units.Lj = 'cm';   label.Lj = 'standard length at metamorphosis';bibkey.Lj = 'TakaWata2004';
+  comment.Lj = 'Mean SL of 193 individuals where 50% had completed metamorphosis. Collected from subsurface of Kuroshio–Oyashio transition region of Pacific, May-June 1998. Completion of metamorphosis defined as: "Fish with guanine deposition on the peritoneal and trunk surfaces" ';
 data.Lp = 7;   units.Lp = 'cm'; label.Lp = 'standard length at puberty';bibkey.Lp = 'FunaAoki2004';
   comment.Lp = 'Guessed. 7.38 in Osaka Bay where food was considered "high". 50% of females mature in Sagami Bay at 6 cm SL (no food info), 8.53cm In Wakasa Bay where food availability for large anchovy (copepods) was considered "low"';
-% nm: could you get Lp for males? 
+%data.Lp = 5;   units.Lp = 'cm'; label.Lp = 'standard length at puberty' ;bibkey.Lp = 'YoneYama2015';
+%  comment.Lp = 'Mean temp = 26.8 (26-28); food ad libitum; 50% of males % females mature at 5 cm in tank.';  
+%data.Lp_m = 5;   units.Lp_m = 'cm'; label.Lp_m = 'standard length at puberty' ;bibkey.Lp_m = 'YoneYama2015';
+%  comment.Lp_m = 'Mean temp = 26.8 (26-28); food ad libitum; 50% of males % females mature at 5 cm in tank.'; 
+%data.Lp = 6.6;   units.Lp = 'cm'; label.Lp = 'standard length at puberty' ;bibkey.Lp = 'YoneYama2015';
+%  comment.Lp = 'Mean temp = 20.8 (20-22); food ad libitum; 50% of females mature at 6.6 cm in tank.';
+%data.Lp_m = 6;   units.Lp_m = 'cm'; label.Lp_m = 'standard length at puberty' ;bibkey.Lp_m = 'YoneYama2015';
+%  comment.Lp_m = 'Mean temp = 20.8 (20-22); food ad libitum; 50% of males mature at 6 cm in tank.';
 data.Li = 18;     units.Li = 'cm';   label.Li = 'ultimate total length';  bibkey.Li = 'fishbase';
   comment.Li = 'total length * 1.162 = 20.91 SL, seems a bit high...';
 
@@ -197,7 +204,6 @@ comment.LWw = 'Data from Wakasaka Bay. Both sexes. Temperatures during year of s
 
 %% set weights for all real data
 weights = setweights(data, []);
-% weights.Lj = 0 * weights.Lj; % why weight zero here? 
 
 %% set pseudodata and respective weights
 [data, units, label, weights] = addpseudodata(data, units, label, weights);
@@ -303,6 +309,15 @@ bibkey = 'YoneYama2015'; type = 'Article'; bib = [ ...
 'journal = {Journal of the Marine Biological Association of the United Kingdom}, ' ...
 'volume = {95}, '...
 'pages = {1271-1276}'];
+metaData.biblist.(bibkey) = ['''@', type, '{', bibkey, ', ' bib, '}'';'];
+%
+bibkey = 'TakaWata2004'; type = 'Article'; bib = [ ...
+'author = {Takahashi, M. and Watanabe, Y.}, ' ...
+'year = {2004}, ' ...
+'title  = {Staging larval and early juvenile Japanese anchovy based on the degree of guanine deposition}, ' ...
+'journal = {Journal of Fish Biology}, ' ...
+'volume = {64}, '...
+'pages = {262-267}'];
 metaData.biblist.(bibkey) = ['''@', type, '{', bibkey, ', ' bib, '}'';'];
 %
 bibkey = 'fishbase'; type = 'Misc'; bib = ...
