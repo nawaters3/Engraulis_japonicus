@@ -6,7 +6,7 @@ function [prdData, info] = predict_Engraulis_japonicus(par, data, auxData)
 
 filterChecks = f_tL >1 || ... % f contrained to not be larger than 1 or negative
                f_tL <0 ||... 
-               f_tR>1 || f_0 > f_35 || f_35 > f_tR ; %   scaled food for repro experiments
+               f_tR > 1.2 || f_0 > f_35 || f_35 > f_tR ; %   scaled food for repro experiments
 if filterChecks
    info = 0;
    prdData = {};
@@ -20,8 +20,10 @@ end
 %% compute temperature correction factors
   TC_Tah = tempcorr(Tah(:,1), T_ref, T_A); 
   TC_ab = tempcorr(temp.ab, T_ref, T_A);
+  TC_tj = tempcorr(temp.tj, T_ref, T_A);
   TC_am = tempcorr(temp.am, T_ref, T_A);
   TC_tL = tempcorr(temp.tL, T_ref, T_A);
+  TC_tL_juv = tempcorr(temp.tL_juv, T_ref, T_A);
   TC_20 = tempcorr(temp.tp_20, T_ref, T_A);
   TC_26 = tempcorr(temp.tp_26, T_ref, T_A);
   TC_19 = tempcorr(temp.tR_f1_19, T_ref, T_A);
@@ -45,6 +47,7 @@ end
   % metam
   L_j = L_m * l_j;                  % cm, structural length at metam
   Lw_j = L_j/ del_M;                % cm, standard length at metam
+  tT_j = tau_j/ k_M/ TC_tj;          % d, age at birth of foetus at f and T
 
   % puberty 
   L_p = L_m * l_p;                  % cm, structural length at puberty at f
@@ -68,21 +71,32 @@ end
   aT_m = t_m/ k_M/ TC_am;                  % d, mean life span at T
   
 %Males
+%   p_Amm = z_m * p_M/ kap;
+%   E_mm     = p_Amm/v;             % J/cm^3, [E_m], reserve capacity 
+%   gm       = E_G/ kap/ E_mm ;      % -, energy investment ratio
+%   L_mm     = v/ k_M/ gm;           % cm, maximum length
+L_mm = L_m; % assume males and females have same L_m (and L_i)
   pars_tjm = [g k l_T v_Hb v_Hj v_Hpm];
   [tau_jm, tau_pm, tau_bm, l_jm, l_pm, l_bm, l_im, rho_jm, rho_Bm] = get_tj(pars_tjm, f);
   tT_pm20 = (tau_pm - tau_bm)/ k_M/ TC_20; % d, time since birth at puberty
   tT_pm26 = (tau_pm - tau_bm)/ k_M/ TC_26; % d, time since birth at puberty
-
+  Lw_p_m = (L_mm * l_pm)/ del_M_TL;                % cm, total length at puberty at f
+  
+  
   % pack to output
   prdData.ab = aT_b;
+  prdData.tj = tT_j;
   prdData.tp_26 = tT_p26;
   prdData.tp_20 = tT_p20;
   prdData.tp_m26 = tT_pm26;
   prdData.tp_m20 = tT_pm20;
   prdData.am = aT_m;
+ 
   prdData.Lb = Lw_b;
   prdData.Lj = Lw_j;
   prdData.Lp = Lw_p;
+  prdData.Lp_m = Lw_p_m;
+  
   prdData.Li = Lw_i;
   prdData.Wwb = Ww_b;
   prdData.Wwi = Ww_i;
@@ -96,10 +110,12 @@ end
   L_bj = L_b * exp(tL(tL(:,1) < tT_j) * rT_j/3); % exponential growth as V1-morph
   L_ji = L_i - (L_i - L_j) * exp( - rT_B * (tL(tL(:,1) >= tT_j) - tT_j)); % cm, expected length at time
   ELw = [L_bj; L_ji]/ del_M; % % cm, standard length
-  %
-  L_bj = L_b * exp(tL2(tL2(:,1) < tT_j) * rT_j/3); % exponential growth as V1-morph
-  L_ji = L_i - (L_i - L_j) * exp( - rT_B * (tL2(tL2(:,1) >= tT_j) - tT_j)); % cm, expected length at time
-  ELw2 = [L_bj; L_ji]/ del_M; % % cm, standard length
+  
+  % time-length juveniles
+  kT_M = TC_tL_juv * k_M; rT_B = rho_B * kT_M; rT_j = rho_j * kT_M;     % 1/d, von Bert, exponential growth rate
+  L_bj = L_b * exp(tL_juv(tL_juv(:,1) < tT_j) * rT_j/3); % exponential growth as V1-morph
+  L_ji = L_i - (L_i - L_j) * exp( - rT_B * (tL_juv(tL_juv(:,1) >= tT_j) - tT_j)); % cm, expected length at time
+  ELw_juv = [L_bj; L_ji]/ del_M; % % cm, standard length
 
   % length-weight
   EWw = (LW(:,1) * del_M).^3 * (1 + ome * f_tL); % g, wet weight
@@ -183,10 +199,10 @@ end
   prdData.tR_f0_19 = ER_f0_19; 
   prdData.tR_f0_23 = ER_f0_23;
  
-  prdData.tp_20 = tT_p20;
-  prdData.tp_26 = tT_p26; 
+%   prdData.tp_20 = tT_p20;
+%   prdData.tp_26 = tT_p26; 
   prdData.tL = ELw;
-  prdData.tL2 = ELw2;
+  prdData.tL_juv = ELw_juv;
   prdData.LW = EWw;
   prdData.LWw = EWw_L;
 
