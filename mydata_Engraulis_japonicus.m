@@ -45,10 +45,12 @@ data.ab = 1.3 + 2;      units.ab = 'd';    label.ab = 'age at birth';      bibke
   temp.ab = C2K(24); units.temp.ab = 'K'; label.temp.ab = 'temperature';
   comment.ab = 'Temp range 23-25, mouth open and functional from day 2';
 data.tj = 53.72;  units.tj = 'd';    label.tj = 'age at metamorphosis';   bibkey.tj = 'TakaWata2004';
-comment.tj = ['Mean SL of 193 individuals where 50% had completed metamorphosis. Collected from subsurface ',...
+  temp.tj = C2K(18.61); units.temp.tj = 'K'; label.temp.tj = 'temperature';   
+  comment.tj = ['193 individuals where 50% had completed metamorphosis. Collected from subsurface ',...
       'of Kuroshio Oyashio transition region of Pacific, May-June 1998. Completion of metamorphosis defined as:', ...
-      ' "Fish with guanine deposition on the peritoneal and trunk surfaces" '];
-  temp.tj = C2K(18.4); units.temp.tj = 'K'; label.temp.tj = 'temperature';  data.tp_20 = 96;  units.tp_20 = 'd'; label.tp_20 = 'time since birth at puberty'; bibkey.tp_20 = 'YoneYama2015';
+      ' "Fish with guanine deposition on the peritoneal and trunk surfaces". Japan meteorological agency cites avg SST', ... 
+      ' of Kuroshio-Oyashio region in Spring 1998 = 18.61 C'];
+data.tp_20 = 96;  units.tp_20 = 'd'; label.tp_20 = 'time since birth at puberty'; bibkey.tp_20 = 'YoneYama2015';
   temp.tp_20 = C2K(20.8);  units.temp.tp_20 = 'K'; label.temp.tp_20 = 'temperature';
   comment.tp_20 = 'Females; temp range 20-22; ad libitum food; guess 50% individuals mature at 96 days given data in paper'; 
 data.tp_m20 = 88;  units.tp_m20 = 'd'; label.tp_m20 = 'time since birth at puberty'; bibkey.tp_m20 = 'YoneYama2015';
@@ -65,24 +67,25 @@ data.am = 4*365.5;  units.am = 'd';    label.am = 'life span';              bibk
 
 data.Lb = 0.33475;   units.Lb = 'cm'; label.Lb = 'standard length at birth';bibkey.Lb = 'Fuku1983';
   comment.Lb = 'Guessed SL of larvae at day 2 (functional mouth / onset feeding) given SL at day 1 and day 5';
-%data.Lj = 2.1;   units.Lj = 'cm';   label.Lj = 'standard length at metamorphosis' ;bibkey.Lj = 'Fuku1983';
-%  comment.Lj = ' "Transformation from the larval to the juv. stage", signified by completed fin development';
+
 data.Lj = 3.7;   units.Lj = 'cm';   label.Lj = 'standard length at metamorphosis';bibkey.Lj = 'TakaWata2004';
   comment.Lj = ['Mean SL of 193 individuals where 50% had completed metamorphosis. Collected from subsurface ',...
       'of Kuroshio Oyashio transition region of Pacific, May-June 1998. Completion of metamorphosis defined as:', ...
       ' "Fish with guanine deposition on the peritoneal and trunk surfaces" '];
-% data.Lp = 7;   units.Lp = 'cm'; label.Lp = 'standard length at puberty';bibkey.Lp = 'FunaAoki2004';
-%   comment.Lp = 'Guessed. 7.38 in Osaka Bay where food was considered "high". 50% of females mature in Sagami Bay at 6 cm SL (no food info), 8.53cm In Wakasa Bay where food availability for large anchovy (copepods) was considered "low"';
+data.Lp = 7;   units.Lp = 'cm'; label.Lp = 'standard length at puberty';bibkey.Lp = 'FunaAoki2004';
+   comment.Lp = 'Guessed. 7.38 in Osaka Bay where food was considered "high". 50% of females mature in Sagami Bay at 6 cm SL (no food info), 8.53cm In Wakasa Bay where food availability for large anchovy (copepods) was considered "low"';
+%data.Lp_m = 7;   units.Lp_m = 'cm'; label.Lp_m = 'standard length at puberty';bibkey.Lp_m = 'FunaAoki2004';
+%   comment.Lp_m = 'Guessed given data above and results from YoneYama2015, which showed minimal diff b/w males and females.';   
 %data.Lp = 5;   units.Lp = 'cm'; label.Lp = 'standard length at puberty' ;bibkey.Lp = 'YoneYama2015';
 %  comment.Lp = 'Mean temp = 26.8 (26-28); food ad libitum; 50% of males % females mature at 5 cm in tank.';  
 %data.Lp_m = 5;   units.Lp_m = 'cm'; label.Lp_m = 'standard length at puberty' ;bibkey.Lp_m = 'YoneYama2015';
 %  comment.Lp_m = 'Mean temp = 26.8 (26-28); food ad libitum; 50% of males % females mature at 5 cm in tank.'; 
-data.Lp = 6.6;   units.Lp = 'cm'; label.Lp = 'standard length at puberty' ;bibkey.Lp = 'YoneYama2015';
- comment.Lp = 'Mean temp = 20.8 (20-22); food ad libitum; 50% of females mature at 6.6 cm in tank.';
-data.Lp_m = 6;   units.Lp_m = 'cm'; label.Lp_m = 'standard length at puberty' ;bibkey.Lp_m = 'YoneYama2015';
- comment.Lp_m = 'Mean temp = 20.8 (20-22); food ad libitum; 50% of males mature at 6 cm in tank.';
-data.Li = 18;     units.Li = 'cm';   label.Li = 'ultimate total length';  bibkey.Li = 'fishbase';
-  comment.Li = 'total length * 1.162 = 20.91 SL, seems a bit high...';
+%data.Lp = 6.6;   units.Lp = 'cm'; label.Lp = 'standard length at puberty' ;bibkey.Lp = 'YoneYama2015';
+% comment.Lp = 'Mean temp = 20.8 (20-22); food ad libitum; 50% of females mature at 6.6 cm in tank.';
+%data.Lp_m = 6;   units.Lp_m = 'cm'; label.Lp_m = 'standard length at puberty' ;bibkey.Lp_m = 'YoneYama2015';
+% comment.Lp_m = 'Mean temp = 20.8 (20-22); food ad libitum; 50% of males mature at 6 cm in tank.';
+%data.Li = 18;     units.Li = 'cm';   label.Li = 'ultimate total length';  bibkey.Li = 'fishbase';
+%  comment.Li = 'total length * 1.162 = 20.91 SL, seems a bit high...';
 
 data.Wwb = 2.5e-4; units.Wwb = 'g';    label.Wwb = 'wet weight at birth';    bibkey.Wwb = 'FukuTaka1988';
   comment.Wwb = 'based on egg length of 1.21 mm, width 0.63 mm: pi/6*0.121*0.063^2';
