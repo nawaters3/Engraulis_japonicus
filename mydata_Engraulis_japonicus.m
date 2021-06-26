@@ -74,8 +74,8 @@ data.Lj = 3.7;   units.Lj = 'cm';   label.Lj = 'standard length at metamorphosis
       ' "Fish with guanine deposition on the peritoneal and trunk surfaces" '];
 data.Lp = 7;   units.Lp = 'cm'; label.Lp = 'standard length at puberty';bibkey.Lp = 'FunaAoki2004';
    comment.Lp = 'Guessed. 7.38 in Osaka Bay where food was considered "high". 50% of females mature in Sagami Bay at 6 cm SL (no food info), 8.53cm In Wakasa Bay where food availability for large anchovy (copepods) was considered "low"';
-%data.Lp_m = 7;   units.Lp_m = 'cm'; label.Lp_m = 'standard length at puberty';bibkey.Lp_m = 'FunaAoki2004';
-%   comment.Lp_m = 'Guessed given data above and results from YoneYama2015, which showed minimal diff b/w males and females.';   
+data.Lp_m = 7;   units.Lp_m = 'cm'; label.Lp_m = 'standard length at puberty';bibkey.Lp_m = 'FunaAoki2004';
+   comment.Lp_m = 'Guessed given data above and results from YoneYama2015, which showed minimal diff b/w males and females.';   
 %data.Lp = 5;   units.Lp = 'cm'; label.Lp = 'standard length at puberty' ;bibkey.Lp = 'YoneYama2015';
 %  comment.Lp = 'Mean temp = 26.8 (26-28); food ad libitum; 50% of males % females mature at 5 cm in tank.';  
 %data.Lp_m = 5;   units.Lp_m = 'cm'; label.Lp_m = 'standard length at puberty' ;bibkey.Lp_m = 'YoneYama2015';
@@ -84,8 +84,8 @@ data.Lp = 7;   units.Lp = 'cm'; label.Lp = 'standard length at puberty';bibkey.L
 % comment.Lp = 'Mean temp = 20.8 (20-22); food ad libitum; 50% of females mature at 6.6 cm in tank.';
 %data.Lp_m = 6;   units.Lp_m = 'cm'; label.Lp_m = 'standard length at puberty' ;bibkey.Lp_m = 'YoneYama2015';
 % comment.Lp_m = 'Mean temp = 20.8 (20-22); food ad libitum; 50% of males mature at 6 cm in tank.';
-%data.Li = 18;     units.Li = 'cm';   label.Li = 'ultimate total length';  bibkey.Li = 'fishbase';
-%  comment.Li = 'total length * 1.162 = 20.91 SL, seems a bit high...';
+data.Li = 18;     units.Li = 'cm';   label.Li = 'ultimate total length';  bibkey.Li = 'fishbase';
+  comment.Li = 'total length * 1.162 = 20.91 SL, seems a bit high...';
 
 data.Wwb = 2.5e-4; units.Wwb = 'g';    label.Wwb = 'wet weight at birth';    bibkey.Wwb = 'FukuTaka1988';
   comment.Wwb = 'based on egg length of 1.21 mm, width 0.63 mm: pi/6*0.121*0.063^2';
@@ -94,7 +94,11 @@ data.Wwi = 45; units.Wwi = 'g';    label.Wwi = 'ultimate wet weight';    bibkey.
   
 data.Ri = 600;   units.Ri = '#/d';  label.Ri = 'maximum reprod rate';    bibkey.Ri = 'guess';   
   temp.Ri = C2K(18.4); units.temp.Ri = 'K'; label.temp.Ri = 'temperature';
-  comment.Ri = 'based on Engraulis encrasicolus'; 
+   comment.Ri = 'based on Engraulis encrasicolus'; 
+%data.Ri = 7168;   units.Ri = '#/d';  label.Ri = 'maximum reprod rate';    bibkey.Ri = 'guess';   
+%  temp.Ri = C2K(16.63); units.temp.Ri = 'K'; label.temp.Ri = 'temperature';
+%  comment.Ri = 'Average batch fecundity at avg temperature from 93 samples ,' ...
+%  'across studies in the wild, but don't know how to turn this into Ri. ;'
 
 % uni-variate data
 
