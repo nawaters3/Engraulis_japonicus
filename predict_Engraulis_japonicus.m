@@ -40,25 +40,25 @@ end
 
   % birth
   L_b = L_m * l_b;                 % cm, structural length at birth 
-  Lw_b = L_b/ del_M;               % cm, standard length at birth
+  Lw_b = L_b/ del_M_b;               % cm, standard length at birth
   Ww_b = L_b^3 * (1 + f * ome);      % g, wet weight at birth
   aT_b = tau_b/ k_M/ TC_ab;          % d, age at birth of foetus at f and T
   
   % metam
   L_j = L_m * l_j;                  % cm, structural length at metam
-  Lw_j = L_j/ del_M;                % cm, standard length at metam
+  Lw_j = L_j/ del_M_j;                % cm, standard length at metam
   tT_j = tau_j/ k_M/ TC_tj;          % d, age at birth of foetus at f and T
 
   % puberty 
   L_p = L_m * l_p;                  % cm, structural length at puberty at f
-  Lw_p = L_p/ del_M_TL;                % cm, total length at puberty at f
+  Lw_p = L_p/ del_M;                % cm, total length at puberty at f
   Ww_p = L_p^3 * (1 + f * ome);       % g, wet weight at puberty 
   tT_p20 = (tau_p - tau_b)/ k_M/ TC_20; % d, time since birth at puberty
   tT_p26 = (tau_p - tau_b)/ k_M/ TC_26; % d, time since birth at puberty
 
   % ultimate
   L_i = L_m * l_i;                  % cm, ultimate structural length at f
-  Lw_i = L_i/ del_M_TL;                % cm, ultimate total length at f
+  Lw_i = L_i/ del_M;                % cm, ultimate standard length at f
   Ww_i = L_i^3 * (1 + f * ome);       % g, ultimate wet weight 
 
   % reproduction
@@ -80,7 +80,7 @@ L_mm = L_m; % assume males and females have same L_m (and L_i)
   [tau_jm, tau_pm, tau_bm, l_jm, l_pm, l_bm, l_im, rho_jm, rho_Bm] = get_tj(pars_tjm, f);
   tT_pm20 = (tau_pm - tau_bm)/ k_M/ TC_20; % d, time since birth at puberty
   tT_pm26 = (tau_pm - tau_bm)/ k_M/ TC_26; % d, time since birth at puberty
-  Lw_p_m = (L_mm * l_pm)/ del_M_TL;                % cm, total length at puberty at f
+  Lw_p_m = (L_mm * l_pm)/ del_M;                % cm, total length at puberty at f
   
   
   % pack to output
