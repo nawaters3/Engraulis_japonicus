@@ -28,8 +28,7 @@ par.s_G = 0.0001;     free.s_G   = 0;   units.s_G = '-';          label.s_G = 'G
 par.E_Hh = 1.775e-04; free.E_Hh  = 1;   units.E_Hh = 'J';         label.E_Hh = 'maturity at hatching'; 
 par.E_Hpm = 5.639e+03; free.E_Hpm = 1;   units.E_Hpm = 'J';        label.E_Hpm = 'maturity at puberty for males'; 
 par.del_M = 0.20973;  free.del_M = 1;   units.del_M = '-';        label.del_M = 'shape coefficient for standard length'; 
-par.del_M_b = 0.14556;  free.del_M_b = 1;   units.del_M_b = '-';      label.del_M_b = 'shape coefficient at birth'; 
-par.del_M_j = 0.11217;  free.del_M_j = 1;   units.del_M_j = '-';      label.del_M_j = 'shape coefficient at metamorphosis'; 
+par.del_Mb = 0.15;    free.del_Mb = 1;  units.del_Mb = '-';       label.del_Mb = 'shape coefficient for pre-metamorphosis'; 
 par.f = 1;            free.f     = 0;   units.f = '-';            label.f = 'scaled functional response for 0-var data'; 
 par.f_0 = 0.36895;    free.f_0   = 1;   units.f_0 = '-';          label.f_0 = 'scaled functional response for N-T 0 food data'; 
 par.f_35 = 0.36896;   free.f_35  = 1;   units.f_35 = '-';         label.f_35 = 'scaled functional response for N-T low food data'; 

@@ -40,13 +40,13 @@ end
 
   % birth
   L_b = L_m * l_b;                 % cm, structural length at birth 
-  Lw_b = L_b/ del_M_b;               % cm, standard length at birth
+  Lw_b = L_b/ del_Mb;               % cm, standard length at birth
   Ww_b = L_b^3 * (1 + f * ome);      % g, wet weight at birth
   aT_b = tau_b/ k_M/ TC_ab;          % d, age at birth of foetus at f and T
   
   % metam
   L_j = L_m * l_j;                  % cm, structural length at metam
-  Lw_j = L_j/ del_M_j;                % cm, standard length at metam
+  Lw_j = L_j/ del_Mb;                % cm, standard length at metam
   tT_j = tau_j/ k_M/ TC_tj;          % d, age at birth of foetus at f and T
 
   % puberty 
