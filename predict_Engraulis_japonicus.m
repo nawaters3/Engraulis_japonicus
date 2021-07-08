@@ -110,19 +110,25 @@ L_mm = L_m; % assume males and females have same L_m (and L_i)
   tT_j = (tau_j - tau_b)/ kT_M; L_b = l_b * L_m; L_j = l_j * L_m; L_i = l_i * L_m;
   L_bj = L_b * exp(tL(tL(:,1) < tT_j) * rT_j/3); % exponential growth as V1-morph
   L_ji = L_i - (L_i - L_j) * exp( - rT_B * (tL(tL(:,1) >= tT_j) - tT_j)); % cm, expected length at time
-  ELw = [L_bj; L_ji]/ del_M; % % cm, standard length
+  EL_bj = L_bj / del_Mb;
+  EL_ji = L_ji / del_M;
+  ELw = [EL_bj; EL_ji]; %[L_bj; L_ji]/ del_M; % % cm, standard length
   
   % time-length juveniles
   kT_M = TC_tL_juv * k_M; rT_B = rho_B * kT_M; rT_j = rho_j * kT_M;     % 1/d, von Bert, exponential growth rate
   L_bj = L_b * exp(tL_juv(tL_juv(:,1) < tT_j) * rT_j/3); % exponential growth as V1-morph
   L_ji = L_i - (L_i - L_j) * exp( - rT_B * (tL_juv(tL_juv(:,1) >= tT_j) - tT_j)); % cm, expected length at time
-  ELw_juv = [L_bj; L_ji]/ del_M; % % cm, standard length
+  EL_bj = L_bj / del_Mb;
+  EL_ji = L_ji / del_M;
+  ELw_juv = [EL_bj; EL_ji]; % % cm, standard length
 
-   % time-length larvae
+  % time-length larvae
   kT_M = TC_tL_larv * k_M; rT_B = rho_B * kT_M; rT_j = rho_j * kT_M;     % 1/d, von Bert, exponential growth rate
   L_bj = L_b * exp(tL_larv(tL_larv(:,1) < tT_j) * rT_j/3); % exponential growth as V1-morph
   L_ji = L_i - (L_i - L_j) * exp( - rT_B * (tL_larv(tL_larv(:,1) >= tT_j) - tT_j)); % cm, expected length at time
-  ELw_larv = [L_bj; L_ji]/ del_Mb; % % cm, standard length
+  EL_bj = L_bj / del_Mb;
+  EL_ji = L_ji / del_M;
+  ELw_larv = [EL_bj; EL_ji]; % % cm, standard length
   
   % length-weight
   EWw = (LW(:,1) * del_M).^3 * (1 + ome * f_tL); % g, wet weight
@@ -137,7 +143,7 @@ L_mm = L_m; % assume males and females have same L_m (and L_i)
 
   pars_lh = [g k l_T v_Hh v_Hj v_Hp];
   [tau_j tau_p t_h] = get_tj(pars_lh, f); % use standard f, get_tj takes into account acceleration
-  Eah = (t_0 + t_h/ k_M) ./ TC_Tah; % d, tima at hatch
+  Eah = (t_0 + t_h/ k_M) ./ TC_Tah; % d, time at hatch
   
 %% temperature - daily reproduction rate
  pars_R = [kap, kap_R, g, k_J, k_M, L_T, v, U_Hb, U_Hj, U_Hp]; % compose parameter vector at T_ref
