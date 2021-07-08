@@ -24,6 +24,7 @@ end
   TC_am = tempcorr(temp.am, T_ref, T_A);
   TC_tL = tempcorr(temp.tL, T_ref, T_A);
   TC_tL_juv = tempcorr(temp.tL_juv, T_ref, T_A);
+  TC_tL_larv = tempcorr(temp.tL_larv, T_ref, T_A);
   TC_20 = tempcorr(temp.tp_20, T_ref, T_A);
   TC_26 = tempcorr(temp.tp_26, T_ref, T_A);
   TC_19 = tempcorr(temp.tR_f1_19, T_ref, T_A);
@@ -117,6 +118,12 @@ L_mm = L_m; % assume males and females have same L_m (and L_i)
   L_ji = L_i - (L_i - L_j) * exp( - rT_B * (tL_juv(tL_juv(:,1) >= tT_j) - tT_j)); % cm, expected length at time
   ELw_juv = [L_bj; L_ji]/ del_M; % % cm, standard length
 
+   % time-length larvae
+  kT_M = TC_tL_larv * k_M; rT_B = rho_B * kT_M; rT_j = rho_j * kT_M;     % 1/d, von Bert, exponential growth rate
+  L_bj = L_b * exp(tL_larv(tL_larv(:,1) < tT_j) * rT_j/3); % exponential growth as V1-morph
+  L_ji = L_i - (L_i - L_j) * exp( - rT_B * (tL_larv(tL_larv(:,1) >= tT_j) - tT_j)); % cm, expected length at time
+  ELw_larv = [L_bj; L_ji]/ del_Mb; % % cm, standard length
+  
   % length-weight
   EWw = (LW(:,1) * del_M).^3 * (1 + ome * f_tL); % g, wet weight
   EWw_L = (LWw(:,1) * del_M).^3 * (1 + ome * f_LWw); % g, wet weight
@@ -198,11 +205,11 @@ L_mm = L_m; % assume males and females have same L_m (and L_i)
   prdData.tR_f35_23 = ER_f35_23;
   prdData.tR_f0_19 = ER_f0_19; 
   prdData.tR_f0_23 = ER_f0_23;
- 
 %   prdData.tp_20 = tT_p20;
 %   prdData.tp_26 = tT_p26; 
   prdData.tL = ELw;
   prdData.tL_juv = ELw_juv;
+  prdData.tL_larv = ELw_larv;
   prdData.LW = EWw;
   prdData.LWw = EWw_L;
 
