@@ -22,6 +22,7 @@ end
   TC_ab = tempcorr(temp.ab, T_ref, T_A);
   TC_tj = tempcorr(temp.tj, T_ref, T_A);
   TC_am = tempcorr(temp.am, T_ref, T_A);
+  TC_Ri = tempcorr(temp.Ri, T_ref, T_A);
   TC_tL = tempcorr(temp.tL, T_ref, T_A);
   TC_tL_juv = tempcorr(temp.tL_juv, T_ref, T_A);
   TC_tL_larv = tempcorr(temp.tL_larv, T_ref, T_A);
@@ -47,7 +48,7 @@ end
   
   % metam
   L_j = L_m * l_j;                  % cm, structural length at metam
-  Lw_j = L_j/ del_Mb;                % cm, standard length at metam
+  Lw_j = L_j/ del_M;                % cm, standard length at metam
   tT_j = tau_j/ k_M/ TC_tj;          % d, age at birth of foetus at f and T
 
   % puberty 
@@ -64,7 +65,7 @@ end
 
   % reproduction
   pars_R = [kap; kap_R; g; k_J; k_M; L_T; v; U_Hb; U_Hj; U_Hp]; % compose parameter vector
-  RT_i = TC_am * reprod_rate_j(L_i, f, pars_R);                    % ultimate reproduction rate
+  RT_i = TC_Ri * reprod_rate_j(L_i, f, pars_R);                    % ultimate reproduction rate
 
 % life span
   pars_tm = [g; l_T; h_a/ k_M^2; s_G];  % compose parameter vector at T_ref
@@ -131,8 +132,10 @@ L_mm = L_m; % assume males and females have same L_m (and L_i)
   ELw_larv = [EL_bj; EL_ji]; % % cm, standard length
   
   % length-weight
-  EWw = (LW(:,1) * del_M).^3 * (1 + ome * f_tL); % g, wet weight
-  EWw_L = (LWw(:,1) * del_M).^3 * (1 + ome * f_LWw); % g, wet weight
+  EWw = [(LW(LW(:,1)<data.Lj,1) * del_Mb).^3 * (1 + ome * f_tL);
+      (LW(LW(:,1)>data.Lj,1) * del_M).^3 * (1 + ome * f_tL)]; % g, wet weight
+  EWw_L = [(LWw(LWw(:,1)<data.Lj,1) * del_Mb).^3 * (1 + ome * f_LWw);
+      (LWw(LWw(:,1)>data.Lj,1) * del_M).^3 * (1 + ome * f_LWw)]; % g, wet weight
   
 % T-ah    
 %   pars_UE0 = [V_Hb; g; k_J; k_M; v]; % compose parameter vector
